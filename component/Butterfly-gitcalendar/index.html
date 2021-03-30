@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="gitcalendar/css/gitcalendar.css">
+</head>
+<body>
+<div class="gitcalendar" id="gitcalendar">
+    <div id="gitmessage" :style="{top:y+px,left:x+px,position: fixed,zIndex:9999}">
+        <div class="angle-wrapper"><span>{{span1}} &nbsp;</span><span>{{span2}} 次上传</span></div>
+    </div>
+    <div class="position-relative">
+        <div class="border py-2 graph-before-activity-overview">
+            <div class="js-gitcalendar-graph mx-md-2 mx-3 d-flex flex-column flex-items-end flex-xl-items-center overflow-hidden pt-1 is-graph-loading graph-canvas gitcalendar-graph height-full text-center" data-graph-url="" data-url="" data-from="" data-to="" data-org="data-org">
+                <div id="gitcalendarcanvasbox" v-if="simplemode">
+                    <canvas id="gitcanvas" style="animation: none;"></canvas>
+                </div>
+                <svg class="js-gitcalendar-graph-svg" width="100%" viewBox="0 0 770 128" v-if="!simplemode">
+                    <text class="month" :x="32 + monthindex*64" y="20" v-for="(month,monthindex) in monthchange">{{month}}</text>
+                    <text class="wday" text-anchor="start" dx="0" dy="40"> 日</text>
+                    <text class="wday" text-anchor="start" dx="0" dy="65"> 二</text>
+                    <text class="wday" text-anchor="start" dx="0" dy="90"> 四</text>
+                    <text class="wday" text-anchor="start" dx="0" dy="115">六</text>
+                    <g v-for="(weekitem,weekIndex) in data" :transform="'translate('+ (16 + weekIndex*14) + ',' + '0)'">
+                        <rect @mouseover="selectStyle(dayitem,$event)" @mouseleave="outStyle()" v-for="(dayitem,dayIndex) in weekitem" :style="{fill:thiscolor(dayitem.count),shapeRendering:crispedges}" :data-score="dayitem.count" :data-date="dayitem.date" x="0" :y=" 30 + dayIndex*13 " width="11" height="11"></rect>
+                    </g>
+                </svg>
+            </div>
+            <div class="contrib-footer clearfix mt-1 mx-3 px-3 pb-1">
+                <div class="float-left text-gray">数据来源 <a :href="'https://github.com/'+ user " target="blank">@{{user}}</a></div>
+                <div class="contrib-legend text-gray" title="A summary of pull requests, issues opened, and commits to the default and gh-pages branches.">Less
+                    <ul class="legend">
+                        <li :style="{backgroundColor:color[0]}"></li>
+                        <li :style="{backgroundColor:color[2]}"></li>
+                        <li :style="{backgroundColor:color[4]}"></li>
+                        <li :style="{backgroundColor:color[6]}"></li>
+                        <li :style="{backgroundColor:color[8]}"></li>
+                    </ul>More
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contrib-column contrib-column-first table-column"><span class="text-muted">过去一年提交</span><span class="contrib-number">{{total}}</span><span class="text-muted">{{oneyearbeforeday}}&nbsp;-&nbsp;{{thisday}}</span></div>
+    <div class="contrib-column table-column"><span class="text-muted">最近一月提交</span><span class="contrib-number">{{thisweekdatacore}}</span><span class="text-muted">{{amonthago}}&nbsp;-&nbsp;{{thisday}}</span></div>
+    <div class="contrib-column table-column"><span class="text-muted">最近一周提交</span><span class="contrib-number">{{weekdatacore}}</span><span class="text-muted">{{aweekago}}&nbsp;-&nbsp;{{thisday}}</span></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="gitcalendar/js/gitcalendar.js"></script>
+</body>
+</html>
