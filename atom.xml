@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-03-30T09:26:47.000Z</updated>
+  <updated>2021-03-30T10:00:00.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据清洗：获取指定字符前面或者后面的所有字符</title>
+    <link href="https://blog.raxianch.moe/article/4160305074/"/>
+    <id>https://blog.raxianch.moe/article/4160305074/</id>
+    <published>2021-03-30T10:00:00.000Z</published>
+    <updated>2021-03-30T10:00:00.000Z</updated>
+    
+    
+    <summary type="html">获取指定字符前面的所有字符，获取指定字符后面的所有字符</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
+    
+    <category term="数据清洗" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
+    
+  </entry>
   
   <entry>
     <title>简单粗暴的让mysql主键id重新排序</title>
@@ -539,37 +562,6 @@
     <category term="VueCli" scheme="https://blog.raxianch.moe/tags/VueCli/"/>
     
     <category term="normalize" scheme="https://blog.raxianch.moe/tags/normalize/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web前端：vue开发中，父组件添加scoped无法修改子组件样式问题</title>
-    <link href="https://blog.raxianch.moe/article/21946/"/>
-    <id>https://blog.raxianch.moe/article/21946/</id>
-    <published>2020-05-07T01:54:26.000Z</published>
-    <updated>2021-03-30T03:33:05.689Z</updated>
-    
-    
-    <summary type="html">Web前端：vue开发中，父组件添加scoped无法修改子组件样式问题</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/tags/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="HTML" scheme="https://blog.raxianch.moe/tags/HTML/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/tags/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="CSS" scheme="https://blog.raxianch.moe/tags/CSS/"/>
-    
-    <category term="Element-ui" scheme="https://blog.raxianch.moe/tags/Element-ui/"/>
-    
-    <category term="VueCli" scheme="https://blog.raxianch.moe/tags/VueCli/"/>
     
   </entry>
   
