@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>简单粗暴的让mysql主键id重新排序</title>
+      <link href="article/2073581741/"/>
+      <url>article/2073581741/</url>
+      
+        <content type="html"><![CDATA[<p>简单粗暴的让mysql主键id重新排序</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br><span class="line">语言: python v3.8</span><br><span class="line">框架: xxx</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>简单粗暴的让mysql主键id重新排序。</p><p>采集数据入库的时候，偶尔会出现数据入库失败，导致事务回滚的情况。</p><p>当mysql表中存在自增id字段，就会出现id断续的情况。</p><p>强迫症看着难受。</p><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>使用SQL语句，备份表，删除id自增键，重新创建id自增键。</p><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol><li>备份表结构</li></ol><blockquote><p>create table table_bak like table_name;</p></blockquote><ol start="2"><li>备份表数据</li></ol><blockquote><p>insert into table_bak select * from table_name;</p></blockquote><ol start="3"><li>删除原来主键字段(如id)</li></ol><blockquote><p>alter table table_name drop id;</p></blockquote><ol start="4"><li>添加主键，自增，放在第一位</li></ol><blockquote><p>alter table table_name add id int(11) primary key auto_increment first;</p></blockquote><ol start="5"><li>检查没问题的话，即可清理备份表</li></ol><blockquote><p>drop table table_name;</p></blockquote><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>一般在生产，当中任何删除操作都是有风险的。</p><p>必须确保其它业务表，不会与该表的自增字段有关联。</p><p>如果是表中数据量达到千万级以上，这样的做法是不推荐的。</p><p>但是，目前我处理的数据还只是数十万级，且表是独立的没有外部关联，还算hold得住。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> MYSQL </tag>
+            
+            <tag> Mysql </tag>
+            
+            <tag> sql </tag>
+            
+            <tag> 数据库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数据清洗：通过Python从字符串中提取数字</title>
       <link href="article/3539572553/"/>
       <url>article/3539572553/</url>
@@ -47,11 +80,11 @@
       
         <tags>
             
+            <tag> mysql </tag>
+            
             <tag> navicat </tag>
             
             <tag> Navicat </tag>
-            
-            <tag> mysql </tag>
             
             <tag> MYSQL </tag>
             
@@ -179,9 +212,9 @@
           
           <category> IT技术 </category>
           
-          <category> 小技能GET </category>
-          
           <category> Web前端 </category>
+          
+          <category> 小技能GET </category>
           
           <category> html </category>
           
@@ -273,9 +306,9 @@
           
           <category> IT技术 </category>
           
-          <category> 小技能GET </category>
-          
           <category> Web前端 </category>
+          
+          <category> 小技能GET </category>
           
           <category> 运行维护 </category>
           
@@ -306,9 +339,9 @@
           
           <category> IT技术 </category>
           
-          <category> 小技能GET </category>
-          
           <category> Web前端 </category>
+          
+          <category> 小技能GET </category>
           
           <category> 疑难杂症 </category>
           
@@ -341,9 +374,9 @@
           
           <category> Web前端 </category>
           
-          <category> 疑难杂症 </category>
-          
           <category> nodejs </category>
+          
+          <category> 疑难杂症 </category>
           
       </categories>
       
@@ -531,9 +564,9 @@
           
           <category> python </category>
           
-          <category> 小技能GET </category>
-          
           <category> Web后端 </category>
+          
+          <category> 小技能GET </category>
           
           <category> 运行维护 </category>
           
@@ -565,7 +598,7 @@
       <link href="article/8647/"/>
       <url>article/8647/</url>
       
-        <content type="html"><![CDATA[<p>normalize.css是一款优秀的前端css初始化工具！之前没尝试过在VueCli中使用。记录一下..</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Windows10</span><br><span class="line">IDE: JetBrains WebStorm 2018.2.1 x64</span><br><span class="line">浏览器： Google Chrome 版本 67.0.3396.99（正式版本） （64 位）&amp;&amp; FireFox Developer Edition 版本63.0b4  (64位)</span><br><span class="line">VueCli : 3</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Normalize.css只是一个很小的css文件，但它在磨人的HTML元素样式上提供了跨浏览器的高度一致性。</p><p>相比于传统的CSS reset,Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p><p>总之，Normalize.css是一种CSS reset的替代方案。</p><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li><p>保护有用的浏览器样式而不是去掉他们；</p></li><li><p>为大部分HTML元素提供一般化的样式；</p></li><li><p>修复浏览器自身的bug并保证各浏览器的一致性；</p></li><li><p>优化css可用性；</p></li><li><p>用注释和详细的文档来解释代码；</p></li><li><p>Normalize支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表哥都进行了一般化；<br>  尽管这个项目基于一般化的原则，但我们还是在合适的地方使用了更实用的默认值。</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1></li><li><p>安装</p></li></ul><blockquote><p>npm install –save normalize.css </p></blockquote><ul><li>VueCli 下的 main.js 导入</li></ul><blockquote><p>import ‘normalize.css/normalize.css’</p></blockquote><h1 id="若是出现引入报错，可能没有安装css-loader-和style-loader"><a href="#若是出现引入报错，可能没有安装css-loader-和style-loader" class="headerlink" title="若是出现引入报错，可能没有安装css-loader 和style-loader"></a>若是出现引入报错，可能没有安装css-loader 和style-loader</h1><blockquote><p>npm install css-loader style-loader</p></blockquote><h1 id="如果出现-core-js-modules-es-object-to-string-之类的报错"><a href="#如果出现-core-js-modules-es-object-to-string-之类的报错" class="headerlink" title="如果出现 core-js/modules/es.object.to-string 之类的报错"></a>如果出现 core-js/modules/es.object.to-string 之类的报错</h1><blockquote><p>npm install core-js</p></blockquote><p>或者降版本</p><blockquote><p>npm i <a href="mailto:&#99;&#111;&#x72;&#x65;&#x2d;&#106;&#115;&#x40;&#x32;&#x2e;&#54;&#46;&#x35;">&#99;&#111;&#x72;&#x65;&#x2d;&#106;&#115;&#x40;&#x32;&#x2e;&#54;&#46;&#x35;</a> –save</p></blockquote>]]></content>
+        <content type="html"><![CDATA[<p>normalize.css是一款优秀的前端css初始化工具！之前没尝试过在VueCli中使用。记录一下..</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Windows10</span><br><span class="line">IDE: JetBrains WebStorm 2018.2.1 x64</span><br><span class="line">浏览器： Google Chrome 版本 67.0.3396.99（正式版本） （64 位）&amp;&amp; FireFox Developer Edition 版本63.0b4  (64位)</span><br><span class="line">VueCli : 3</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Normalize.css只是一个很小的css文件，但它在磨人的HTML元素样式上提供了跨浏览器的高度一致性。</p><p>相比于传统的CSS reset,Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p><p>总之，Normalize.css是一种CSS reset的替代方案。</p><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li><p>保护有用的浏览器样式而不是去掉他们；</p></li><li><p>为大部分HTML元素提供一般化的样式；</p></li><li><p>修复浏览器自身的bug并保证各浏览器的一致性；</p></li><li><p>优化css可用性；</p></li><li><p>用注释和详细的文档来解释代码；</p></li><li><p>Normalize支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表哥都进行了一般化；<br>  尽管这个项目基于一般化的原则，但我们还是在合适的地方使用了更实用的默认值。</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1></li><li><p>安装</p></li></ul><blockquote><p>npm install –save normalize.css </p></blockquote><ul><li>VueCli 下的 main.js 导入</li></ul><blockquote><p>import ‘normalize.css/normalize.css’</p></blockquote><h1 id="若是出现引入报错，可能没有安装css-loader-和style-loader"><a href="#若是出现引入报错，可能没有安装css-loader-和style-loader" class="headerlink" title="若是出现引入报错，可能没有安装css-loader 和style-loader"></a>若是出现引入报错，可能没有安装css-loader 和style-loader</h1><blockquote><p>npm install css-loader style-loader</p></blockquote><h1 id="如果出现-core-js-modules-es-object-to-string-之类的报错"><a href="#如果出现-core-js-modules-es-object-to-string-之类的报错" class="headerlink" title="如果出现 core-js/modules/es.object.to-string 之类的报错"></a>如果出现 core-js/modules/es.object.to-string 之类的报错</h1><blockquote><p>npm install core-js</p></blockquote><p>或者降版本</p><blockquote><p>npm i <a href="mailto:&#x63;&#111;&#114;&#101;&#x2d;&#106;&#x73;&#x40;&#x32;&#46;&#x36;&#46;&#x35;">&#x63;&#111;&#114;&#101;&#x2d;&#106;&#x73;&#x40;&#x32;&#46;&#x36;&#46;&#x35;</a> –save</p></blockquote>]]></content>
       
       
       <categories>
@@ -735,8 +768,6 @@
             
             <tag> HTML </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
@@ -744,6 +775,8 @@
             <tag> Django </tag>
             
             <tag> django-rest-framework </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
       
@@ -813,9 +846,9 @@
             
             <tag> Web前端 </tag>
             
-            <tag> JavaScript </tag>
-            
             <tag> CSS </tag>
+            
+            <tag> JavaScript </tag>
             
         </tags>
       
@@ -850,8 +883,6 @@
             
             <tag> HTML </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
@@ -859,6 +890,8 @@
             <tag> Django </tag>
             
             <tag> django-rest-framework </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
       
@@ -971,8 +1004,6 @@
             
             <tag> HTML </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
@@ -980,6 +1011,8 @@
             <tag> Django </tag>
             
             <tag> django-rest-framework </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
       
@@ -1002,11 +1035,11 @@
             
             <tag> Linux </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Github </tag>
             
             <tag> 疑难杂症 </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> 运行维护 </tag>
             
@@ -1101,9 +1134,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> Nginx </tag>
             
@@ -1152,9 +1185,9 @@
           
           <category> IT技术 </category>
           
-          <category> 小技能GET </category>
-          
           <category> Web后端 </category>
+          
+          <category> 小技能GET </category>
           
           <category> 运行维护 </category>
           
@@ -1244,11 +1277,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Github </tag>
             
             <tag> 疑难杂症 </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> uWSGI </tag>
             
@@ -1477,9 +1510,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Vim </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Vim </tag>
             
         </tags>
       
@@ -2256,13 +2289,13 @@
             
             <tag> HTML </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
             
             <tag> Django </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
       
@@ -2420,9 +2453,9 @@
             
             <tag> Web前端 </tag>
             
-            <tag> JavaScript </tag>
-            
             <tag> CSS </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> typescript </tag>
             
@@ -2506,9 +2539,9 @@
           
           <category> JavaScript </category>
           
-          <category> 疑难杂症 </category>
-          
           <category> nodejs </category>
+          
+          <category> 疑难杂症 </category>
           
       </categories>
       
@@ -2519,9 +2552,9 @@
             
             <tag> Web前端 </tag>
             
-            <tag> JavaScript </tag>
-            
             <tag> CSS </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> nodejs </tag>
             
@@ -2554,9 +2587,9 @@
             
             <tag> Web前端 </tag>
             
-            <tag> JavaScript </tag>
-            
             <tag> CSS </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> Vue </tag>
             
@@ -2600,9 +2633,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> mysql </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> mysql </tag>
             
         </tags>
       
@@ -2950,7 +2983,7 @@
       <link href="article/55003/"/>
       <url>article/55003/</url>
       
-        <content type="html"><![CDATA[<p>最近使用GitHub Desktop时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Ubuntu18.04  </span><br><span class="line">IDE: JetBrains Pycharm 2018.2.4 x64  </span><br><span class="line">Python: 3.6.2</span><br><span class="line">Django: 2.0.3</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>最近更换Ubuntu18.04使用Pycharm上传Github时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><p>查看了github的help页，找到了有关github贡献值的计算说明。</p><ol><li><p>问题和拉取请求<br>如果问题和拉取请求是在独立存储库中打开而不是分叉，则它们将显示在您的贡献图上。</p></li><li><p>提交<br>如果提交符合以下所有条件，则会在您的贡献图表上显示：</p></li></ol><blockquote><p>用于提交的电子邮件地址与您的GitHub帐户相关联。<br>提交是在独立的存储库中进行的，而不是fork。<br>提交的内容如下：<br>在存储库的默认分支（通常master）<br>在gh-pages分支中（对于具有Project Pages站点的存储库）  </p></blockquote><p>此外，至少满足下面条件中的一个（主要针对你Commit的仓库不是你创建的）：</p><blockquote><p>你是这个仓库的协作者，或者是这个版本库的拥有组织中的一员<br>你fork过这个仓库<br>你对这个仓库发起过pull request或者issue<br>你对这个仓库标记了Star  </p></blockquote><h1 id="不计算捐款的常见原因"><a href="#不计算捐款的常见原因" class="headerlink" title="不计算捐款的常见原因"></a>不计算捐款的常见原因</h1><p>笔记：</p><blockquote><p>要显示在您的个人资料贡献图表中，共同创作的提交必须符合与一位作者的提交相同的标准。<br>当合并拉取请求并且压缩提交时，只有合并拉取请求的用户和打开拉取请求的用户才会收到贡献积分。拉取请求的其他任何贡献者都不会获得贡献积分。<br>当重新提交提交时，提交的原始作者和重新提交的人，无论是在命令行还是在GitHub上，都会收到贡献信用。  </p></blockquote><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>发现在github网站上修改提交都可以记录,但就是我本地的客户端不可以。<br>然后我在github上点击紫色头像提交记录的详细内容查看,他说我的作者是无效的。<br>后来查了下发现是邮箱用户名不对。<br>先用git show 发现邮箱那里跟github的账号邮箱不一样！<br><img src= "/customize/img/loading.gif" data-lazy-src="1.png" alt="1.png"><br>我的邮箱地址写错成了一个逗号..“，com”，好吧服了。<br>再次核对一下Github邮箱一直，登陆Github!<br><img src= "/customize/img/loading.gif" data-lazy-src="2.png" alt="2.png"></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在该项目有“.git”文件夹的目录下，打开Ubuntu终端使用git命令：</p><blockquote><p>git config –global user.name “username”<br>git config –global user.email “<a href="mailto:&#x75;&#115;&#x65;&#114;&#x6e;&#x61;&#109;&#101;&#x40;&#109;&#x61;&#x69;&#108;&#46;&#99;&#111;&#x6d;">&#x75;&#115;&#x65;&#114;&#x6e;&#x61;&#109;&#101;&#x40;&#109;&#x61;&#x69;&#108;&#46;&#99;&#111;&#x6d;</a>”</p></blockquote><p>将配置文件的邮箱修改为正确的邮箱地址，然后通过继续终端使用命令行方式提交一次。</p><blockquote><p>git commit -m “test”<br>git push origin master  </p></blockquote><p>这次的提交就会出现小绿点了。这时再使用</p><blockquote><p>git show</p></blockquote><p>来验证一下，是否修改成功。成功以后，重启Pycharm，它也会同步。这样使用它上传github的时候也不会穿错了。</p><p><strong>可是问题来了，如果不想放弃之前的那些用错邮箱的提交怎么办？</strong></p><p>只要在Github的setting中，把之前错误的邮箱地址添加上去即可！<br><img src= "/customize/img/loading.gif" data-lazy-src="3.png" alt="3.png"></p><p>如此以来，完美解决即可解决这个问题！</p>]]></content>
+        <content type="html"><![CDATA[<p>最近使用GitHub Desktop时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Ubuntu18.04  </span><br><span class="line">IDE: JetBrains Pycharm 2018.2.4 x64  </span><br><span class="line">Python: 3.6.2</span><br><span class="line">Django: 2.0.3</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>最近更换Ubuntu18.04使用Pycharm上传Github时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><p>查看了github的help页，找到了有关github贡献值的计算说明。</p><ol><li><p>问题和拉取请求<br>如果问题和拉取请求是在独立存储库中打开而不是分叉，则它们将显示在您的贡献图上。</p></li><li><p>提交<br>如果提交符合以下所有条件，则会在您的贡献图表上显示：</p></li></ol><blockquote><p>用于提交的电子邮件地址与您的GitHub帐户相关联。<br>提交是在独立的存储库中进行的，而不是fork。<br>提交的内容如下：<br>在存储库的默认分支（通常master）<br>在gh-pages分支中（对于具有Project Pages站点的存储库）  </p></blockquote><p>此外，至少满足下面条件中的一个（主要针对你Commit的仓库不是你创建的）：</p><blockquote><p>你是这个仓库的协作者，或者是这个版本库的拥有组织中的一员<br>你fork过这个仓库<br>你对这个仓库发起过pull request或者issue<br>你对这个仓库标记了Star  </p></blockquote><h1 id="不计算捐款的常见原因"><a href="#不计算捐款的常见原因" class="headerlink" title="不计算捐款的常见原因"></a>不计算捐款的常见原因</h1><p>笔记：</p><blockquote><p>要显示在您的个人资料贡献图表中，共同创作的提交必须符合与一位作者的提交相同的标准。<br>当合并拉取请求并且压缩提交时，只有合并拉取请求的用户和打开拉取请求的用户才会收到贡献积分。拉取请求的其他任何贡献者都不会获得贡献积分。<br>当重新提交提交时，提交的原始作者和重新提交的人，无论是在命令行还是在GitHub上，都会收到贡献信用。  </p></blockquote><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>发现在github网站上修改提交都可以记录,但就是我本地的客户端不可以。<br>然后我在github上点击紫色头像提交记录的详细内容查看,他说我的作者是无效的。<br>后来查了下发现是邮箱用户名不对。<br>先用git show 发现邮箱那里跟github的账号邮箱不一样！<br><img src= "/customize/img/loading.gif" data-lazy-src="1.png" alt="1.png"><br>我的邮箱地址写错成了一个逗号..“，com”，好吧服了。<br>再次核对一下Github邮箱一直，登陆Github!<br><img src= "/customize/img/loading.gif" data-lazy-src="2.png" alt="2.png"></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在该项目有“.git”文件夹的目录下，打开Ubuntu终端使用git命令：</p><blockquote><p>git config –global user.name “username”<br>git config –global user.email “<a href="mailto:&#x75;&#115;&#101;&#114;&#110;&#x61;&#x6d;&#101;&#64;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x75;&#115;&#101;&#114;&#110;&#x61;&#x6d;&#101;&#64;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>”</p></blockquote><p>将配置文件的邮箱修改为正确的邮箱地址，然后通过继续终端使用命令行方式提交一次。</p><blockquote><p>git commit -m “test”<br>git push origin master  </p></blockquote><p>这次的提交就会出现小绿点了。这时再使用</p><blockquote><p>git show</p></blockquote><p>来验证一下，是否修改成功。成功以后，重启Pycharm，它也会同步。这样使用它上传github的时候也不会穿错了。</p><p><strong>可是问题来了，如果不想放弃之前的那些用错邮箱的提交怎么办？</strong></p><p>只要在Github的setting中，把之前错误的邮箱地址添加上去即可！<br><img src= "/customize/img/loading.gif" data-lazy-src="3.png" alt="3.png"></p><p>如此以来，完美解决即可解决这个问题！</p>]]></content>
       
       
       
@@ -2958,11 +2991,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Github </tag>
             
             <tag> 疑难杂症 </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
       
@@ -2999,13 +3032,13 @@
             
             <tag> HTML </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
             
             <tag> Django </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
       
@@ -3371,17 +3404,17 @@
             
             <tag> HTML </tag>
             
-            <tag> mysql </tag>
-            
-            <tag> Pycharm </tag>
-            
-            <tag> Ubuntu </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
             
             <tag> Django </tag>
+            
+            <tag> Ubuntu </tag>
+            
+            <tag> Pycharm </tag>
+            
+            <tag> mysql </tag>
             
         </tags>
       
@@ -3457,13 +3490,13 @@
             
             <tag> HTML </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
             
             <tag> Django </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> uWSGI </tag>
             
@@ -3533,11 +3566,11 @@
           
           <category> IT技术 </category>
           
-          <category> 小技能GET </category>
-          
           <category> Web前端 </category>
           
           <category> JavaScript </category>
+          
+          <category> 小技能GET </category>
           
           <category> 疑难杂症 </category>
           
@@ -3602,9 +3635,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> mysql </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> mysql </tag>
             
             <tag> VMware </tag>
             
@@ -3629,9 +3662,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Pycharm </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Pycharm </tag>
             
             <tag> VMware </tag>
             
@@ -3656,9 +3689,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Pycharm </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Pycharm </tag>
             
             <tag> VMware </tag>
             
