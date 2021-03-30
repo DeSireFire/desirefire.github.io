@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-03-30T04:48:38.000Z</updated>
+  <updated>2021-03-30T08:30:21.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Navicat界面下如何用SQL语句给Mysql创建表？</title>
+    <link href="https://blog.raxianch.moe/article/3554193979/"/>
+    <id>https://blog.raxianch.moe/article/3554193979/</id>
+    <published>2021-03-30T08:30:21.000Z</published>
+    <updated>2021-03-30T08:30:21.000Z</updated>
+    
+    
+    <summary type="html">Navicat界面下如何用SQL语句给Mysql创建表</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
+    
+    <category term="Navicat" scheme="https://blog.raxianch.moe/tags/Navicat/"/>
+    
+    <category term="MYSQL" scheme="https://blog.raxianch.moe/tags/MYSQL/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Git设置代理</title>
@@ -223,9 +250,9 @@
     
     <category term="小技能GET" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E5%B0%8F%E6%8A%80%E8%83%BDGET/"/>
     
-    <category term="hexo" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/hexo/"/>
-    
     <category term="疑难杂症" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    
+    <category term="hexo" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/hexo/"/>
     
     
     <category term="hexo" scheme="https://blog.raxianch.moe/tags/hexo/"/>
@@ -557,43 +584,6 @@
     <category term="Element-ui" scheme="https://blog.raxianch.moe/tags/Element-ui/"/>
     
     <category term="VueCli" scheme="https://blog.raxianch.moe/tags/VueCli/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web后端：django_rest_framework_分页出现警告！</title>
-    <link href="https://blog.raxianch.moe/article/21343/"/>
-    <id>https://blog.raxianch.moe/article/21343/</id>
-    <published>2020-05-06T02:52:10.000Z</published>
-    <updated>2021-03-30T03:33:06.104Z</updated>
-    
-    
-    <summary type="html">Web后端：django_rest_framework_分页出现警告！</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="Web后端" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/Web%E5%90%8E%E7%AB%AF/"/>
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/tags/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-    <category term="Web后端" scheme="https://blog.raxianch.moe/tags/Web%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="HTML" scheme="https://blog.raxianch.moe/tags/HTML/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/tags/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="CSS" scheme="https://blog.raxianch.moe/tags/CSS/"/>
-    
-    <category term="Django" scheme="https://blog.raxianch.moe/tags/Django/"/>
-    
-    <category term="django-rest-framework" scheme="https://blog.raxianch.moe/tags/django-rest-framework/"/>
-    
-    <category term="Ubuntu" scheme="https://blog.raxianch.moe/tags/Ubuntu/"/>
     
   </entry>
   
