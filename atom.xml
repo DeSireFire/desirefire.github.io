@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-03-30T10:00:00.000Z</updated>
+  <updated>2021-03-31T01:58:30.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>统计字符串中某字符出现的次数</title>
+    <link href="https://blog.raxianch.moe/article/916779116/"/>
+    <id>https://blog.raxianch.moe/article/916779116/</id>
+    <published>2021-03-31T01:58:30.000Z</published>
+    <updated>2021-03-31T01:58:30.000Z</updated>
+    
+    
+    <summary type="html">使用python统计一段字符串当中，某一个字符重复出现的次数。</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="str" scheme="https://blog.raxianch.moe/tags/str/"/>
+    
+    <category term="字符串" scheme="https://blog.raxianch.moe/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    <category term="NLP" scheme="https://blog.raxianch.moe/tags/NLP/"/>
+    
+  </entry>
   
   <entry>
     <title>数据清洗：获取指定字符前面或者后面的所有字符</title>
@@ -531,37 +556,6 @@
     <category term="Centos" scheme="https://blog.raxianch.moe/tags/Centos/"/>
     
     <category term="运行维护" scheme="https://blog.raxianch.moe/tags/%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web前端：VueCli安装normalize.css</title>
-    <link href="https://blog.raxianch.moe/article/8647/"/>
-    <id>https://blog.raxianch.moe/article/8647/</id>
-    <published>2020-05-07T06:10:42.000Z</published>
-    <updated>2021-03-30T03:33:05.517Z</updated>
-    
-    
-    <summary type="html">Web前端：VueCli安装normalize.css</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/tags/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="HTML" scheme="https://blog.raxianch.moe/tags/HTML/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/tags/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="CSS" scheme="https://blog.raxianch.moe/tags/CSS/"/>
-    
-    <category term="VueCli" scheme="https://blog.raxianch.moe/tags/VueCli/"/>
-    
-    <category term="normalize" scheme="https://blog.raxianch.moe/tags/normalize/"/>
     
   </entry>
   
