@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-03-31T01:58:30.000Z</updated>
+  <updated>2021-04-22T11:49:23.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,317 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mysql数据库&#39;Got a packet bigger than‘max_allowed_packet’bytes&#39;的解决方案</title>
+    <link href="https://blog.raxianch.moe/article/3896883137/"/>
+    <id>https://blog.raxianch.moe/article/3896883137/</id>
+    <published>2021-04-22T11:49:23.000Z</published>
+    <updated>2021-04-22T11:49:23.000Z</updated>
+    
+    
+    <summary type="html">简介</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    
+    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>通过python一键生成mysql建表sql语句！</title>
+    <link href="https://blog.raxianch.moe/article/2508268452/"/>
+    <id>https://blog.raxianch.moe/article/2508268452/</id>
+    <published>2021-04-22T06:13:13.000Z</published>
+    <updated>2021-04-22T06:13:13.000Z</updated>
+    
+    
+    <summary type="html">这一个多月，一直在做数据采集，写程序，然后创建好几个表一个个填字段，我吐了。于是，开发了一键生成建表sql的程序。</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Navicat 看历史执行SQL</title>
+    <link href="https://blog.raxianch.moe/article/2124605906/"/>
+    <id>https://blog.raxianch.moe/article/2124605906/</id>
+    <published>2021-04-22T05:59:41.000Z</published>
+    <updated>2021-04-22T05:59:41.000Z</updated>
+    
+    
+    <summary type="html">navicat 有些危险操作是没有二次确认的，实施误操作以后如何追述问题，就需要查询历史记录。</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MYSQL数据库Specified key was too long; max key length is xxx bytes,解决方案</title>
+    <link href="https://blog.raxianch.moe/article/2646095202/"/>
+    <id>https://blog.raxianch.moe/article/2646095202/</id>
+    <published>2021-04-22T05:46:48.000Z</published>
+    <updated>2021-04-22T05:46:48.000Z</updated>
+    
+    
+    <summary type="html">给MySql数据库表Varchar类型字段加索引时报错：“Specified key was too long; max key length is xxx bytes”；</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    
+    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql设置自动更新时间&amp;创建时间</title>
+    <link href="https://blog.raxianch.moe/article/1404601960/"/>
+    <id>https://blog.raxianch.moe/article/1404601960/</id>
+    <published>2021-04-22T04:45:54.000Z</published>
+    <updated>2021-04-22T04:45:54.000Z</updated>
+    
+    
+    <summary type="html">scrapy item是可以不包含mysql自生成字段的。用sql自带的时间创建，可以省很多事，在数据更新判断上也交由数据库自己来判断。</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql中ERROR 1364 (HY000): Field &#39;xxxx&#39; doesn&#39;t have a default value的解决方案</title>
+    <link href="https://blog.raxianch.moe/article/2414690755/"/>
+    <id>https://blog.raxianch.moe/article/2414690755/</id>
+    <published>2021-04-22T03:45:02.000Z</published>
+    <updated>2021-04-22T03:45:02.000Z</updated>
+    
+    
+    <summary type="html">开发了一个自动生成建表语句的python小程序，用生成好的数据表插入数据，发现了问题。</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    
+    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL Charset--UTF8和UTF8MB4的区别</title>
+    <link href="https://blog.raxianch.moe/article/2685378097/"/>
+    <id>https://blog.raxianch.moe/article/2685378097/</id>
+    <published>2021-04-22T01:33:17.000Z</published>
+    <updated>2021-04-22T01:33:17.000Z</updated>
+    
+    
+    <summary type="html">某日，数据库建表的时候，我开始好奇mysql的charset编码设置参数。uft8和utf8mb4有啥区别呢？</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+    <category term="charset" scheme="https://blog.raxianch.moe/tags/charset/"/>
+    
+    <category term="utf8mb4" scheme="https://blog.raxianch.moe/tags/utf8mb4/"/>
+    
+    <category term="utf8" scheme="https://blog.raxianch.moe/tags/utf8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python如何判断文件是否存在？</title>
+    <link href="https://blog.raxianch.moe/article/3659666415/"/>
+    <id>https://blog.raxianch.moe/article/3659666415/</id>
+    <published>2021-04-05T09:24:19.000Z</published>
+    <updated>2021-04-05T09:24:19.000Z</updated>
+    
+    
+    <summary type="html">Python如何判断文件是否存在？</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>scrapy全局setting各项配置的说明</title>
+    <link href="https://blog.raxianch.moe/article/4252984638/"/>
+    <id>https://blog.raxianch.moe/article/4252984638/</id>
+    <published>2021-04-05T06:27:49.000Z</published>
+    <updated>2021-04-05T06:27:49.000Z</updated>
+    
+    
+    <summary type="html">scrapy全局setting各项配置的说明</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
+    
+    <category term="scrapy" scheme="https://blog.raxianch.moe/tags/scrapy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python中如何判断sql语句操作成功？</title>
+    <link href="https://blog.raxianch.moe/article/1241896087/"/>
+    <id>https://blog.raxianch.moe/article/1241896087/</id>
+    <published>2021-04-05T06:09:43.000Z</published>
+    <updated>2021-04-05T06:09:43.000Z</updated>
+    
+    
+    <summary type="html">python中如何判断sql语句操作成功？</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="数据" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE/"/>
+    
+    <category term="pymysql" scheme="https://blog.raxianch.moe/tags/pymysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pymysql批量插入方法executemany的使用</title>
+    <link href="https://blog.raxianch.moe/article/2058542617/"/>
+    <id>https://blog.raxianch.moe/article/2058542617/</id>
+    <published>2021-04-05T05:58:14.000Z</published>
+    <updated>2021-04-05T05:58:14.000Z</updated>
+    
+    
+    <summary type="html">Pymysql批量插入方法executemany的使用</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="数据" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE/"/>
+    
+    <category term="pymysql" scheme="https://blog.raxianch.moe/tags/pymysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python爬虫：Scrapy使用adbapi提高存储数据库效率</title>
+    <link href="https://blog.raxianch.moe/article/3104511781/"/>
+    <id>https://blog.raxianch.moe/article/3104511781/</id>
+    <published>2021-04-05T05:15:17.000Z</published>
+    <updated>2021-04-05T05:15:17.000Z</updated>
+    
+    
+    <summary type="html">Python爬虫：Scrapy使用adbapi提高存储数据库效率</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
+    
+    <category term="scrapy" scheme="https://blog.raxianch.moe/tags/scrapy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据清洗：清理字符串中存在的\xa0字符</title>
+    <link href="https://blog.raxianch.moe/article/382879377/"/>
+    <id>https://blog.raxianch.moe/article/382879377/</id>
+    <published>2021-03-31T09:14:30.000Z</published>
+    <updated>2021-03-31T09:14:30.000Z</updated>
+    
+    
+    <summary type="html">简介</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="web" scheme="https://blog.raxianch.moe/tags/web/"/>
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="数据" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE/"/>
+    
+    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
+    
+    <category term="scrapy" scheme="https://blog.raxianch.moe/tags/scrapy/"/>
+    
+    <category term="django" scheme="https://blog.raxianch.moe/tags/django/"/>
+    
+  </entry>
   
   <entry>
     <title>统计字符串中某字符出现的次数</title>
@@ -178,384 +489,6 @@
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python优雅去除list中空字符串</title>
-    <link href="https://blog.raxianch.moe/article/2500387955/"/>
-    <id>https://blog.raxianch.moe/article/2500387955/</id>
-    <published>2021-03-28T13:58:53.000Z</published>
-    <updated>2021-03-28T13:58:53.000Z</updated>
-    
-    
-    <summary type="html">数据结构处理中，时不时会碰到列表中存在空元素的情况，所以记录一个Python优雅去除list中空字符串</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python列表中删除重复的字典</title>
-    <link href="https://blog.raxianch.moe/article/2750680698/"/>
-    <id>https://blog.raxianch.moe/article/2750680698/</id>
-    <published>2021-03-28T13:39:58.000Z</published>
-    <updated>2021-03-28T13:39:58.000Z</updated>
-    
-    
-    <summary type="html">数据清洗的时候，我有一个字典列表，我想删除具有相同键和值对的字典。</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web前端：meta标签的拓展</title>
-    <link href="https://blog.raxianch.moe/article/54558/"/>
-    <id>https://blog.raxianch.moe/article/54558/</id>
-    <published>2021-02-06T09:04:27.000Z</published>
-    <updated>2021-03-30T03:33:05.656Z</updated>
-    
-    
-    <summary type="html">Web前端：meta标签的拓展|meta标签用法探究</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="小技能GET" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E5%B0%8F%E6%8A%80%E8%83%BDGET/"/>
-    
-    <category term="html" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/html/"/>
-    
-    
-    <category term="HTML" scheme="https://blog.raxianch.moe/tags/HTML/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/tags/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="CSS" scheme="https://blog.raxianch.moe/tags/CSS/"/>
-    
-    <category term="web" scheme="https://blog.raxianch.moe/tags/web/"/>
-    
-    <category term="html" scheme="https://blog.raxianch.moe/tags/html/"/>
-    
-    <category term="meta" scheme="https://blog.raxianch.moe/tags/meta/"/>
-    
-    <category term="referrer" scheme="https://blog.raxianch.moe/tags/referrer/"/>
-    
-    <category term="防盗链" scheme="https://blog.raxianch.moe/tags/%E9%98%B2%E7%9B%97%E9%93%BE/"/>
-    
-    <category term="css" scheme="https://blog.raxianch.moe/tags/css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web前端：referrer策略的认识</title>
-    <link href="https://blog.raxianch.moe/article/46153/"/>
-    <id>https://blog.raxianch.moe/article/46153/</id>
-    <published>2021-02-06T02:43:39.000Z</published>
-    <updated>2021-02-06T02:43:39.000Z</updated>
-    
-    
-    <summary type="html">Web前端：referrer策略的认识|&#39;referrer策略,Referrer标签&#39;</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="小技能GET" scheme="https://blog.raxianch.moe/categories/%E5%B0%8F%E6%8A%80%E8%83%BDGET/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    
-    <category term="HTML" scheme="https://blog.raxianch.moe/tags/HTML/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/tags/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="CSS" scheme="https://blog.raxianch.moe/tags/CSS/"/>
-    
-    <category term="web" scheme="https://blog.raxianch.moe/tags/web/"/>
-    
-    <category term="html" scheme="https://blog.raxianch.moe/tags/html/"/>
-    
-    <category term="meta" scheme="https://blog.raxianch.moe/tags/meta/"/>
-    
-    <category term="referrer" scheme="https://blog.raxianch.moe/tags/referrer/"/>
-    
-    <category term="防盗链" scheme="https://blog.raxianch.moe/tags/%E9%98%B2%E7%9B%97%E9%93%BE/"/>
-    
-    <category term="css" scheme="https://blog.raxianch.moe/tags/css/"/>
-    
-    <category term="refer" scheme="https://blog.raxianch.moe/tags/refer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小技能GET：如何提高网页的加载速度？</title>
-    <link href="https://blog.raxianch.moe/article/52952/"/>
-    <id>https://blog.raxianch.moe/article/52952/</id>
-    <published>2021-02-05T11:53:20.000Z</published>
-    <updated>2021-02-05T11:53:20.000Z</updated>
-    
-    
-    <summary type="html">提高网页加载速度，优化网页加载速度</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="小技能GET" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E5%B0%8F%E6%8A%80%E8%83%BDGET/"/>
-    
-    <category term="运行维护" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4/"/>
-    
-    
-    <category term="html" scheme="https://blog.raxianch.moe/tags/html/"/>
-    
-    <category term="css" scheme="https://blog.raxianch.moe/tags/css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>疑难杂症：解决Hexo博客引用网络图片无法显示</title>
-    <link href="https://blog.raxianch.moe/article/18895/"/>
-    <id>https://blog.raxianch.moe/article/18895/</id>
-    <published>2021-02-05T10:59:05.000Z</published>
-    <updated>2021-02-05T10:59:05.000Z</updated>
-    
-    
-    <summary type="html">Hexo博客引用网络图片时出现无法显示</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="小技能GET" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E5%B0%8F%E6%8A%80%E8%83%BDGET/"/>
-    
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
-    <category term="hexo" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/hexo/"/>
-    
-    
-    <category term="hexo" scheme="https://blog.raxianch.moe/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>疑难杂症：nodejs警告：found 3 vulnerabilities (2 low, 1 high)</title>
-    <link href="https://blog.raxianch.moe/article/41407/"/>
-    <id>https://blog.raxianch.moe/article/41407/</id>
-    <published>2021-02-03T14:51:59.000Z</published>
-    <updated>2021-03-30T03:33:06.651Z</updated>
-    
-    
-    <summary type="html">更换hexo主题，使用npm i命令时出了一堆警告，强迫症看得真难受。</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="Web前端" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="nodejs" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/nodejs/"/>
-    
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
-    
-    <category term="nodejs" scheme="https://blog.raxianch.moe/tags/nodejs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小技能GET：使用Rclone挂载GoogleDriver团队盘到Ubuntu</title>
-    <link href="https://blog.raxianch.moe/article/60373/"/>
-    <id>https://blog.raxianch.moe/article/60373/</id>
-    <published>2020-05-23T10:59:32.000Z</published>
-    <updated>2021-03-30T03:33:06.958Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;想搞一份大盘机!Rclone是真的牛辟！&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/tags/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="小技能" scheme="https://blog.raxianch.moe/tags/%E5%B0%8F%E6%8A%80%E8%83%BD/"/>
-    
-    <category term="Linux" scheme="https://blog.raxianch.moe/tags/Linux/"/>
-    
-    <category term="Ubuntu" scheme="https://blog.raxianch.moe/tags/Ubuntu/"/>
-    
-    <category term="运行维护" scheme="https://blog.raxianch.moe/tags/%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4/"/>
-    
-    <category term="Rclone" scheme="https://blog.raxianch.moe/tags/Rclone/"/>
-    
-    <category term="GoogleDriver" scheme="https://blog.raxianch.moe/tags/GoogleDriver/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python：使用urllib.parse操作和解析URL</title>
-    <link href="https://blog.raxianch.moe/article/49792/"/>
-    <id>https://blog.raxianch.moe/article/49792/</id>
-    <published>2020-05-13T07:23:27.000Z</published>
-    <updated>2021-03-30T03:33:05.396Z</updated>
-    
-    
-    <summary type="html">Python：使用urllib.parse操作和解析URL</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="小技能GET" scheme="https://blog.raxianch.moe/categories/%E5%B0%8F%E6%8A%80%E8%83%BDGET/"/>
-    
-    <category term="python" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/python/"/>
-    
-    <category term="爬虫" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E7%88%AC%E8%99%AB/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
-    
-    <category term="Web后端" scheme="https://blog.raxianch.moe/tags/Web%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="urllib" scheme="https://blog.raxianch.moe/tags/urllib/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小技能GET：正则表达式非获取匹配的用法</title>
-    <link href="https://blog.raxianch.moe/article/27779/"/>
-    <id>https://blog.raxianch.moe/article/27779/</id>
-    <published>2020-05-13T07:13:23.000Z</published>
-    <updated>2021-03-30T03:33:06.754Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;别再瞎（.*?）了,活用一下正则吧&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/tags/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="小技能" scheme="https://blog.raxianch.moe/tags/%E5%B0%8F%E6%8A%80%E8%83%BD/"/>
-    
-    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
-    
-    <category term="RE" scheme="https://blog.raxianch.moe/tags/RE/"/>
-    
-    <category term="正则表达式" scheme="https://blog.raxianch.moe/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python：处理HTML转义字符的5种方式</title>
-    <link href="https://blog.raxianch.moe/article/32707/"/>
-    <id>https://blog.raxianch.moe/article/32707/</id>
-    <published>2020-05-13T05:54:36.000Z</published>
-    <updated>2021-03-30T03:33:05.414Z</updated>
-    
-    
-    <summary type="html">Python：处理HTML转义字符的5种方式</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="小技能GET" scheme="https://blog.raxianch.moe/categories/%E5%B0%8F%E6%8A%80%E8%83%BDGET/"/>
-    
-    <category term="python" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/python/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-    <category term="数据结构" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="HTML" scheme="https://blog.raxianch.moe/tags/HTML/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web后端：Nginx+pure-ftpd搭建简易的文件共享</title>
-    <link href="https://blog.raxianch.moe/article/44004/"/>
-    <id>https://blog.raxianch.moe/article/44004/</id>
-    <published>2020-05-11T04:37:23.000Z</published>
-    <updated>2021-03-30T03:33:06.082Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;帮朋友在华为云服务器上搭建一个nginx+ftp,做个记录&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/tags/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="小技能" scheme="https://blog.raxianch.moe/tags/%E5%B0%8F%E6%8A%80%E8%83%BD/"/>
-    
-    <category term="ubuntu" scheme="https://blog.raxianch.moe/tags/ubuntu/"/>
-    
-    <category term="Linux" scheme="https://blog.raxianch.moe/tags/Linux/"/>
-    
-    <category term="Web后端" scheme="https://blog.raxianch.moe/tags/Web%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="Centos" scheme="https://blog.raxianch.moe/tags/Centos/"/>
-    
-    <category term="运行维护" scheme="https://blog.raxianch.moe/tags/%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小技能GET：CentOS7，Python3.6安装pillow</title>
-    <link href="https://blog.raxianch.moe/article/42220/"/>
-    <id>https://blog.raxianch.moe/article/42220/</id>
-    <published>2020-05-09T05:50:01.000Z</published>
-    <updated>2021-03-30T03:33:06.765Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;很多博客都是使用ubuntu安装python项目，但是碰到centos安装python和pillow的博文不怎么多。&lt;/p&gt;
-&lt;p&gt;尝试安装项目yobot时里面需要用到pillow包，使用requirements.txt安装依赖时大片错误。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="python" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/python/"/>
-    
-    <category term="Web后端" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/Web%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="小技能GET" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E5%B0%8F%E6%8A%80%E8%83%BDGET/"/>
-    
-    <category term="运行维护" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4/"/>
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/tags/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    <category term="小技能" scheme="https://blog.raxianch.moe/tags/%E5%B0%8F%E6%8A%80%E8%83%BD/"/>
-    
-    <category term="Linux" scheme="https://blog.raxianch.moe/tags/Linux/"/>
-    
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
-    <category term="Centos" scheme="https://blog.raxianch.moe/tags/Centos/"/>
-    
-    <category term="运行维护" scheme="https://blog.raxianch.moe/tags/%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4/"/>
     
   </entry>
   

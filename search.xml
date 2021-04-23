@@ -4,6 +4,395 @@
   
     
     <entry>
+      <title>Mysql数据库&#39;Got a packet bigger than‘max_allowed_packet’bytes&#39;的解决方案</title>
+      <link href="article/3896883137/"/>
+      <url>article/3896883137/</url>
+      
+        <content type="html"><![CDATA[<p>采集数据时，总有几条入不了库。尝试手动入库的时候，发生了报错。</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: webStrom 2021.3.1 x64  </span><br><span class="line">语言: nodeJs v14.15.4</span><br><span class="line">框架: hexo &quot;5.3.0&quot;</span><br><span class="line">theme: [Butterfly  &quot;3.6.1&quot;]</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>从网上将数据复制下来，用Navicat填写进相应字段中，按保存发生了错误。</p><p><img src= "/customize/img/loading.gif" data-lazy-src="Mysql%E6%95%B0%E6%8D%AE%E5%BA%93'Got_a_packet_bigger_than%E2%80%98max_allowed_packet%E2%80%99bytes'%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/c11a8e48.png"></p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Got a packet bigger than‘max_allowed_packet’bytes</span><br></pre></td></tr></table></figure><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>该字段存储的是站源的原生接口json数据。</p><p>字段类型为json类型，长度应该是足够的，但是也存不进去。</p><p>发现是由于max_allowed_packet的值设置过小的原因，</p><p>只需要将max_allowed_packet值设置大一点就OK了。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>通过终端进入mysql控制台，输入如下命令可以查看max_allowed_packet值的大小。</p><blockquote><p>show VARIABLES like ‘%max_allowed_packet%’;</p></blockquote><p>显示的结果：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+——————–+———+</span><br><span class="line">| Variable_name | Value |</span><br><span class="line">+——————–+———+</span><br><span class="line">| max_allowed_packet | 1048576 |</span><br><span class="line">+——————–+———+</span><br><span class="line">————————————————</span><br></pre></td></tr></table></figure><p>以上说明目前的配置是：1M</p><p>需要搞大max_allowed_packet的值：</p><blockquote><p>set global max_allowed_packet = 1048576*10</p></blockquote><p>退出mysql命令行，然后重新登录。</p><p>show VARIABLES like ‘%max_allowed_packet%’;</p><p>设置完之后，再重新导入数据，OK，一切正常。</p><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>使用这种方法，重启服务器之后又恢复默认值了。</p><p>只是导数据的时候临时将其值改大，</p><p>导完之后尽量让其恢复原值，</p><p>因为max_allowed_packet设置过大可能会导致服务器太忙来不及接收，</p><p>网络差的时候也可能会出现丢包的现象。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 疑难杂症 </tag>
+            
+            <tag> mysql </tag>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>通过python一键生成mysql建表sql语句！</title>
+      <link href="article/2508268452/"/>
+      <url>article/2508268452/</url>
+      
+        <content type="html"><![CDATA[<p>这一个多月，一直在做数据采集，写程序，然后创建好几个表一个个填字段，我吐了。</p><p>于是开发了一个懒人工具。</p><a id="more"></a><hr><h4 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">navicat: 15.0.2  </span><br><span class="line">mysql: 5.7.31</span><br><span class="line">IDE: Pycharm 2021.3.2 x64  </span><br><span class="line">语言: Python 3.9.1</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>这一个多月，一直在做数据采集。</p><p>开发程序，然后为每个创建好几个表，</p><p>并且一个个填字段，excel|Pycharm|Navicat 三个窗口切着换，眼睛都看疼了。</p><p>于是开发了一个懒人工具，</p><p>通过python的字典，直接生成可供Navicat（别的能够执行sql语句的工具也可以，只是我没测试过）使用的建表sql语句，简称DDL。</p><h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>假如爬虫采集一条数据，并进行清洗生产了一个变量名为item的字典</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">itemDict = &#123;</span><br><span class="line">    <span class="string">&#x27;chembl_id&#x27;</span>: <span class="string">&#x27;cXXXl_XXXX_target&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;chembl_target_type&#x27;</span>: <span class="string">&#x27;PROTEIN COMPLEX&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;chembl_target_name&#x27;</span>: <span class="string">&#x27;Interleukin-23&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;chembl_target_alias&#x27;</span>: [<span class="string">&#x27;CLMF p40&#x27;</span>, <span class="string">&#x27;Cytotoxic lymphocyte maturation factor 40 kDa subunit&#x27;</span>, <span class="string">&#x27;IL12B&#x27;</span>, <span class="string">&#x27;IL-12B&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;chembl_target_organisim&#x27;</span>: <span class="string">&#x27;Homo sapiens&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;chembl_target_classification&#x27;</span>: [<span class="string">&#x27;Secreted protein&#x27;</span>, <span class="string">&#x27;Secreted protein&#x27;</span>], </span><br><span class="line">    <span class="string">&#x27;chembl_drug_name&#x27;</span>: <span class="literal">None</span>, </span><br><span class="line">    <span class="string">&#x27;chembl_drug&#x27;</span>: <span class="literal">None</span>, </span><br><span class="line">    <span class="string">&#x27;guidetopharmacology&#x27;</span>: <span class="literal">None</span>, </span><br><span class="line">    <span class="string">&#x27;human_protein_atlas&#x27;</span>: &#123;<span class="string">&#x27;EXXXXXXXXX2&#x27;</span>: <span class="string">&#x27;http://www.XXXX.org/Gene/Summary?g=EXXXXXXXXX2&#x27;</span>, </span><br><span class="line">                            <span class="string">&#x27;EXXXXXXXXX3&#x27;</span>: <span class="string">&#x27;http://www.XXXX.org/Gene/Summary?g=EXXXXXXXXX3&#x27;</span>&#125;,</span><br><span class="line">    <span class="string">&#x27;open_targets&#x27;</span>: &#123;<span class="string">&#x27;EXXXXXXXXX2&#x27;</span>: <span class="string">&#x27;http://www.XXXX.org/Gene/Summary?g=EXXXXXXXXX2&#x27;</span>, </span><br><span class="line">                     <span class="string">&#x27;EXXXXXXXXX3&#x27;</span>: <span class="string">&#x27;http://www.XXXX.org/Gene/Summary?g=EXXXXXXXXX3&#x27;</span>&#125;, </span><br><span class="line">    <span class="string">&#x27;chembl_pharos_url&#x27;</span>: &#123;<span class="string">&#x27;Tclin&#x27;</span>: <span class="string">&#x27;https://XXXX.XXX.gov/idg/targets/QXXXX&#x27;</span>&#125;, </span><br><span class="line">    <span class="string">&#x27;ebi_chembl_url&#x27;</span>: <span class="string">&#x27;https://www.XXXX.uk/chembl/target_report_card/XXXXX/&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;raw_datas&#x27;</span>: &#123;<span class="string">&#x27;_id&#x27;</span>: <span class="string">&#x27;XXXXX&#x27;</span>, <span class="string">&#x27;_index&#x27;</span>: <span class="string">&#x27;cXXXl_XXXX_target&#x27;</span>, <span class="string">&#x27;_primary_term&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;_seq_no&#x27;</span>: <span class="number">179</span>&#125;</span><br></pre></td></tr></table></figure><p>要把这条数据库存入mysql数据库，就要先创建相关的数据表。</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `表名` (</span><br><span class="line">    ......</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;</span><br></pre></td></tr></table></figure><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>直接上代码</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author    : RaXianch</span></span><br><span class="line"><span class="comment"># CreatDATE : 2021/4/21</span></span><br><span class="line"><span class="comment"># CreatTIME : 9:21 </span></span><br><span class="line"><span class="comment"># Blog      : https://blog.raxianch.moe/</span></span><br><span class="line"><span class="comment"># Github    : https://github.com/DeSireFire</span></span><br><span class="line">__author__ = <span class="string">&#x27;RaXianch&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">运行结果：</span></span><br><span class="line"><span class="string">CREATE TABLE `！！！！此处填写表名！！！！` (</span></span><br><span class="line"><span class="string">  `id` int(25) unsigned NOT NULL AUTO_INCREMENT COMMENT &#x27;自增id(仅作计数使用不可作为关联依据！)&#x27;,</span></span><br><span class="line"><span class="string">  `chembl_id` varchar(648) NOT NULL COMMENT &#x27;chembl_id&#x27;,</span></span><br><span class="line"><span class="string">  `chembl_target_type` varchar(648) NOT NULL COMMENT &#x27;chembl_target_type&#x27;,</span></span><br><span class="line"><span class="string">  `chembl_target_name` varchar(648) NOT NULL COMMENT &#x27;chembl_target_name&#x27;,</span></span><br><span class="line"><span class="string">  `chembl_target_alias` json DEFAULT NULL COMMENT &#x27;chembl_target_alias&#x27;,</span></span><br><span class="line"><span class="string">  `chembl_target_organisim` varchar(648) NOT NULL COMMENT &#x27;chembl_target_organisim&#x27;,</span></span><br><span class="line"><span class="string">  `chembl_target_classification` json DEFAULT NULL COMMENT &#x27;chembl_target_classification&#x27;,</span></span><br><span class="line"><span class="string">  `chembl_drug_name` varchar(648) NOT NULL COMMENT &#x27;chembl_drug_name&#x27;,</span></span><br><span class="line"><span class="string">  `chembl_drug` varchar(648) NOT NULL COMMENT &#x27;chembl_drug&#x27;,</span></span><br><span class="line"><span class="string">  `guidetopharmacology` varchar(648) NOT NULL COMMENT &#x27;guidetopharmacology&#x27;,</span></span><br><span class="line"><span class="string">  `human_protein_atlas` json DEFAULT NULL COMMENT &#x27;human_protein_atlas&#x27;,</span></span><br><span class="line"><span class="string">  `open_targets` json DEFAULT NULL COMMENT &#x27;open_targets&#x27;,</span></span><br><span class="line"><span class="string">  `chembl_pharos_url` json DEFAULT NULL COMMENT &#x27;chembl_pharos_url&#x27;,</span></span><br><span class="line"><span class="string">  `ebi_chembl_url` varchar(648) NOT NULL COMMENT &#x27;ebi_chembl_url&#x27;,</span></span><br><span class="line"><span class="string">  `raw_datas` json DEFAULT NULL COMMENT &#x27;raw_datas&#x27;,</span></span><br><span class="line"><span class="string">  PRIMARY KEY (`id`) USING BTREE,</span></span><br><span class="line"><span class="string">  UNIQUE KEY `unique_id` (`id`) USING BTREE,</span></span><br><span class="line"><span class="string">  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT &#x27;采集时间&#x27;</span></span><br><span class="line"><span class="string">) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT=&#x27;总之就是特别牛逼的一表数据&#x27;;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dict2sqlDDL</span>(<span class="params">tempDict: <span class="built_in">dict</span></span>):</span></span><br><span class="line">    result = []</span><br><span class="line">    sql_orm = &#123;</span><br><span class="line">        <span class="string">&#x27;dict&#x27;</span>: <span class="string">&quot;  `&#123;conName&#125;` json DEFAULT NULL COMMENT &#x27;&#123;COMMENT&#125;&#x27;,&quot;</span>,</span><br><span class="line">        <span class="string">&#x27;list&#x27;</span>: <span class="string">&quot;  `&#123;conName&#125;` json DEFAULT NULL COMMENT &#x27;&#123;COMMENT&#125;&#x27;,&quot;</span>,</span><br><span class="line">        <span class="string">&#x27;bool&#x27;</span>: <span class="string">&quot;  `&#123;conName&#125;` varchar(648) NOT NULL COMMENT &#x27;&#123;COMMENT&#125;&#x27;,&quot;</span>,</span><br><span class="line">        <span class="string">&#x27;NoneType&#x27;</span>: <span class="string">&quot;  `&#123;conName&#125;` json DEFAULT NULL COMMENT &#x27;&#123;COMMENT&#125;&#x27;,&quot;</span>,</span><br><span class="line">        <span class="comment"># &#x27;str&#x27;: &quot;  `&#123;conName&#125;` varchar(648) NOT NULL COMMENT &#x27;&#123;COMMENT&#125;&#x27;,&quot;,</span></span><br><span class="line">        <span class="string">&#x27;str&#x27;</span>: str_to_varchar_text_checker,</span><br><span class="line">    &#125;</span><br><span class="line">    must_sql = &#123;</span><br><span class="line">        <span class="number">0</span>: <span class="string">&quot;CREATE TABLE `！！！！此处填写表名！！！！` (&quot;</span>,</span><br><span class="line">        <span class="number">1</span>: <span class="string">&quot;  `id` int(25) unsigned NOT NULL AUTO_INCREMENT COMMENT &#x27;自增id(仅作计数使用不可作为关联依据！)&#x27;,&quot;</span>,</span><br><span class="line">        <span class="string">&quot;autoEnd0&quot;</span>: <span class="string">&quot;  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT &#x27;采集时间&#x27;,&quot;</span>,</span><br><span class="line">        <span class="string">&quot;autoEnd1&quot;</span>: <span class="string">&quot;  PRIMARY KEY (`id`) USING BTREE,&quot;</span>,</span><br><span class="line">        <span class="string">&quot;autoEnd2&quot;</span>: <span class="string">&quot;  UNIQUE KEY `unique_id` (`id`) USING BTREE,&quot;</span>,</span><br><span class="line">        <span class="string">&quot;End&quot;</span>: <span class="string">&quot;) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT=&#x27;总之就是特别牛逼的一表数据&#x27;;&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> tempDict.items():</span><br><span class="line">        typeStr = <span class="built_in">str</span>(<span class="built_in">type</span>(v))[<span class="number">8</span>:-<span class="number">2</span>]</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(v, <span class="built_in">str</span>):</span><br><span class="line">            result.append(sql_orm[typeStr](k, v).<span class="built_in">format</span>(conName=k, COMMENT=k))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result.append(sql_orm[typeStr].<span class="built_in">format</span>(conName=k, COMMENT=k))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> n, c <span class="keyword">in</span> must_sql.items():</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(n, <span class="built_in">int</span>):</span><br><span class="line">            result.insert(n, c)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 自动添加到行数末尾</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;autoEnd&quot;</span> <span class="keyword">in</span> n:</span><br><span class="line">                result.append(c)</span><br><span class="line">            <span class="comment"># 绝对末尾</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;End&quot;</span> == n <span class="keyword">and</span> <span class="built_in">list</span>(must_sql.values()).index(c) == <span class="built_in">len</span>(<span class="built_in">list</span>(must_sql.keys()))-<span class="number">1</span>:</span><br><span class="line">                result.insert(<span class="built_in">len</span>(result), c)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;(&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> c <span class="keyword">and</span> <span class="string">&quot;)&quot;</span> <span class="keyword">in</span> c:</span><br><span class="line">            <span class="comment"># 去掉末尾逗号</span></span><br><span class="line">            <span class="keyword">if</span> result[-<span class="number">2</span>][-<span class="number">1</span>] == <span class="string">&quot;,&quot;</span>:</span><br><span class="line">                result[-<span class="number">2</span>] = result[-<span class="number">2</span>][<span class="number">0</span>:-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> result:</span><br><span class="line">        print(line)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_to_varchar_text_checker</span>(<span class="params">tempkey:<span class="built_in">str</span>, tempStr: <span class="built_in">str</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    根据传入的值长短，判断sql是使用varchar还是text类型</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    resStr = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> tempStr:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;  `&#123;conName&#125;` varchar(648) DEFAULT NULL COMMENT &#x27;&#123;COMMENT&#125;&#x27;,&quot;</span></span><br><span class="line">    lenInt = <span class="built_in">len</span>(tempStr)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> lenInt &lt; <span class="number">648</span>:</span><br><span class="line">        resStr = <span class="string">&quot;  `&#123;conName&#125;` varchar(648) DEFAULT NULL COMMENT &#x27;&#123;COMMENT&#125;&#x27;,&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> lenInt &gt;= <span class="number">648</span>:</span><br><span class="line">        resStr = <span class="string">&quot;  `&#123;conName&#125;` text COMMENT &#x27;&#123;COMMENT&#125;&#x27;,&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;url&quot;</span> <span class="keyword">in</span> tempkey:</span><br><span class="line">        resStr = <span class="string">&quot;  `&#123;conName&#125;` text COMMENT &#x27;&#123;COMMENT&#125;&#x27;,&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 字段名称包含id</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;_id&quot;</span> <span class="keyword">in</span> tempkey <span class="keyword">or</span> <span class="string">&quot;id&quot;</span> == tempkey:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;NOT NULL&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> resStr:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;DEFAULT NULL&quot;</span> <span class="keyword">in</span> resStr:</span><br><span class="line">                resStr = resStr.replace(<span class="string">&quot;DEFAULT NULL&quot;</span>, <span class="string">&quot;NOT NULL&quot;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                resStr = resStr.replace(<span class="string">&quot;NULL&quot;</span>, <span class="string">&quot;NOT NULL&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> resStr</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    </span><br><span class="line">    itemDict = &#123;</span><br><span class="line">    <span class="string">&#x27;chembl_id&#x27;</span>: <span class="string">&#x27;cXXXl_XXXX_target&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;chembl_target_type&#x27;</span>: <span class="string">&#x27;PROTEIN COMPLEX&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;chembl_target_name&#x27;</span>: <span class="string">&#x27;Interleukin-23&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;chembl_target_alias&#x27;</span>: [<span class="string">&#x27;CLMF p40&#x27;</span>, <span class="string">&#x27;Cytotoxic lymphocyte maturation factor 40 kDa subunit&#x27;</span>, <span class="string">&#x27;IL12B&#x27;</span>, <span class="string">&#x27;IL-12B&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;chembl_target_organisim&#x27;</span>: <span class="string">&#x27;Homo sapiens&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;chembl_target_classification&#x27;</span>: [<span class="string">&#x27;Secreted protein&#x27;</span>, <span class="string">&#x27;Secreted protein&#x27;</span>], </span><br><span class="line">    <span class="string">&#x27;chembl_drug_name&#x27;</span>: <span class="literal">None</span>, </span><br><span class="line">    <span class="string">&#x27;chembl_drug&#x27;</span>: <span class="literal">None</span>, </span><br><span class="line">    <span class="string">&#x27;guidetopharmacology&#x27;</span>: <span class="literal">None</span>, </span><br><span class="line">    <span class="string">&#x27;human_protein_atlas&#x27;</span>: &#123;<span class="string">&#x27;EXXXXXXXXX2&#x27;</span>: <span class="string">&#x27;http://www.XXXX.org/Gene/Summary?g=EXXXXXXXXX2&#x27;</span>, </span><br><span class="line">                            <span class="string">&#x27;EXXXXXXXXX3&#x27;</span>: <span class="string">&#x27;http://www.XXXX.org/Gene/Summary?g=EXXXXXXXXX3&#x27;</span>&#125;,</span><br><span class="line">    <span class="string">&#x27;open_targets&#x27;</span>: &#123;<span class="string">&#x27;EXXXXXXXXX2&#x27;</span>: <span class="string">&#x27;http://www.XXXX.org/Gene/Summary?g=EXXXXXXXXX2&#x27;</span>, </span><br><span class="line">                     <span class="string">&#x27;EXXXXXXXXX3&#x27;</span>: <span class="string">&#x27;http://www.XXXX.org/Gene/Summary?g=EXXXXXXXXX3&#x27;</span>&#125;, </span><br><span class="line">    <span class="string">&#x27;chembl_pharos_url&#x27;</span>: &#123;<span class="string">&#x27;Tclin&#x27;</span>: <span class="string">&#x27;https://XXXX.XXX.gov/idg/targets/QXXXX&#x27;</span>&#125;, </span><br><span class="line">    <span class="string">&#x27;ebi_chembl_url&#x27;</span>: <span class="string">&#x27;https://www.XXXX.uk/chembl/target_report_card/XXXXX/&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;raw_datas&#x27;</span>: &#123;<span class="string">&#x27;_id&#x27;</span>: <span class="string">&#x27;XXXXX&#x27;</span>, <span class="string">&#x27;_index&#x27;</span>: <span class="string">&#x27;cXXXl_XXXX_target&#x27;</span>, <span class="string">&#x27;_primary_term&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;_seq_no&#x27;</span>: <span class="number">179</span>&#125;</span><br><span class="line">    </span><br><span class="line">    dict2sqlDDL(itemDict)</span><br><span class="line"></span><br></pre></td></tr></table></figure><h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE TABLE `！！！！此处填写表名！！！！` (</span><br><span class="line">  `id` int(25) unsigned NOT NULL AUTO_INCREMENT COMMENT &#x27;自增id(仅作计数使用不可作为关联依据！)&#x27;,</span><br><span class="line">  `chembl_id` varchar(648) NOT NULL COMMENT &#x27;chembl_id&#x27;,</span><br><span class="line">  `chembl_target_type` varchar(648) NOT NULL COMMENT &#x27;chembl_target_type&#x27;,</span><br><span class="line">  `chembl_target_name` varchar(648) NOT NULL COMMENT &#x27;chembl_target_name&#x27;,</span><br><span class="line">  `chembl_target_alias` json DEFAULT NULL COMMENT &#x27;chembl_target_alias&#x27;,</span><br><span class="line">  `chembl_target_organisim` varchar(648) NOT NULL COMMENT &#x27;chembl_target_organisim&#x27;,</span><br><span class="line">  `chembl_target_classification` json DEFAULT NULL COMMENT &#x27;chembl_target_classification&#x27;,</span><br><span class="line">  `chembl_drug_name` varchar(648) NOT NULL COMMENT &#x27;chembl_drug_name&#x27;,</span><br><span class="line">  `chembl_drug` varchar(648) NOT NULL COMMENT &#x27;chembl_drug&#x27;,</span><br><span class="line">  `guidetopharmacology` varchar(648) NOT NULL COMMENT &#x27;guidetopharmacology&#x27;,</span><br><span class="line">  `human_protein_atlas` json DEFAULT NULL COMMENT &#x27;human_protein_atlas&#x27;,</span><br><span class="line">  `open_targets` json DEFAULT NULL COMMENT &#x27;open_targets&#x27;,</span><br><span class="line">  `chembl_pharos_url` json DEFAULT NULL COMMENT &#x27;chembl_pharos_url&#x27;,</span><br><span class="line">  `ebi_chembl_url` varchar(648) NOT NULL COMMENT &#x27;ebi_chembl_url&#x27;,</span><br><span class="line">  `raw_datas` json DEFAULT NULL COMMENT &#x27;raw_datas&#x27;,</span><br><span class="line">  PRIMARY KEY (`id`) USING BTREE,</span><br><span class="line">  UNIQUE KEY `unique_id` (`id`) USING BTREE,</span><br><span class="line">  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT &#x27;采集时间&#x27;</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT=&#x27;总之就是特别牛逼的一表数据&#x27;;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>直接复制下来，放入navicat即可。</p><p><img src= "/customize/img/loading.gif" data-lazy-src="%E9%80%9A%E8%BF%87python%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90mysql%E5%BB%BA%E8%A1%A8sql%E8%AF%AD%E5%8F%A5/984236ce.png"></p><p><img src= "/customize/img/loading.gif" data-lazy-src="%E9%80%9A%E8%BF%87python%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90mysql%E5%BB%BA%E8%A1%A8sql%E8%AF%AD%E5%8F%A5/2d4429c7.png"></p><p>Navicat 运行结果：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `test_demo` (</span><br><span class="line">  `id` int(25) unsigned NOT NULL AUTO_INCREMENT COMMENT &#x27;自增id(仅作计数使用不可作为关联依据！)&#x27;,</span><br><span class="line">  `chembl_id` varchar(648) NOT NULL COMMENT &#x27;chembl_id&#x27;,</span><br><span class="line">  `chembl_target_type` varchar(648) DEFAULT NULL COMMENT &#x27;chembl_target_type&#x27;,</span><br><span class="line">  `chembl_target_name` varchar(648) DEFAULT NULL COMMENT &#x27;chembl_target_name&#x27;,</span><br><span class="line">  `chembl_target_alias` json DEFAULT NULL COMMENT &#x27;chembl_target_alias&#x27;,</span><br><span class="line">  `chembl_target_organisim` varchar(648) DEFAULT NULL COMMENT &#x27;chembl_target_organisim&#x27;,</span><br><span class="line">  `chembl_target_classification` json DEFAULT NULL COMMENT &#x27;chembl_target_classification&#x27;,</span><br><span class="line">  `chembl_drug_name` json DEFAULT NULL COMMENT &#x27;chembl_drug_name&#x27;,</span><br><span class="line">  `chembl_drug` json DEFAULT NULL COMMENT &#x27;chembl_drug&#x27;,</span><br><span class="line">  `guidetopharmacology` json DEFAULT NULL COMMENT &#x27;guidetopharmacology&#x27;,</span><br><span class="line">  `human_protein_atlas` json DEFAULT NULL COMMENT &#x27;human_protein_atlas&#x27;,</span><br><span class="line">  `open_targets` json DEFAULT NULL COMMENT &#x27;open_targets&#x27;,</span><br><span class="line">  `chembl_pharos_url` json DEFAULT NULL COMMENT &#x27;chembl_pharos_url&#x27;,</span><br><span class="line">  `ebi_chembl_url` text COMMENT &#x27;ebi_chembl_url&#x27;,</span><br><span class="line">  `raw_datas` json DEFAULT NULL COMMENT &#x27;raw_datas&#x27;,</span><br><span class="line">  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT &#x27;采集时间&#x27;,</span><br><span class="line">  PRIMARY KEY (`id`) USING BTREE,</span><br><span class="line">  UNIQUE KEY `unique_id` (`id`) USING BTREE</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT=&#x27;总之就是特别牛逼的一表数据&#x27;</span><br><span class="line">&gt; OK</span><br><span class="line">&gt; 时间: 0.073s</span><br></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>代码总归是写得比较死的，不适合所有的场景，但是生成出来以后，删着改，总比从0开始去写要方便多了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> navicat </tag>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Navicat 看历史执行SQL</title>
+      <link href="article/2124605906/"/>
+      <url>article/2124605906/</url>
+      
+        <content type="html"><![CDATA[<p>navicat 有些危险操作是没有二次确认的，实施误操作以后如何追述问题，就需要查询历史记录。</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">navicat: 15.0.2  </span><br><span class="line">mysql: 5.7.31</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Navicat 有些危险操作是没有二次确认的，实施误操作以后如何追述问题，就需要查询历史记录。</p><p>Navicat 新建查询写好的sql语句，如果窗口关闭，查询里面的sql语句就会清空（不专门保存文件的话），就需要查询历史记录。</p><h1 id="Navicat-查看操作历史"><a href="#Navicat-查看操作历史" class="headerlink" title="Navicat 查看操作历史"></a>Navicat 查看操作历史</h1><p>按图打开历史记录，或者快捷键 ctr+l</p><p><img src= "/customize/img/loading.gif" data-lazy-src="Navicat%E7%9C%8B%E5%8E%86%E5%8F%B2%E6%89%A7%E8%A1%8CSQL/c7be353a.png"></p><p>翻看历史，查找自己需要的信息，或输入搜索查找相关信息</p><p><img src= "/customize/img/loading.gif" data-lazy-src="Navicat%E7%9C%8B%E5%8E%86%E5%8F%B2%E6%89%A7%E8%A1%8CSQL/67118c65.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> navicat </tag>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MYSQL数据库Specified key was too long; max key length is xxx bytes,解决方案</title>
+      <link href="article/2646095202/"/>
+      <url>article/2646095202/</url>
+      
+        <content type="html"><![CDATA[<p>给MySql数据库表Varchar类型字段加索引时报错：“Specified key was too long; max key length is xxx bytes”；</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">navicat: 15.0.2  </span><br><span class="line">mysql: 5.7.31</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>scrapy 爬虫采集入库的时候，管道打印了报错日志。</p><p>给MySql数据库表Varchar类型字段加索引时报错：“Specified key was too long; max key length is xxx bytes”；</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“Specified key was too long; max key length is xxx bytes”；</span><br></pre></td></tr></table></figure><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>采集的时候入库的有关字段是用来存储url链接的，但是采集的数据，惊人的给我返回了3742字节长度的一条url链接。</p><p>这样的长度，确实不是年幼的varchar类型所能承受的(?)。</p><p>应该使用更能适应场景text类型，来存储url。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>修改字段长度，注意编码格式，例如你的字段长度为100（指的是字符数），而编码是utf-8.</p><p>那么最大占用3乘100=300 byte，如果编码是utf8mb4则最大占用4乘100=400 byte。</p><p>所以修改字段长度时要根据报错提示的长度以及你字段的长度和编码来修改；</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 疑难杂症 </tag>
+            
+            <tag> mysql </tag>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mysql设置自动更新时间&amp;创建时间</title>
+      <link href="article/1404601960/"/>
+      <url>article/1404601960/</url>
+      
+        <content type="html"><![CDATA[<p>scrapy item是可以不包含mysql自生成字段的。用sql自带的时间创建，可以省很多事，在数据更新判断上也交由数据库自己来判断。</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">navicat: 15.0.2  </span><br><span class="line">mysql: 5.7.31</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>scrapy item是可以不包含mysql自生成字段的。</p><p>用sql自带的时间创建，可以省很多事，在数据更新判断上也交由数据库自己来判断。</p><p>采集数据的时候，设置创建时间和更新时间，可更方便的定位数据的生产信息。</p><h1 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h1><p>假设建表包括如下字段：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">id：自增主键ID</span><br><span class="line">create_time: 创建时间</span><br><span class="line">update_time: 修改时间</span><br></pre></td></tr></table></figure><p>需求：</p><p>如何创建table可以使得，</p><p>在插入记录时create_time、update_time默认为当前时间；</p><p>在修改记录时update_time自动更新为当前时间？</p><h1 id="sql-建表法"><a href="#sql-建表法" class="headerlink" title="sql 建表法"></a>sql 建表法</h1><p>sql建表语句：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `time_test` (</span><br><span class="line">  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &#x27;主键ID&#x27;,</span><br><span class="line">  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &#x27;创建时间&#x27;,</span><br><span class="line">  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT &#x27;修改时间&#x27;,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT=&#x27;time_test&#x27;;</span><br></pre></td></tr></table></figure><h1 id="navicat-设置法"><a href="#navicat-设置法" class="headerlink" title="navicat 设置法"></a>navicat 设置法</h1><p>选择对应数据表，右键菜单设计表：<br><img src= "/customize/img/loading.gif" data-lazy-src="Mysql%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0%E6%97%B6%E9%97%B4&%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4/915c8385.png"></p><p>找到相应字段，按照图设置即可<br><img src= "/customize/img/loading.gif" data-lazy-src="Mysql%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0%E6%97%B6%E9%97%B4&%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4/5f2c3319.png"></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>烂笔头系列，是简单的操作，但是自己记一轮下来就是自己的东西了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> navicat </tag>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mysql中ERROR 1364 (HY000): Field &#39;xxxx&#39; doesn&#39;t have a default value的解决方案</title>
+      <link href="article/2414690755/"/>
+      <url>article/2414690755/</url>
+      
+        <content type="html"><![CDATA[<p>开发了一个自动生成建表语句的python小程序，用生成好的数据表插入数据，发现了问题。</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">navicat: 15.0.2  </span><br><span class="line">mysql: 5.7.31</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>scrapy 爬虫采集入库的时候，管道打印了报错日志。</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR 1364 (HY000): Field &#x27;chembl_id&#x27; doesn&#x27;t have a default value</span><br></pre></td></tr></table></figure><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>建表的sql语句中，chembl_id字段设置NOT NULL，不能为空，也没赋予默认值。</p><p>导致的报错！</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `！！！！此处填写表名！！！！` (</span><br><span class="line">  `id` int(25) unsigned NOT NULL AUTO_INCREMENT COMMENT &#x27;自增id(仅作计数使用不可作为关联依据！)&#x27;,</span><br><span class="line">  `chembl_id` varchar(648) NOT NULL COMMENT &#x27;chembl_id&#x27;,</span><br><span class="line">  `chembl_target_type` varchar(648) DEFAULT NULL COMMENT &#x27;chembl_target_type&#x27;,</span><br><span class="line">  `chembl_target_name` varchar(648) DEFAULT NULL COMMENT &#x27;chembl_target_name&#x27;,</span><br><span class="line">  `chembl_target_alias` json DEFAULT NULL COMMENT &#x27;chembl_target_alias&#x27;,</span><br><span class="line">  `chembl_target_organisim` varchar(648) DEFAULT NULL COMMENT &#x27;chembl_target_organisim&#x27;,</span><br><span class="line">  `chembl_target_classification` json DEFAULT NULL COMMENT &#x27;chembl_target_classification&#x27;,</span><br><span class="line">  `chembl_drug_name` json DEFAULT NULL COMMENT &#x27;chembl_drug_name&#x27;,</span><br><span class="line">  `chembl_drug` json DEFAULT NULL COMMENT &#x27;chembl_drug&#x27;,</span><br><span class="line">  `guidetopharmacology` json DEFAULT NULL COMMENT &#x27;guidetopharmacology&#x27;,</span><br><span class="line">  `human_protein_atlas` json DEFAULT NULL COMMENT &#x27;human_protein_atlas&#x27;,</span><br><span class="line">  `open_targets` json DEFAULT NULL COMMENT &#x27;open_targets&#x27;,</span><br><span class="line">  `chembl_pharos_url` json DEFAULT NULL COMMENT &#x27;chembl_pharos_url&#x27;,</span><br><span class="line">  `ebi_chembl_url` text COMMENT &#x27;ebi_chembl_url&#x27;,</span><br><span class="line">  `raw_datas` json DEFAULT NULL COMMENT &#x27;raw_datas&#x27;,</span><br><span class="line">  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT &#x27;采集时间&#x27;,</span><br><span class="line">  PRIMARY KEY (`id`) USING BTREE,</span><br><span class="line">  UNIQUE KEY `unique_id` (`id`) USING BTREE</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT=&#x27;总之就是特别牛逼的一表数据&#x27;;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>将对应语句的NOT NULL改为DEFAULT NULL即可。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`chembl_id` varchar(648) DEFAULT NULL COMMENT <span class="string">&#x27;chembl_id&#x27;</span>,</span><br></pre></td></tr></table></figure><p>但是要结合业务场景，如果是为了建立索引的字段，那就要看具体情况来修改了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 疑难杂症 </tag>
+            
+            <tag> mysql </tag>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MySQL Charset--UTF8和UTF8MB4的区别</title>
+      <link href="article/2685378097/"/>
+      <url>article/2685378097/</url>
+      
+        <content type="html"><![CDATA[<p>某日，数据库建表的时候，我开始好奇mysql的charset编码设置参数。uft8和utf8mb4有啥区别呢？</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">navicat: 15.0.2  </span><br><span class="line">mysql: 5.7.31</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>某日，数据库建表的时候，我开始好奇mysql的charset编码设置参数。</p><p>uft8和utf8mb4有啥区别，谁更有优势呢？</p><h1 id="UTF8和UTF8MB4"><a href="#UTF8和UTF8MB4" class="headerlink" title="UTF8和UTF8MB4"></a>UTF8和UTF8MB4</h1><p>在早期MySQL版本中，使用只支持最长三字节的UTF8字符集便可以存放所有Unicode字符。</p><p>随着Unicode的完善，Unicode字符集收录的字符数量越来越多，最新版本的UTF8需要使用1到4个字节来存放Unicode字符，而MySQL为保持版本兼容，</p><p>依旧使用最多3字节的UTF8字符集，并在MySQL 5.5.3版本引入UTF8MB4字符集来支持4字节的Unicode字符。</p><h1 id="测试案例"><a href="#测试案例" class="headerlink" title="测试案例"></a>测试案例</h1><p>汉字 ‘𤋮’ 和 ‘ 𤋮 ‘ 是异体字，读音均为xi，但两个字的unicode不同：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">𤋮 对应的UNICODE是 \ud850\udeee; </span><br><span class="line">𤋮 对应的UTF8是 &amp;#xD850;&amp;#xDEEE;</span><br><span class="line">𤋮 对应的HEX编码是  %f0%a4%8b%ae</span><br><span class="line">熙 对应的UNICODE是 \u7199 </span><br><span class="line">熙 对应的UTF8是 &amp;#x7199;</span><br><span class="line">熙 对应的HEX编码是 %e7%86%99</span><br></pre></td></tr></table></figure><h1 id="charset-UTF8-测试"><a href="#charset-UTF8-测试" class="headerlink" title="charset UTF8 测试"></a>charset UTF8 测试</h1><p>创建测试表:</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `test_table` (</span><br><span class="line">  `ID` INT(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `test1` VARBINARY(100) DEFAULT NULL,</span><br><span class="line">  `test2` VARCHAR(100) DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`ID`)</span><br><span class="line">) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4</span><br></pre></td></tr></table></figure><p>UTF8字符集测试:</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SET NAMES utf8;</span><br><span class="line"></span><br><span class="line">INSERT INTO test_table(test1,test2)</span><br><span class="line">SELECT &#x27;熙&#x27;,&#x27;熙&#x27;;</span><br><span class="line">INSERT INTO test_table(test1,test2)</span><br><span class="line">SELECT &#x27;𤋮&#x27;,&#x27;𤋮&#x27;;</span><br><span class="line"></span><br><span class="line">SELECT * FROM test_table;</span><br></pre></td></tr></table></figure><p>执行第一条INSERT有警告信息：<br><img src= "/customize/img/loading.gif" data-lazy-src="MySQL%E7%9A%84Charset--UTF8%E5%92%8CUTF8MB4%E7%9A%84%E5%8C%BA%E5%88%AB/3dae1f45.png"></p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SET NAMES utf8</span><br><span class="line">&gt; OK</span><br><span class="line">&gt; 时间: 0.004s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">INSERT INTO test_table(test1,test2)</span><br><span class="line">SELECT &#x27;熙&#x27;,&#x27;熙&#x27;</span><br><span class="line">&gt; Affected rows: 1</span><br><span class="line">&gt; 时间: 0.012s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">INSERT INTO test_table(test1,test2)</span><br><span class="line">SELECT &#x27;𤋮&#x27;,&#x27;𤋮&#x27;</span><br><span class="line">&gt; 1366 - Incorrect string value: &#x27;\xF0\xA4\x8B\xAE&#x27; for column &#x27;test2&#x27; at row 1</span><br><span class="line">&gt; 时间: 0.004s</span><br></pre></td></tr></table></figure><p>查询结果：</p><p><img src= "/customize/img/loading.gif" data-lazy-src="MySQL%E7%9A%84Charset--UTF8%E5%92%8CUTF8MB4%E7%9A%84%E5%8C%BA%E5%88%AB/2978cbc2.png"></p><p>异体字那一行数据，写都写球不上去， 在UTF8字符集，VARCHAR类型”无法支持“四字节的”𤋮”，但VARBINARY不受字符集影响。</p><h1 id="charset-UTF8MB4-测试"><a href="#charset-UTF8MB4-测试" class="headerlink" title="charset UTF8MB4 测试:"></a>charset UTF8MB4 测试:</h1><p>UTF8MB4字符集测试:</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SET NAMES utf8mb4;</span><br><span class="line"></span><br><span class="line">INSERT INTO test_table(test1,test2)</span><br><span class="line">SELECT &#x27;𤋮&#x27;,&#x27;𤋮&#x27;;</span><br><span class="line"></span><br><span class="line">INSERT INTO test_table(test1,test2)</span><br><span class="line">SELECT &#x27;熙&#x27;,&#x27;熙&#x27;;</span><br><span class="line"></span><br><span class="line">SELECT * FROM test_table;</span><br></pre></td></tr></table></figure><p>执行结果：</p><p><img src= "/customize/img/loading.gif" data-lazy-src="MySQL%E7%9A%84Charset--UTF8%E5%92%8CUTF8MB4%E7%9A%84%E5%8C%BA%E5%88%AB/8e3654c8.png"></p><p>执行顺利，大便通畅.</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">SET NAMES utf8mb4</span><br><span class="line">&gt; OK</span><br><span class="line">&gt; 时间: 0.004s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">INSERT INTO test_table(test1,test2)</span><br><span class="line">SELECT &#x27;𤋮&#x27;,&#x27;𤋮&#x27;</span><br><span class="line">&gt; Affected rows: 1</span><br><span class="line">&gt; 时间: 0.019s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">INSERT INTO test_table(test1,test2)</span><br><span class="line">SELECT &#x27;熙&#x27;,&#x27;熙&#x27;</span><br><span class="line">&gt; Affected rows: 1</span><br><span class="line">&gt; 时间: 0.017s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SELECT * FROM test_table</span><br><span class="line">&gt; OK</span><br><span class="line">&gt; 时间: 0.004s</span><br></pre></td></tr></table></figure><p>查询结果：</p><p><img src= "/customize/img/loading.gif" data-lazy-src="MySQL%E7%9A%84Charset--UTF8%E5%92%8CUTF8MB4%E7%9A%84%E5%8C%BA%E5%88%AB/efb0a27c.png"></p><p>显示结果也不尽如人意。不过至少可以把数据存入数据库当中，而不是前者根本存不进去。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>UTF8MB4适用场景更加大一些，能确保数据能入库。</p><p>但是不管 UTF8MB4还是UTF8 在特殊字符、表情符号、生僻字的话，无论是哪种编码，入库的时候都会存在乱码问题。</p><p>这些类型的数据在入库是要注意躲坑了。</p><p>要保证数据库正常存储4字节的表情符合生僻字，除将数据库相关表和列设置为UTF8MB4外，</p><p>还需要确保操作数据库时使用UTF8MB4，需重点关注以下几个方面：</p><p>1、数据库启动配置参数</p><p>2、应用与数据库连接配置</p><p>3、DBA日常运维操作</p><p>DBA操作过程中，使用mysql客户端连接到数据库执行操作，</p><p>而mysql客户端可能使用默认UTF8字符集(default-character-set)，导出乱码问题。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> navicat </tag>
+            
+            <tag> Mysql </tag>
+            
+            <tag> charset </tag>
+            
+            <tag> utf8mb4 </tag>
+            
+            <tag> utf8 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python如何判断文件是否存在？</title>
+      <link href="article/3659666415/"/>
+      <url>article/3659666415/</url>
+      
+        <content type="html"><![CDATA[<p>Python如何判断文件是否存在？</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br><span class="line">语言: python v3.9.1</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>平时在读写文件之前，需要判断文件或目录是否存在，不然在某些情况下，可能会使程序发生错误。</p><p>所以最好在做任何操作之前，先判断文件是否存在。</p><p>按照使用频率，排个序大概有以下几种方式。</p><h1 id="os模块"><a href="#os模块" class="headerlink" title="os模块"></a>os模块</h1><p>os模块中的 <strong>os.path.exists()</strong> 方法用于检验文件或者文件夹是否存在。</p><h2 id="判断文件是否存在"><a href="#判断文件是否存在" class="headerlink" title="判断文件是否存在"></a>判断文件是否存在</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.path.exists(<span class="string">&quot;README.md&quot;</span>)</span><br><span class="line"><span class="comment"># 输出 True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 放入根本不存在的文件名时</span></span><br><span class="line">os.path.exists(<span class="string">&quot;README_XXXXX.md&quot;</span>)</span><br><span class="line"><span class="comment"># 输出 False</span></span><br></pre></td></tr></table></figure><h2 id="判断文件夹是否存在"><a href="#判断文件夹是否存在" class="headerlink" title="判断文件夹是否存在"></a>判断文件夹是否存在</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.path.exists(<span class="string">&quot;test_dir&quot;</span>)</span><br><span class="line"><span class="comment">#True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 放入根本不存在的文件夹名称</span></span><br><span class="line">os.path.exists(<span class="string">&quot;None_dir&quot;</span>)</span><br><span class="line"><span class="comment">#False</span></span><br></pre></td></tr></table></figure><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p><strong>os.path.exists()</strong> 存在误判，</p><p>假设你想检查文件“test_data”是否存在，</p><p>但是当前路径下有个叫“test_data”的文件夹，</p><p>这样就可能出现误判。</p><p>所以，就多一层逻辑，用于检查是否为文件。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.path.isfile(<span class="string">&quot;README.md&quot;</span>)</span><br><span class="line"><span class="comment"># 输出 True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 放入的是文件夹则</span></span><br><span class="line">os.path.isfile(<span class="string">&quot;test_dir&quot;</span>)</span><br><span class="line"><span class="comment"># 输出 False</span></span><br></pre></td></tr></table></figure><p>通过这个方法，如果文件”test_dir”不存在将返回False，</p><p>反之返回True。</p><p>即是文件存在，你可能还需要判断文件是否可进行读写操作。</p><h2 id="判断文件是否有读写权限"><a href="#判断文件是否有读写权限" class="headerlink" title="判断文件是否有读写权限"></a>判断文件是否有读写权限</h2><p>使用os.access()方法判断文件是否可进行读写操作</p><p>语法:</p><blockquote><p>os.access(path, mode)</p></blockquote><p>path为文件路径,传入参数类型为字符串，mode为操作模式，</p><p>有这么几种:</p><p>os.F_OK: 检查文件是否存在;</p><p>os.R_OK: 检查文件是否可读;</p><p>os.W_OK: 检查文件是否可以写入;</p><p>os.X_OK: 检查文件是否可以执行</p><p>该方法通过判断文件路径是否存在和各种访问模式的权限，</p><p>返回True或者False。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">if</span> os.access(<span class="string">&quot;/file/path/foo.txt&quot;</span>, os.F_OK):</span><br><span class="line">    print(<span class="string">&quot;Given file path is exist.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> os.access(<span class="string">&quot;/file/path/foo.txt&quot;</span>, os.R_OK):</span><br><span class="line">    print(<span class="string">&quot;File is accessible to read&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> os.access(<span class="string">&quot;/file/path/foo.txt&quot;</span>, os.W_OK):</span><br><span class="line">    print(<span class="string">&quot;File is accessible to write&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> os.access(<span class="string">&quot;/file/path/foo.txt&quot;</span>, os.X_OK):</span><br><span class="line">    print(<span class="string">&quot;File is accessible to execute&quot;</span>)</span><br></pre></td></tr></table></figure><h1 id="Try异常抓取判断"><a href="#Try异常抓取判断" class="headerlink" title="Try异常抓取判断"></a>Try异常抓取判断</h1><p>可以在程序中直接使用open()方法来检查文件是否存在和可读写。</p><p>语法：</p><blockquote><p>open() or with open()</p></blockquote><p>如果你open的文件不存在，程序会抛出错误，</p><p>使用try语句来捕获这个错误。</p><p>程序无法访问文件，可能有很多原因：</p><p>如果你open的文件不存在，将抛出一个FileNotFoundError的异常;</p><p>文件存在，但是没有权限访问，会抛出一个PersmissionError的异常。</p><p>通过异常名称的特点，便可以使用下面的代码来判断文件是否存在:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    f =<span class="built_in">open</span>()</span><br><span class="line">    f.close()</span><br><span class="line"><span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;File is not found.&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> PermissionError:</span><br><span class="line">    <span class="built_in">print</span>（<span class="string">&quot;You don&#x27;t have permission to access this file.&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> IOError:</span><br><span class="line">    print(<span class="string">&quot;File is not accessible.&quot;</span>)</span><br></pre></td></tr></table></figure><p>IOError 异常的抓取范围较大，一般放在最后，只要抓到保存，基本说明文件不存在或者不可用了。</p><h1 id="pathlib模块"><a href="#pathlib模块" class="headerlink" title="pathlib模块"></a>pathlib模块</h1><p>pathlib模块在Python3版本中是内建模块，</p><p>但是在Python2中是需要单独安装三方模块。</p><p>使用pathlib需要先使用文件路径来创建path对象。</p><p>此路径可以是文件名或目录路径。</p><h2 id="检查路径是否存在"><a href="#检查路径是否存在" class="headerlink" title="检查路径是否存在"></a>检查路径是否存在</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path = pathlib.Path(<span class="string">&quot;path/file&quot;</span>)</span><br><span class="line">path.exist()</span><br></pre></td></tr></table></figure><h2 id="检查路径是否是文件"><a href="#检查路径是否是文件" class="headerlink" title="检查路径是否是文件"></a>检查路径是否是文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path = pathlib.Path(<span class="string">&quot;path/file&quot;</span>)</span><br><span class="line">path.is_file()</span><br></pre></td></tr></table></figure><p>与OS模块的用法类似。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这其实是个很简单的东西，</p><p>平时开发的时候，</p><p>你也许知道有那么个方法可以去实现这样的功能，</p><p>但是，却不一定记得住具体的方法名叫啥，</p><p>于是就有需要重新查一下。</p><p>那么干脆在自己的博客，留个笔记好了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>scrapy全局setting各项配置的说明</title>
+      <link href="article/4252984638/"/>
+      <url>article/4252984638/</url>
+      
+        <content type="html"><![CDATA[<p>scrapy全局setting各项配置的说明</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br><span class="line">语言: python v3.9.1</span><br><span class="line">框架: Scrapy</span><br></pre></td></tr></table></figure><hr><h1 id="AUTOTHROTTLE-START-DELAY"><a href="#AUTOTHROTTLE-START-DELAY" class="headerlink" title="AUTOTHROTTLE_START_DELAY"></a>AUTOTHROTTLE_START_DELAY</h1><pre><code>AUTOTHROTTLE_START_DELAY = 3开始下载时限速并延迟时间</code></pre><h1 id="AUTOTHROTTLE-MAX-DELAY"><a href="#AUTOTHROTTLE-MAX-DELAY" class="headerlink" title="AUTOTHROTTLE_MAX_DELAY"></a>AUTOTHROTTLE_MAX_DELAY</h1><pre><code>AUTOTHROTTLE_MAX_DELAY = 60高并发请求时最大延迟时间</code></pre><h1 id="AWS-ACCESS-KEY-ID"><a href="#AWS-ACCESS-KEY-ID" class="headerlink" title="AWS_ACCESS_KEY_ID"></a>AWS_ACCESS_KEY_ID</h1><pre><code>AWS_ACCESS_KEY_ID它是用于访问亚马逊网络服务。默认值：无</code></pre><h1 id="AWS-SECRET-ACCESS-KEY"><a href="#AWS-SECRET-ACCESS-KEY" class="headerlink" title="AWS_SECRET_ACCESS_KEY"></a>AWS_SECRET_ACCESS_KEY</h1><pre><code>AWS_SECRET_ACCESS_KEY它是用于访问亚马逊网络服务。</code></pre><h1 id="BOT-NAME"><a href="#BOT-NAME" class="headerlink" title="BOT_NAME"></a>BOT_NAME</h1><pre><code>BOT_NAME它是一种可以用于构建用户代理机器人的名称。默认值：“scrapybot”eg:BOT_NAME=“scrapybot”</code></pre><h1 id="CONCURRENT-ITEMS"><a href="#CONCURRENT-ITEMS" class="headerlink" title="CONCURRENT_ITEMS"></a>CONCURRENT_ITEMS</h1><pre><code>CONCURRENT_ITEMS在用来并行地处理所述物品处理器的现有项目的最大数目。默认 Item 并发数：100</code></pre><h1 id="CONCURRENT-REQUESTS"><a href="#CONCURRENT-REQUESTS" class="headerlink" title="CONCURRENT_REQUESTS"></a>CONCURRENT_REQUESTS</h1><pre><code>CONCURRENT_REQUESTS其中Scrapy下载执行现有的最大请求数。默认值：16并发是指scrapy同时处理的request的数量，默认的全局并发限制为16，可增加这个值，增加多少取决于爬虫占CPU多少，设置前最好测试一下，一般占在80-90%为好</code></pre><h1 id="CONCURRENT-REQUESTS-PER-DOMAIN"><a href="#CONCURRENT-REQUESTS-PER-DOMAIN" class="headerlink" title="CONCURRENT_REQUESTS_PER_DOMAIN"></a>CONCURRENT_REQUESTS_PER_DOMAIN</h1><pre><code>CONCURRENT_REQUESTS_PER_DOMAIN现有的最大请求数，对于任何单域同时进行。默认值：8</code></pre><h1 id="CONCURRENT-REQUESTS-PER-IP"><a href="#CONCURRENT-REQUESTS-PER-IP" class="headerlink" title="CONCURRENT_REQUESTS_PER_IP"></a>CONCURRENT_REQUESTS_PER_IP</h1><pre><code>CONCURRENT_REQUESTS_PER_IP现有的请求的最大数量的同时执行任何单一的IP。默认值：0(0表示忽略)</code></pre><h1 id="COOKIES-ENABLED-False"><a href="#COOKIES-ENABLED-False" class="headerlink" title="COOKIES_ENABLED = False"></a>COOKIES_ENABLED = False</h1><pre><code>COOKIES_ENABLED = False禁止cookies，有些站点会从cookies中判断是否为爬虫</code></pre><h1 id="DEFAULT-ITEM-CLASS"><a href="#DEFAULT-ITEM-CLASS" class="headerlink" title="DEFAULT_ITEM_CLASS"></a>DEFAULT_ITEM_CLASS</h1><pre><code>DEFAULT_ITEM_CLASS它是用来表示一个数据单项。默认值：“scrapy.item.Item”</code></pre><h1 id="DEFAULT-REQUEST-HEADERS"><a href="#DEFAULT-REQUEST-HEADERS" class="headerlink" title="DEFAULT_REQUEST_HEADERS"></a>DEFAULT_REQUEST_HEADERS</h1><pre><code>DEFAULT_REQUEST_HEADERS它是用于Scrapy的HTTP请求的默认标题。默认值：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&#x27;Accept&#x27;</span>:<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Accept-Language&#x27;</span>: <span class="string">&#x27;en&#x27;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h1 id="DEPTH-LIMIT"><a href="#DEPTH-LIMIT" class="headerlink" title="DEPTH_LIMIT"></a>DEPTH_LIMIT</h1><pre><code>因为蜘蛛的最大深度抓取任何网站。默认值：0爬取网站最大允许的深度(depth)值。如果为0，则没有限制</code></pre><h1 id="DEPTH-PRIORITY"><a href="#DEPTH-PRIORITY" class="headerlink" title="DEPTH_PRIORITY"></a>DEPTH_PRIORITY</h1><pre><code>整数值。用于根据深度调整request优先级。如果为0，则不根据深度进行优先级调整。默认值：0</code></pre><h1 id="DEPTH-STATS"><a href="#DEPTH-STATS" class="headerlink" title="DEPTH_STATS"></a>DEPTH_STATS</h1><pre><code>它指出是否收集详细的统计资料与否。默认值：True</code></pre><h1 id="DEPTH-STATS-VERBOSE"><a href="#DEPTH-STATS-VERBOSE" class="headerlink" title="DEPTH_STATS_VERBOSE"></a>DEPTH_STATS_VERBOSE</h1><pre><code>当启用此设置，请求数统计中的每个详细深入的收集。默认值：False</code></pre><h1 id="DNSCACHE-ENABLED"><a href="#DNSCACHE-ENABLED" class="headerlink" title="DNSCACHE_ENABLED"></a>DNSCACHE_ENABLED</h1><pre><code>它是用来启用内存缓存DNS。默认值：True</code></pre><h1 id="DNSCACHE-SIZE"><a href="#DNSCACHE-SIZE" class="headerlink" title="DNSCACHE_SIZE"></a>DNSCACHE_SIZE</h1><pre><code>它定义了在内存中缓存DNS的大小。默认值：10000</code></pre><h1 id="DNS-TIMEOUT"><a href="#DNS-TIMEOUT" class="headerlink" title="DNS_TIMEOUT"></a>DNS_TIMEOUT</h1><pre><code>它是用来设置超时DNS处理的查询。默认值：60</code></pre><h1 id="DOWNLOADER"><a href="#DOWNLOADER" class="headerlink" title="DOWNLOADER"></a>DOWNLOADER</h1><pre><code>它是用来抓取过程中下载。默认值：“scrapy.core.downloader.Downloader”</code></pre><h1 id="DOWNLOADER-MIDDLEWARES"><a href="#DOWNLOADER-MIDDLEWARES" class="headerlink" title="DOWNLOADER_MIDDLEWARES"></a>DOWNLOADER_MIDDLEWARES</h1><pre><code>这是字典类型，保存下载中间件及其运行先后顺序。默认值： &#123;&#125;它是用于Scrapy的HTTP请求的默认标题。默认值：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware&#x27;</span>: <span class="number">100</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware&#x27;</span>: <span class="number">300</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware&#x27;</span>: <span class="number">350</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.useragent.UserAgentMiddleware&#x27;</span>: <span class="number">400</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.retry.RetryMiddleware&#x27;</span>: <span class="number">500</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware&#x27;</span>: <span class="number">550</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware&#x27;</span>: <span class="number">580</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware&#x27;</span>: <span class="number">590</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.redirect.RedirectMiddleware&#x27;</span>: <span class="number">600</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.cookies.CookiesMiddleware&#x27;</span>: <span class="number">700</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware&#x27;</span>: <span class="number">750</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.chunked.ChunkedTransferMiddleware&#x27;</span>: <span class="number">830</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.stats.DownloaderStats&#x27;</span>: <span class="number">850</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.downloadermiddlewares.httpcache.HttpCacheMiddleware&#x27;</span>: <span class="number">900</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h1 id="DOWNLOADER-STATS"><a href="#DOWNLOADER-STATS" class="headerlink" title="DOWNLOADER_STATS"></a>DOWNLOADER_STATS</h1><pre><code>此设置用于启用下载统计。默认值：True</code></pre><h1 id="DOWNLOAD-DELAY"><a href="#DOWNLOAD-DELAY" class="headerlink" title="DOWNLOAD_DELAY"></a>DOWNLOAD_DELAY</h1><pre><code>它定义的总时间下载它从下载网站的网页之前。默认值：0下载器在下载同一个网站下一个页面前需要等待的时间。该选项可以用来限制爬取速度， 减轻服务器压力。同时也支持小数。默认情况下，Scrapy在两个请求间不等待一个固定的值， 而是使用0.5到1.5之间的一个随机值结果作为等待 DOWNLOAD_DELAY 间隔。</code></pre><h1 id="DOWNLOAD-HANDLERS"><a href="#DOWNLOAD-HANDLERS" class="headerlink" title="DOWNLOAD_HANDLERS"></a>DOWNLOAD_HANDLERS</h1><pre><code>它与下载处理程序的字典。默认值： &#123;&#125;</code></pre><h1 id="DOWNLOAD-HANDLERS-BASE"><a href="#DOWNLOAD-HANDLERS-BASE" class="headerlink" title="DOWNLOAD_HANDLERS_BASE"></a>DOWNLOAD_HANDLERS_BASE</h1><pre><code>它与默认情况下启用下载处理程序的字典。默认值：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">&#x27;file&#x27;</span>: <span class="string">&#x27;scrapy.core.downloader.handlers.file.FileDownloadHandler&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;http&#x27;</span>: <span class="string">&#x27;scrapy.core.downloader.handlers.http.HttpDownloadHandler&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;https&#x27;</span>: <span class="string">&#x27;scrapy.core.downloader.handlers.http.HttpDownloadHandler&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;s3&#x27;</span>: <span class="string">&#x27;scrapy.core.downloader.handlers.s3.S3DownloadHandler&#x27;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h1 id="DOWNLOAD-TIMEOUT"><a href="#DOWNLOAD-TIMEOUT" class="headerlink" title="DOWNLOAD_TIMEOUT"></a>DOWNLOAD_TIMEOUT</h1><pre><code>它的总时间下载到之前等待超时。默认值：180</code></pre><h1 id="DOWNLOAD-MAXSIZE"><a href="#DOWNLOAD-MAXSIZE" class="headerlink" title="DOWNLOAD_MAXSIZE"></a>DOWNLOAD_MAXSIZE</h1><pre><code>这是响应的下载器下载的最大尺寸。默认值：1073741824 (1024MB)</code></pre><h1 id="DOWNLOAD-WARNSIZE"><a href="#DOWNLOAD-WARNSIZE" class="headerlink" title="DOWNLOAD_WARNSIZE"></a>DOWNLOAD_WARNSIZE</h1><pre><code>它定义为响应下载警告的大小。默认值：33554432 (32MB)</code></pre><h1 id="DUPEFILTER-CLASS"><a href="#DUPEFILTER-CLASS" class="headerlink" title="DUPEFILTER_CLASS"></a>DUPEFILTER_CLASS</h1><pre><code>这是用于检测和是重复的请求的滤波的类。默认值：“scrapy.dupefilters.RFPDupeFilter”</code></pre><h1 id="DUPEFILTER-DEBUG"><a href="#DUPEFILTER-DEBUG" class="headerlink" title="DUPEFILTER_DEBUG"></a>DUPEFILTER_DEBUG</h1><pre><code>当设置为true此设置记录所有重复的过滤器。默认值：False</code></pre><h1 id="EDITOR"><a href="#EDITOR" class="headerlink" title="EDITOR"></a>EDITOR</h1><pre><code>它是用来编辑使用编辑命令蜘蛛。默认值：取决于环境</code></pre><h1 id="EXTENSIONS"><a href="#EXTENSIONS" class="headerlink" title="EXTENSIONS"></a>EXTENSIONS</h1><pre><code>它是具有在项目中启用的扩展字典。默认值： &#123;&#125;</code></pre><h1 id="EXTENSIONS-BASE"><a href="#EXTENSIONS-BASE" class="headerlink" title="EXTENSIONS_BASE"></a>EXTENSIONS_BASE</h1><pre><code>它是具有内置的扩展字典。默认值：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">&#x27;scrapy.extensions.corestats.CoreStats&#x27;</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.telnet.TelnetConsole&#x27;</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.extensions.memusage.MemoryUsage&#x27;</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.extensions.memdebug.MemoryDebugger&#x27;</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.extensions.closespider.CloseSpider&#x27;</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.extensions.feedexport.FeedExporter&#x27;</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.extensions.logstats.LogStats&#x27;</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.extensions.spiderstate.SpiderState&#x27;</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.extensions.throttle.AutoThrottle&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h1 id="FEED-TEMPDIR"><a href="#FEED-TEMPDIR" class="headerlink" title="FEED_TEMPDIR"></a>FEED_TEMPDIR</h1><pre><code>它是用来设置，其中履带临时文件可以存储自定义文件夹的目录。</code></pre><h1 id="ITEM-PIPELINES"><a href="#ITEM-PIPELINES" class="headerlink" title="ITEM_PIPELINES"></a>ITEM_PIPELINES</h1><pre><code>它是具有管线的字典。默认值： &#123;&#125;</code></pre><h1 id="ITEM-PIPELINES-BASE"><a href="#ITEM-PIPELINES-BASE" class="headerlink" title="ITEM_PIPELINES_BASE"></a>ITEM_PIPELINES_BASE</h1><pre><code>默认: &#123;&#125;保存项目中默认启用的pipeline的字典。 永远不要在项目中修改该设定，而是修改 ITEM_PIPELINES。</code></pre><h1 id="LOG-ENABLED"><a href="#LOG-ENABLED" class="headerlink" title="LOG_ENABLED"></a>LOG_ENABLED</h1><pre><code>它定义如果日志被启用。默认值：True</code></pre><h1 id="LOG-ENCODING"><a href="#LOG-ENCODING" class="headerlink" title="LOG_ENCODING"></a>LOG_ENCODING</h1><pre><code>它定义了将用于记录的编码类型。默认值： ‘UTF-8’</code></pre><h1 id="LOG-FILE"><a href="#LOG-FILE" class="headerlink" title="LOG_FILE"></a>LOG_FILE</h1><pre><code>它是用于记录的输出文件的名称。logging输出的文件名。如果为None，则使用标准错误输出(standard error)。默认值：无</code></pre><h1 id="LOG-FORMAT"><a href="#LOG-FORMAT" class="headerlink" title="LOG_FORMAT"></a>LOG_FORMAT</h1><pre><code>它是利用它的日志信息可以被格式化的字符串。默认值：’%(asctime)s [%(name)s] %(levelname)s: %(message)s’</code></pre><h1 id="LOG-DATEFORMAT"><a href="#LOG-DATEFORMAT" class="headerlink" title="LOG_DATEFORMAT"></a>LOG_DATEFORMAT</h1><pre><code>它是利用它的日期/时间可以格式化字符串。默认值： ‘%Y-%m-%d %H:%M:%S’</code></pre><h1 id="LOG-LEVEL"><a href="#LOG-LEVEL" class="headerlink" title="LOG_LEVEL"></a>LOG_LEVEL</h1><pre><code>它定义最低日志级别。默认值：“DEBUG”</code></pre><p>log的最低级别。可选的级别有: CRITICAL、 ERROR、WARNING、INFO、DEBUG 。</p><h1 id="LOG-STDOUT"><a href="#LOG-STDOUT" class="headerlink" title="LOG_STDOUT"></a>LOG_STDOUT</h1><pre><code>此设置如果设置为true ，所有侑过程输出会出现在日志中。默认值：False</code></pre><h1 id="MEMDEBUG-ENABLED"><a href="#MEMDEBUG-ENABLED" class="headerlink" title="MEMDEBUG_ENABLED"></a>MEMDEBUG_ENABLED</h1><pre><code>它定义如果内存调试启用。默认值：False</code></pre><h1 id="MEMDEBUG-NOTIFY"><a href="#MEMDEBUG-NOTIFY" class="headerlink" title="MEMDEBUG_NOTIFY"></a>MEMDEBUG_NOTIFY</h1><pre><code>它定义启用内存调试时，发送到特定地址的内存报告。默认值： []</code></pre><h1 id="MEMUSAGE-ENABLED"><a href="#MEMUSAGE-ENABLED" class="headerlink" title="MEMUSAGE_ENABLED"></a>MEMUSAGE_ENABLED</h1><pre><code>它定义如果存储器使用是当scrapy过程超过存储器限制被启用。默认值：False</code></pre><h1 id="MEMUSAGE-LIMIT-MB"><a href="#MEMUSAGE-LIMIT-MB" class="headerlink" title="MEMUSAGE_LIMIT_MB"></a>MEMUSAGE_LIMIT_MB</h1><pre><code>如果定义了存储器的最大限制(in megabytes)被允许。在关闭Scrapy之前所允许的最大内存数(单位: MB)(如果 MEMUSAGE_ENABLED为True)。 如果为0，将不做限制。默认值：0</code></pre><h1 id="MEMUSAGE-CHECK-INTERVAL-SECONDS"><a href="#MEMUSAGE-CHECK-INTERVAL-SECONDS" class="headerlink" title="MEMUSAGE_CHECK_INTERVAL_SECONDS"></a>MEMUSAGE_CHECK_INTERVAL_SECONDS</h1><pre><code>它用于通过设置间隔的长度，以检查本内存使用情况。默认值：60.0</code></pre><h1 id="MEMUSAGE-NOTIFY-MAIL"><a href="#MEMUSAGE-NOTIFY-MAIL" class="headerlink" title="MEMUSAGE_NOTIFY_MAIL"></a>MEMUSAGE_NOTIFY_MAIL</h1><pre><code>它是用来当内存达到极限与电子邮件列表通知。默认值：False</code></pre><h1 id="MEMUSAGE-REPORT"><a href="#MEMUSAGE-REPORT" class="headerlink" title="MEMUSAGE_REPORT"></a>MEMUSAGE_REPORT</h1><pre><code>它定义如果内存使用情况报告要在关闭每个蜘蛛发送。默认值：False</code></pre><h1 id="MEMUSAGE-WARNING-MB"><a href="#MEMUSAGE-WARNING-MB" class="headerlink" title="MEMUSAGE_WARNING_MB"></a>MEMUSAGE_WARNING_MB</h1><pre><code>它定义被发送警告之前被允许的总存储。默认值：0</code></pre><h1 id="NEWSPIDER-MODULE"><a href="#NEWSPIDER-MODULE" class="headerlink" title="NEWSPIDER_MODULE"></a>NEWSPIDER_MODULE</h1><pre><code>这是其中使用创造了新的蜘蛛模块genspider命令。默认值： ‘’</code></pre><h1 id="RANDOMIZE-DOWNLOAD-DELAY"><a href="#RANDOMIZE-DOWNLOAD-DELAY" class="headerlink" title="RANDOMIZE_DOWNLOAD_DELAY"></a>RANDOMIZE_DOWNLOAD_DELAY</h1><pre><code>它定义的时候了Scrapy等待下载的同时从网站上请求一个随机量。如果启用，当从相同的网站获取数据时，Scrapy将会等待一个随机的值 (0.5到1.5之间的一个随机值 * DOWNLOAD_DELAY默认值：True</code></pre><h1 id="REACTOR-THREADPOOL-MAXSIZE"><a href="#REACTOR-THREADPOOL-MAXSIZE" class="headerlink" title="REACTOR_THREADPOOL_MAXSIZE"></a>REACTOR_THREADPOOL_MAXSIZE</h1><pre><code>它定义为在反应器线程池的最大尺寸。默认值：10</code></pre><h1 id="REDIRECT-MAX-TIMES"><a href="#REDIRECT-MAX-TIMES" class="headerlink" title="REDIRECT_MAX_TIMES"></a>REDIRECT_MAX_TIMES</h1><pre><code>它定义了一个请求多少次可以重定向。默认值：20</code></pre><h1 id="REDIRECT-PRIORITY-ADJUST"><a href="#REDIRECT-PRIORITY-ADJUST" class="headerlink" title="REDIRECT_PRIORITY_ADJUST"></a>REDIRECT_PRIORITY_ADJUST</h1><pre><code>设置时，该设置，调整的请求重定向优先级。修改重定向请求相对于原始请求的优先级。 负数意味着更多优先级默认值：+2</code></pre><h1 id="RETRY-PRIORITY-ADJUST"><a href="#RETRY-PRIORITY-ADJUST" class="headerlink" title="RETRY_PRIORITY_ADJUST"></a>RETRY_PRIORITY_ADJUST</h1><pre><code>设置时，该设置，调整请求重试的优先权。默认值：-1</code></pre><h1 id="RETRY-ENABLED-False"><a href="#RETRY-ENABLED-False" class="headerlink" title="RETRY_ENABLED = False"></a>RETRY_ENABLED = False</h1><pre><code>对于失败的HTTP请求(如超时)进行重试会降低爬取效率，当爬取目标基数很大时，舍弃部分数据不影响大局，提高效率</code></pre><h1 id="ROBOTSTXT-OBEY"><a href="#ROBOTSTXT-OBEY" class="headerlink" title="ROBOTSTXT_OBEY"></a>ROBOTSTXT_OBEY</h1><pre><code>当设置为Scrapy遵循robots.txt政策true 。默认值：Falserobots.txt 是遵循 Robot协议 的一个文件，它保存在网站的服务器中，它的作用是，告诉搜索引擎爬虫，本网站哪些目录下的网页 不希望 你进行爬取收录。在Scrapy启动后，会在第一时间访问网站的 robots.txt 文件，然后决定该网站的爬取范围。</code></pre><h1 id="SCHEDULER"><a href="#SCHEDULER" class="headerlink" title="SCHEDULER"></a>SCHEDULER</h1><pre><code>它定义了用于抓取目的调度。默认值：“scrapy.core.scheduler.Scheduler”</code></pre><h1 id="SPIDER-CONTRACTS"><a href="#SPIDER-CONTRACTS" class="headerlink" title="SPIDER_CONTRACTS"></a>SPIDER_CONTRACTS</h1><pre><code>它是在有项目蜘蛛合同测试蜘蛛的字典。默认值： &#123;&#125;</code></pre><h1 id="SPIDER-CONTRACTS-BASE"><a href="#SPIDER-CONTRACTS-BASE" class="headerlink" title="SPIDER_CONTRACTS_BASE"></a>SPIDER_CONTRACTS_BASE</h1><pre><code>这是保持其在Scrapy默认启用Scrapy合同的字典。默认值：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">&#x27;scrapy.contracts.default.UrlContract&#x27;</span> : <span class="number">1</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.contracts.default.ReturnsContract&#x27;</span>: <span class="number">2</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.contracts.default.ScrapesContract&#x27;</span>: <span class="number">3</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h1 id="SPIDER-LOADER-CLASS"><a href="#SPIDER-LOADER-CLASS" class="headerlink" title="SPIDER_LOADER_CLASS"></a>SPIDER_LOADER_CLASS</h1><pre><code>它定义了实现一个类SpiderLoader API来加载 爬虫。默认值：“scrapy.spiderloader.SpiderLoader”SPIDER_MIDDLEWARES这是设置蜘蛛中间件的字典。默认值： &#123;&#125;</code></pre><h1 id="SPIDER-MIDDLEWARES-BASE"><a href="#SPIDER-MIDDLEWARES-BASE" class="headerlink" title="SPIDER_MIDDLEWARES_BASE"></a>SPIDER_MIDDLEWARES_BASE</h1><pre><code>这是在Scrapy默认启用一个字典保存 爬虫 中间件。默认值：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">&#x27;scrapy.spidermiddlewares.httperror.HttpErrorMiddleware&#x27;</span>: <span class="number">50</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.spidermiddlewares.offsite.OffsiteMiddleware&#x27;</span>: <span class="number">500</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.spidermiddlewares.referer.RefererMiddleware&#x27;</span>: <span class="number">700</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.spidermiddlewares.urllength.UrlLengthMiddleware&#x27;</span>: <span class="number">800</span>,</span><br><span class="line"><span class="string">&#x27;scrapy.spidermiddlewares.depth.DepthMiddleware&#x27;</span>: <span class="number">900</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h1 id="SPIDER-MODULES"><a href="#SPIDER-MODULES" class="headerlink" title="SPIDER_MODULES"></a>SPIDER_MODULES</h1><pre><code>它是一种含有蜘蛛其中Scrapy将寻找模块列表。默认值： []</code></pre><h1 id="STATS-CLASS"><a href="#STATS-CLASS" class="headerlink" title="STATS_CLASS"></a>STATS_CLASS</h1><pre><code>这是实现一类Stats Collector API来收集统计信息。默认值：“scrapy.statscollectors.MemoryStatsCollector”</code></pre><h1 id="STATS-DUMP"><a href="#STATS-DUMP" class="headerlink" title="STATS_DUMP"></a>STATS_DUMP</h1><pre><code>当设置此设置true ，转储统计到日志中。默认值：True</code></pre><h1 id="STATSMAILER-RCPTS"><a href="#STATSMAILER-RCPTS" class="headerlink" title="STATSMAILER_RCPTS"></a>STATSMAILER_RCPTS</h1><pre><code>一旦蜘蛛刮完毕，Scrapy使用此设置发送统计数据。默认值： []</code></pre><h1 id="TELNETCONSOLE-ENABLED"><a href="#TELNETCONSOLE-ENABLED" class="headerlink" title="TELNETCONSOLE_ENABLED"></a>TELNETCONSOLE_ENABLED</h1><pre><code>它定义是否启用telnetconsole。默认值：True</code></pre><h1 id="TELNETCONSOLE-PORT"><a href="#TELNETCONSOLE-PORT" class="headerlink" title="TELNETCONSOLE_PORT"></a>TELNETCONSOLE_PORT</h1><pre><code>它定义了Telnet控制台端口。默认值：[6023，6073]</code></pre><h1 id="TEMPLATES-DIR"><a href="#TEMPLATES-DIR" class="headerlink" title="TEMPLATES_DIR"></a>TEMPLATES_DIR</h1><pre><code>它是包含可以在创建新的项目中使用的模板目录。默认值： templates scrapy模块内部目录</code></pre><h1 id="URLLENGTH-LIMIT"><a href="#URLLENGTH-LIMIT" class="headerlink" title="URLLENGTH_LIMIT"></a>URLLENGTH_LIMIT</h1><pre><code>它定义了将被允许抓取的网址的长度为URL的最大极限。默认值：2083</code></pre><h1 id="USER-AGENT"><a href="#USER-AGENT" class="headerlink" title="USER_AGENT"></a>USER_AGENT</h1><pre><code>它定义了在抓取网站所使用的用户代理。默认值： “Scrapy / VERSION“</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> 爬虫 </tag>
+            
+            <tag> scrapy </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>python中如何判断sql语句操作成功？</title>
+      <link href="article/1241896087/"/>
+      <url>article/1241896087/</url>
+      
+        <content type="html"><![CDATA[<p>python中如何判断sql语句操作成功？</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br><span class="line">语言: python v3.9.1</span><br><span class="line">模块: Pymysql</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>老话说，石头丢到水里，怎么说也能听个响声。</p><p>这其实就是一种交互以后得到反馈的过程。</p><p>那么，python是用mysql数据库入库以后，我要如何得知自己的入库情况呢？</p><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>mysql 无论是 插入数据 或者 更新插入 或者 替换插入 等方式，它们最终都会影响到数据的变动，而mysql会反馈发生数据变动的行数。</p><ul><li><p>插入数据</p><p>  通常只有一行数据发生了变化，返回一般是 1 行</p></li><li><p>更新插入&amp;替换插入</p><p>  一般返回的是 2 行，即删除1行，添加1行的操作</p><p>  但是碰到数据实际上无变化那就无需更新，mysql就会略过插入操作，返回的行数变动数量就会是 0</p></li></ul><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>部分代码如下（pymysql如何链接数据库总不用写了吧..)：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># import pymysql</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># conn = pymysql.connect(host=&#x27;127.0.0.1&#x27;, port=3306, user=&#x27;root&#x27;, passwd=&#x27;你的数据库密码&#x27;, db=&#x27;mydb&#x27;, charset=&#x27;utf8&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cursor = conn.cursor()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用变量接收</span></span><br><span class="line">data_add_status = cursor.execute(sql, vs)</span><br><span class="line"><span class="comment"># 入库状态响应</span></span><br><span class="line"><span class="keyword">if</span> data_add_status:</span><br><span class="line">    print(<span class="string">&quot;入库操作 ： rows = &#123;&#125; 行发生变动&quot;</span>.<span class="built_in">format</span>(cursor.rowcount))</span><br><span class="line">    <span class="keyword">if</span> data_add_status == <span class="number">2</span>:</span><br><span class="line">        print(<span class="string">f&quot;数据表: <span class="subst">&#123;table_name&#125;</span>&quot;</span>, data_add_status, item_sign, <span class="string">&quot;旧数据 更新入库完成！&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> data_add_status == <span class="number">1</span>:</span><br><span class="line">        print(<span class="string">f&quot;数据表: <span class="subst">&#123;table_name&#125;</span>&quot;</span>, data_add_status, item_sign, <span class="string">&quot;新数据 新增入库完成！&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">f&quot;行数变动:<span class="subst">&#123;data_add_status&#125;</span> <span class="subst">&#123;table_name&#125;</span> <span class="subst">&#123;item_sign&#125;</span> 入库失败! 可能是数据重复，无需入库！&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>重点是对 cursor 游标对象里rowcount方法的使用，</p><p>获取到数据库变动的行数来大致的推断数据的入库情况。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> mysql </tag>
+            
+            <tag> 数据 </tag>
+            
+            <tag> pymysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Pymysql批量插入方法executemany的使用</title>
+      <link href="article/2058542617/"/>
+      <url>article/2058542617/</url>
+      
+        <content type="html"><![CDATA[<p>Pymysql批量插入方法executemany的使用</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br><span class="line">语言: python v3.9.1</span><br><span class="line">模块: Pymysql</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>python使用mysql，进行大数据导入导出操作时，免不了要使用批量入库的操作。</p><p>在使用pymysql模块操作批量入库时，碰到部分使用上的问题，以此做一个简单使用笔记。</p><h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol><li>在写sql语句时，不管字段为什么类型，占位符统一使用%s,且不能加上引号<blockquote><p>sql=”insert into tablename (id,name) values (%s,%s)”</p></blockquote></li></ol><ol start="2"><li><p>添加的数据的格式必须为 list[tuple(),tuple(),tuple()] 或者 tuple(tuple(),tuple(),tuple())</p><blockquote><p>values=[(1,”zhangsan”),(2,”lisi”)]</p></blockquote><p> or</p><blockquote><p>values=((1,”zhangsan”),(2,”lisi”))</p></blockquote></li><li><p>最后,再通过executemany插入</p><blockquote><p>cursor.executemany(sql,values)</p></blockquote></li></ol><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>使用过程中，还发现了一些问题。</p><p>Pymysql executemany 的方法，实际上是 伪批量插，性能上比真正批量插入还是有点差距，</p><p>如果要使用真正的批量插入还是还要直接在sql语句上直接实现批量插入，效果更好。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> mysql </tag>
+            
+            <tag> 数据 </tag>
+            
+            <tag> pymysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python爬虫：Scrapy使用adbapi提高存储数据库效率</title>
+      <link href="article/3104511781/"/>
+      <url>article/3104511781/</url>
+      
+        <content type="html"><![CDATA[<p>Python爬虫：Scrapy使用adbapi提高存储数据库效率</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br><span class="line">语言: python v3.9.1</span><br><span class="line">框架: Scrapy</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Scrapy 是一个高性能的异步采集框架，采集速度非常快，但是数据库入库受限于数据库本身的原因，一直是个瓶颈。</p><p>在某些爬虫项目下，我们需要每次执行一条插入语句，就立即调用commit方法更新数据库。</p><p>如果爬取时间太长，中途可能被迫中断，这样程序就不能执行close_spider中的commit。</p><p>但如果在insert_db中直接加入commit，又会使程序执行变得很慢。</p><p>这里就可以使用Twisted中提供的以异步方式多线程访问数据库的模块adbapi，可以显著提供程序访问数据库的效率。</p><h1 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h1><ul><li><p><strong>adbapi.ConnectionPool方法</strong></p><p>  可以创建一个数据库连接池对象，其中包括多个连接对象，每个连接对象在独立的线程中工作。</p><p>  adbapi只是提供了异步访问数据库的编程框架，再其内部依然使MySQLdb这样的库访问数据库。</p></li><li><p><strong>dbpool.runInteraction(insert_db,item)</strong></p><p>  以异步方式调用insert_db函数，dbpool会选择连接池中的一个连接对象在独立线程中调用insert_db，</p><p>  其中参数item会被传给insert_db的第二个参数，传给insert_db的第一个参数是一个Transaction对象，</p><p>  其接口与Cursoru游标对象类似，</p><p>  可以调用execute方法执行SQL语句，insert_db执行后，连接对象会自动调用commit方法</p></li></ul><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="keyword">from</span> itemadapter <span class="keyword">import</span> ItemAdapter</span><br><span class="line"><span class="keyword">from</span> twisted.enterprise <span class="keyword">import</span> adbapi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MysqlSpiderBasePipeline</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, dbpool, item_tabla_map</span>):</span></span><br><span class="line">        self.dbpool = dbpool</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span>(<span class="params">cls, cralwer</span>):</span></span><br><span class="line">        db_parmars = &#123;</span><br><span class="line">            <span class="string">&#x27;host&#x27;</span>: cralwer.settings[<span class="string">&#x27;MYSQL_HOST&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;user&#x27;</span>: cralwer.settings[<span class="string">&#x27;MYSQL_USER&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;passwd&#x27;</span>: cralwer.settings[<span class="string">&#x27;MYSQL_PWD&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;db&#x27;</span>: cralwer.settings[<span class="string">&#x27;MYSQL_DB&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;port&#x27;</span>: cralwer.settings[<span class="string">&#x27;MYSQL_PORT&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;charset&#x27;</span>: cralwer.settings[<span class="string">&#x27;MYSQL_CHARSET&#x27;</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        dbpool = adbapi.ConnectionPool(<span class="string">&#x27;pymysql&#x27;</span>, **db_parmars)</span><br><span class="line">        <span class="keyword">return</span> cls(dbpool)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span>(<span class="params">self, item, spider</span>):</span></span><br><span class="line">        <span class="comment"># 入库</span></span><br><span class="line">        query = self.dbpool.runInteraction(</span><br><span class="line">            self.insert_data_to_mysql,</span><br><span class="line">            item</span><br><span class="line">        )</span><br><span class="line">        query.addErrback(</span><br><span class="line">            self.insert_err,</span><br><span class="line">            item</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_err</span>(<span class="params">self, failure, item</span>):</span></span><br><span class="line">        print(failure, <span class="string">&#x27;失败&#x27;</span>)  <span class="comment"># , item)</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_data_to_mysql</span>(<span class="params">self, cursor, item</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 继承   MysqlSpiderBasePipeline 类 然后重写insert_data_to_mysql方法来实现具体的入库逻辑即可。</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpiderPipeline</span>(<span class="params">MysqlSpiderBasePipeline</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_data_to_mysql</span>(<span class="params">self, cursor, item</span>):</span></span><br><span class="line">        sql, data = item.get_update_sql()</span><br><span class="line">        cursor.execute(sql, data)</span><br><span class="line">        <span class="comment"># ....</span></span><br></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Scrapy 异步 更新 或 插入， 都能有效提高入库效率。</p><p>但是这对数据库本身的性能也有要求，如果数据库本身性能不行，</p><p>那也是逼着Scrapy”八车道”变成”两车道”,入库时常太长了，</p><p>还可能导致数据库游标cursor超时断开，出现 pymysql.err.InterfaceError: (0, ‘’) 的报错。</p><p><strong>出现的原因是没有连接到数据库，或者数据库在爬虫的过程中断开了。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> 爬虫 </tag>
+            
+            <tag> scrapy </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数据清洗：清理字符串中存在的\xa0字符</title>
+      <link href="article/382879377/"/>
+      <url>article/382879377/</url>
+      
+        <content type="html"><![CDATA[<p>简介</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2020.3.2 x64  </span><br><span class="line">语言: python v3.9.1</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+            <tag> python </tag>
+            
+            <tag> 数据 </tag>
+            
+            <tag> 爬虫 </tag>
+            
+            <tag> scrapy </tag>
+            
+            <tag> django </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>统计字符串中某字符出现的次数</title>
       <link href="article/916779116/"/>
       <url>article/916779116/</url>
@@ -274,20 +663,20 @@
           
           <category> Web前端 </category>
           
-          <category> 小技能GET </category>
-          
           <category> html </category>
+          
+          <category> 小技能GET </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> web </tag>
             
@@ -319,20 +708,20 @@
           
           <category> IT技术 </category>
           
-          <category> 小技能GET </category>
-          
           <category> Web前端 </category>
+          
+          <category> 小技能GET </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> web </tag>
             
@@ -434,9 +823,9 @@
           
           <category> Web前端 </category>
           
-          <category> nodejs </category>
-          
           <category> 疑难杂症 </category>
+          
+          <category> nodejs </category>
           
       </categories>
       
@@ -466,9 +855,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Linux </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运行维护 </tag>
             
@@ -505,11 +894,11 @@
       
         <tags>
             
+            <tag> Web后端 </tag>
+            
             <tag> python </tag>
             
             <tag> 爬虫 </tag>
-            
-            <tag> Web后端 </tag>
             
             <tag> urllib </tag>
             
@@ -567,11 +956,11 @@
       
         <tags>
             
+            <tag> HTML </tag>
+            
             <tag> python </tag>
             
             <tag> 数据结构 </tag>
-            
-            <tag> HTML </tag>
             
         </tags>
       
@@ -594,13 +983,13 @@
             
             <tag> 小技能 </tag>
             
-            <tag> ubuntu </tag>
-            
-            <tag> Linux </tag>
-            
             <tag> Web后端 </tag>
             
             <tag> Centos </tag>
+            
+            <tag> ubuntu </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运行维护 </tag>
             
@@ -622,11 +1011,11 @@
           
           <category> IT技术 </category>
           
-          <category> python </category>
-          
           <category> Web后端 </category>
           
           <category> 小技能GET </category>
+          
+          <category> python </category>
           
           <category> 运行维护 </category>
           
@@ -639,11 +1028,11 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Linux </tag>
-            
             <tag> 疑难杂症 </tag>
             
             <tag> Centos </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运行维护 </tag>
             
@@ -658,7 +1047,7 @@
       <link href="article/8647/"/>
       <url>article/8647/</url>
       
-        <content type="html"><![CDATA[<p>normalize.css是一款优秀的前端css初始化工具！之前没尝试过在VueCli中使用。记录一下..</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Windows10</span><br><span class="line">IDE: JetBrains WebStorm 2018.2.1 x64</span><br><span class="line">浏览器： Google Chrome 版本 67.0.3396.99（正式版本） （64 位）&amp;&amp; FireFox Developer Edition 版本63.0b4  (64位)</span><br><span class="line">VueCli : 3</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Normalize.css只是一个很小的css文件，但它在磨人的HTML元素样式上提供了跨浏览器的高度一致性。</p><p>相比于传统的CSS reset,Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p><p>总之，Normalize.css是一种CSS reset的替代方案。</p><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li><p>保护有用的浏览器样式而不是去掉他们；</p></li><li><p>为大部分HTML元素提供一般化的样式；</p></li><li><p>修复浏览器自身的bug并保证各浏览器的一致性；</p></li><li><p>优化css可用性；</p></li><li><p>用注释和详细的文档来解释代码；</p></li><li><p>Normalize支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表哥都进行了一般化；<br>  尽管这个项目基于一般化的原则，但我们还是在合适的地方使用了更实用的默认值。</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1></li><li><p>安装</p></li></ul><blockquote><p>npm install –save normalize.css </p></blockquote><ul><li>VueCli 下的 main.js 导入</li></ul><blockquote><p>import ‘normalize.css/normalize.css’</p></blockquote><h1 id="若是出现引入报错，可能没有安装css-loader-和style-loader"><a href="#若是出现引入报错，可能没有安装css-loader-和style-loader" class="headerlink" title="若是出现引入报错，可能没有安装css-loader 和style-loader"></a>若是出现引入报错，可能没有安装css-loader 和style-loader</h1><blockquote><p>npm install css-loader style-loader</p></blockquote><h1 id="如果出现-core-js-modules-es-object-to-string-之类的报错"><a href="#如果出现-core-js-modules-es-object-to-string-之类的报错" class="headerlink" title="如果出现 core-js/modules/es.object.to-string 之类的报错"></a>如果出现 core-js/modules/es.object.to-string 之类的报错</h1><blockquote><p>npm install core-js</p></blockquote><p>或者降版本</p><blockquote><p>npm i <a href="mailto:&#x63;&#111;&#x72;&#x65;&#45;&#x6a;&#115;&#x40;&#x32;&#x2e;&#x36;&#x2e;&#53;">&#x63;&#111;&#x72;&#x65;&#45;&#x6a;&#115;&#x40;&#x32;&#x2e;&#x36;&#x2e;&#53;</a> –save</p></blockquote>]]></content>
+        <content type="html"><![CDATA[<p>normalize.css是一款优秀的前端css初始化工具！之前没尝试过在VueCli中使用。记录一下..</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Windows10</span><br><span class="line">IDE: JetBrains WebStorm 2018.2.1 x64</span><br><span class="line">浏览器： Google Chrome 版本 67.0.3396.99（正式版本） （64 位）&amp;&amp; FireFox Developer Edition 版本63.0b4  (64位)</span><br><span class="line">VueCli : 3</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Normalize.css只是一个很小的css文件，但它在磨人的HTML元素样式上提供了跨浏览器的高度一致性。</p><p>相比于传统的CSS reset,Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p><p>总之，Normalize.css是一种CSS reset的替代方案。</p><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li><p>保护有用的浏览器样式而不是去掉他们；</p></li><li><p>为大部分HTML元素提供一般化的样式；</p></li><li><p>修复浏览器自身的bug并保证各浏览器的一致性；</p></li><li><p>优化css可用性；</p></li><li><p>用注释和详细的文档来解释代码；</p></li><li><p>Normalize支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表哥都进行了一般化；<br>  尽管这个项目基于一般化的原则，但我们还是在合适的地方使用了更实用的默认值。</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1></li><li><p>安装</p></li></ul><blockquote><p>npm install –save normalize.css </p></blockquote><ul><li>VueCli 下的 main.js 导入</li></ul><blockquote><p>import ‘normalize.css/normalize.css’</p></blockquote><h1 id="若是出现引入报错，可能没有安装css-loader-和style-loader"><a href="#若是出现引入报错，可能没有安装css-loader-和style-loader" class="headerlink" title="若是出现引入报错，可能没有安装css-loader 和style-loader"></a>若是出现引入报错，可能没有安装css-loader 和style-loader</h1><blockquote><p>npm install css-loader style-loader</p></blockquote><h1 id="如果出现-core-js-modules-es-object-to-string-之类的报错"><a href="#如果出现-core-js-modules-es-object-to-string-之类的报错" class="headerlink" title="如果出现 core-js/modules/es.object.to-string 之类的报错"></a>如果出现 core-js/modules/es.object.to-string 之类的报错</h1><blockquote><p>npm install core-js</p></blockquote><p>或者降版本</p><blockquote><p>npm i <a href="mailto:&#x63;&#x6f;&#x72;&#x65;&#45;&#106;&#115;&#x40;&#50;&#x2e;&#x36;&#46;&#53;">&#x63;&#x6f;&#x72;&#x65;&#45;&#106;&#115;&#x40;&#50;&#x2e;&#x36;&#46;&#53;</a> –save</p></blockquote>]]></content>
       
       
       <categories>
@@ -674,11 +1063,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> VueCli </tag>
             
@@ -711,11 +1100,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> Element-ui </tag>
             
@@ -748,11 +1137,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> Element-ui </tag>
             
@@ -785,11 +1174,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> Element-ui </tag>
             
@@ -822,15 +1211,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -865,11 +1254,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> Element-ui </tag>
             
@@ -902,13 +1291,13 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> JavaScript </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
         </tags>
       
@@ -937,15 +1326,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -1019,15 +1408,15 @@
             
             <tag> 域名解析 </tag>
             
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Workers </tag>
+            
+            <tag> Web后端 </tag>
             
             <tag> CloudFlare </tag>
             
@@ -1058,15 +1447,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -1093,13 +1482,13 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Linux </tag>
-            
             <tag> Github </tag>
             
             <tag> 疑难杂症 </tag>
             
             <tag> Ubuntu </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运行维护 </tag>
             
@@ -1161,15 +1550,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -1372,15 +1761,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -1469,9 +1858,9 @@
             
             <tag> python </tag>
             
-            <tag> 反爬案例 </tag>
-            
             <tag> 爬虫 </tag>
+            
+            <tag> 反爬案例 </tag>
             
             <tag> 文书网 </tag>
             
@@ -1508,9 +1897,9 @@
             
             <tag> python </tag>
             
-            <tag> 反爬案例 </tag>
-            
             <tag> 爬虫 </tag>
+            
+            <tag> 反爬案例 </tag>
             
             <tag> 字体反爬 </tag>
             
@@ -1603,11 +1992,11 @@
             
             <tag> 小技能 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> 疑难杂症 </tag>
             
@@ -1663,11 +2052,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> Cloudflare </tag>
             
@@ -1722,9 +2111,9 @@
           
           <category> IT技术 </category>
           
-          <category> python </category>
-          
           <category> 小技能GET </category>
+          
+          <category> python </category>
           
       </categories>
       
@@ -1762,11 +2151,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> webpack </tag>
             
@@ -1789,9 +2178,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -1812,9 +2201,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Linux </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运行维护 </tag>
             
@@ -1899,9 +2288,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Linux </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运行维护 </tag>
             
@@ -2308,13 +2697,13 @@
       
         <tags>
             
+            <tag> Web后端 </tag>
+            
             <tag> python </tag>
             
             <tag> ubuntu </tag>
             
             <tag> Linux </tag>
-            
-            <tag> Web后端 </tag>
             
         </tags>
       
@@ -2343,15 +2732,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -2455,11 +2844,11 @@
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> Vue </tag>
             
@@ -2509,13 +2898,13 @@
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> JavaScript </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> typescript </tag>
             
@@ -2544,11 +2933,11 @@
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> css </tag>
             
@@ -2599,22 +2988,22 @@
           
           <category> JavaScript </category>
           
-          <category> nodejs </category>
-          
           <category> 疑难杂症 </category>
+          
+          <category> nodejs </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> JavaScript </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> nodejs </tag>
             
@@ -2643,13 +3032,13 @@
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> JavaScript </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> Vue </tag>
             
@@ -2839,9 +3228,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -2924,9 +3313,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> FTP </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> FTP </tag>
             
         </tags>
       
@@ -2947,9 +3336,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> FTP </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> FTP </tag>
             
         </tags>
       
@@ -3043,7 +3432,7 @@
       <link href="article/55003/"/>
       <url>article/55003/</url>
       
-        <content type="html"><![CDATA[<p>最近使用GitHub Desktop时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Ubuntu18.04  </span><br><span class="line">IDE: JetBrains Pycharm 2018.2.4 x64  </span><br><span class="line">Python: 3.6.2</span><br><span class="line">Django: 2.0.3</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>最近更换Ubuntu18.04使用Pycharm上传Github时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><p>查看了github的help页，找到了有关github贡献值的计算说明。</p><ol><li><p>问题和拉取请求<br>如果问题和拉取请求是在独立存储库中打开而不是分叉，则它们将显示在您的贡献图上。</p></li><li><p>提交<br>如果提交符合以下所有条件，则会在您的贡献图表上显示：</p></li></ol><blockquote><p>用于提交的电子邮件地址与您的GitHub帐户相关联。<br>提交是在独立的存储库中进行的，而不是fork。<br>提交的内容如下：<br>在存储库的默认分支（通常master）<br>在gh-pages分支中（对于具有Project Pages站点的存储库）  </p></blockquote><p>此外，至少满足下面条件中的一个（主要针对你Commit的仓库不是你创建的）：</p><blockquote><p>你是这个仓库的协作者，或者是这个版本库的拥有组织中的一员<br>你fork过这个仓库<br>你对这个仓库发起过pull request或者issue<br>你对这个仓库标记了Star  </p></blockquote><h1 id="不计算捐款的常见原因"><a href="#不计算捐款的常见原因" class="headerlink" title="不计算捐款的常见原因"></a>不计算捐款的常见原因</h1><p>笔记：</p><blockquote><p>要显示在您的个人资料贡献图表中，共同创作的提交必须符合与一位作者的提交相同的标准。<br>当合并拉取请求并且压缩提交时，只有合并拉取请求的用户和打开拉取请求的用户才会收到贡献积分。拉取请求的其他任何贡献者都不会获得贡献积分。<br>当重新提交提交时，提交的原始作者和重新提交的人，无论是在命令行还是在GitHub上，都会收到贡献信用。  </p></blockquote><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>发现在github网站上修改提交都可以记录,但就是我本地的客户端不可以。<br>然后我在github上点击紫色头像提交记录的详细内容查看,他说我的作者是无效的。<br>后来查了下发现是邮箱用户名不对。<br>先用git show 发现邮箱那里跟github的账号邮箱不一样！<br><img src= "/customize/img/loading.gif" data-lazy-src="1.png" alt="1.png"><br>我的邮箱地址写错成了一个逗号..“，com”，好吧服了。<br>再次核对一下Github邮箱一直，登陆Github!<br><img src= "/customize/img/loading.gif" data-lazy-src="2.png" alt="2.png"></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在该项目有“.git”文件夹的目录下，打开Ubuntu终端使用git命令：</p><blockquote><p>git config –global user.name “username”<br>git config –global user.email “<a href="mailto:&#117;&#x73;&#x65;&#x72;&#x6e;&#x61;&#x6d;&#101;&#64;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#117;&#x73;&#x65;&#x72;&#x6e;&#x61;&#x6d;&#101;&#64;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a>”</p></blockquote><p>将配置文件的邮箱修改为正确的邮箱地址，然后通过继续终端使用命令行方式提交一次。</p><blockquote><p>git commit -m “test”<br>git push origin master  </p></blockquote><p>这次的提交就会出现小绿点了。这时再使用</p><blockquote><p>git show</p></blockquote><p>来验证一下，是否修改成功。成功以后，重启Pycharm，它也会同步。这样使用它上传github的时候也不会穿错了。</p><p><strong>可是问题来了，如果不想放弃之前的那些用错邮箱的提交怎么办？</strong></p><p>只要在Github的setting中，把之前错误的邮箱地址添加上去即可！<br><img src= "/customize/img/loading.gif" data-lazy-src="3.png" alt="3.png"></p><p>如此以来，完美解决即可解决这个问题！</p>]]></content>
+        <content type="html"><![CDATA[<p>最近使用GitHub Desktop时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Ubuntu18.04  </span><br><span class="line">IDE: JetBrains Pycharm 2018.2.4 x64  </span><br><span class="line">Python: 3.6.2</span><br><span class="line">Django: 2.0.3</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>最近更换Ubuntu18.04使用Pycharm上传Github时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><p>查看了github的help页，找到了有关github贡献值的计算说明。</p><ol><li><p>问题和拉取请求<br>如果问题和拉取请求是在独立存储库中打开而不是分叉，则它们将显示在您的贡献图上。</p></li><li><p>提交<br>如果提交符合以下所有条件，则会在您的贡献图表上显示：</p></li></ol><blockquote><p>用于提交的电子邮件地址与您的GitHub帐户相关联。<br>提交是在独立的存储库中进行的，而不是fork。<br>提交的内容如下：<br>在存储库的默认分支（通常master）<br>在gh-pages分支中（对于具有Project Pages站点的存储库）  </p></blockquote><p>此外，至少满足下面条件中的一个（主要针对你Commit的仓库不是你创建的）：</p><blockquote><p>你是这个仓库的协作者，或者是这个版本库的拥有组织中的一员<br>你fork过这个仓库<br>你对这个仓库发起过pull request或者issue<br>你对这个仓库标记了Star  </p></blockquote><h1 id="不计算捐款的常见原因"><a href="#不计算捐款的常见原因" class="headerlink" title="不计算捐款的常见原因"></a>不计算捐款的常见原因</h1><p>笔记：</p><blockquote><p>要显示在您的个人资料贡献图表中，共同创作的提交必须符合与一位作者的提交相同的标准。<br>当合并拉取请求并且压缩提交时，只有合并拉取请求的用户和打开拉取请求的用户才会收到贡献积分。拉取请求的其他任何贡献者都不会获得贡献积分。<br>当重新提交提交时，提交的原始作者和重新提交的人，无论是在命令行还是在GitHub上，都会收到贡献信用。  </p></blockquote><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>发现在github网站上修改提交都可以记录,但就是我本地的客户端不可以。<br>然后我在github上点击紫色头像提交记录的详细内容查看,他说我的作者是无效的。<br>后来查了下发现是邮箱用户名不对。<br>先用git show 发现邮箱那里跟github的账号邮箱不一样！<br><img src= "/customize/img/loading.gif" data-lazy-src="1.png" alt="1.png"><br>我的邮箱地址写错成了一个逗号..“，com”，好吧服了。<br>再次核对一下Github邮箱一直，登陆Github!<br><img src= "/customize/img/loading.gif" data-lazy-src="2.png" alt="2.png"></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在该项目有“.git”文件夹的目录下，打开Ubuntu终端使用git命令：</p><blockquote><p>git config –global user.name “username”<br>git config –global user.email “<a href="mailto:&#117;&#115;&#x65;&#x72;&#110;&#97;&#x6d;&#101;&#x40;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#117;&#115;&#x65;&#x72;&#110;&#97;&#x6d;&#101;&#x40;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a>”</p></blockquote><p>将配置文件的邮箱修改为正确的邮箱地址，然后通过继续终端使用命令行方式提交一次。</p><blockquote><p>git commit -m “test”<br>git push origin master  </p></blockquote><p>这次的提交就会出现小绿点了。这时再使用</p><blockquote><p>git show</p></blockquote><p>来验证一下，是否修改成功。成功以后，重启Pycharm，它也会同步。这样使用它上传github的时候也不会穿错了。</p><p><strong>可是问题来了，如果不想放弃之前的那些用错邮箱的提交怎么办？</strong></p><p>只要在Github的setting中，把之前错误的邮箱地址添加上去即可！<br><img src= "/customize/img/loading.gif" data-lazy-src="3.png" alt="3.png"></p><p>如此以来，完美解决即可解决这个问题！</p>]]></content>
       
       
       
@@ -3086,15 +3475,15 @@
             
             <tag> 小技能 </tag>
             
-            <tag> python </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -3119,9 +3508,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -3144,9 +3533,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -3167,9 +3556,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -3350,11 +3739,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
         </tags>
       
@@ -3423,11 +3812,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> Emmet </tag>
             
@@ -3458,15 +3847,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -3503,15 +3892,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -3544,15 +3933,15 @@
             
             <tag> 小技能 </tag>
             
-            <tag> python </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> python </tag>
             
             <tag> Django </tag>
             
@@ -3668,11 +4057,11 @@
             
             <tag> hexo </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
         </tags>
       
@@ -3847,9 +4236,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> python </tag>
-            
             <tag> 疑难杂症 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -3880,11 +4269,11 @@
             
             <tag> hexo </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> 娱乐资讯 </tag>
             
@@ -3917,11 +4306,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
             <tag> Boostrap </tag>
             
@@ -3954,11 +4343,11 @@
             
             <tag> markdown </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
         </tags>
       
@@ -4099,11 +4488,11 @@
             
             <tag> IT技术 </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
         </tags>
       
@@ -4134,11 +4523,11 @@
             
             <tag> hexo </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> HTML </tag>
             
         </tags>
       
