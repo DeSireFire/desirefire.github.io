@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>Pycharm 设置模板默认添加作者时间等信息</title>
+      <link href="article/3315403751/"/>
+      <url>article/3315403751/</url>
+      
+        <content type="html"><![CDATA[<p>Pycharm过程中,每次新建都需要手动的编写一些项目信息或者文件信息个人信息,如果使用模板的话,很高效很多.</p><p>总之就是为了方便的添加信息。</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br><span class="line">语言: python v3.9.1</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Pycharm过程中,每次新建都需要手动的编写一些项目信息或者文件信息个人信息,如果使用模板的话,很高效很多.</p><p>总之就是为了方便的添加信息。</p><h1 id="设置步骤"><a href="#设置步骤" class="headerlink" title="设置步骤"></a>设置步骤</h1><ul><li>打开Pycharm,选择 File &gt; Settings(Ctrl + Alt + S)</li></ul><p><img src= "/customize/img/loading.gif" data-lazy-src="Pycharm_%E8%AE%BE%E7%BD%AE%E6%A8%A1%E6%9D%BF%E9%BB%98%E8%AE%A4%E6%B7%BB%E5%8A%A0%E4%BD%9C%E8%80%85%E6%97%B6%E9%97%B4%E7%AD%89%E4%BF%A1%E6%81%AF/f3f7008a.png"></p><ul><li>使用搜索快速找到”File and Code Templates”</li></ul><p><img src= "/customize/img/loading.gif" data-lazy-src="Pycharm_%E8%AE%BE%E7%BD%AE%E6%A8%A1%E6%9D%BF%E9%BB%98%E8%AE%A4%E6%B7%BB%E5%8A%A0%E4%BD%9C%E8%80%85%E6%97%B6%E9%97%B4%E7%AD%89%E4%BF%A1%E6%81%AF/9c0a5133.png"></p><ul><li>右侧菜单选择”Python Script”,对模板进行编辑,并按OK保存生效</li></ul><p><img src= "/customize/img/loading.gif" data-lazy-src="Pycharm_%E8%AE%BE%E7%BD%AE%E6%A8%A1%E6%9D%BF%E9%BB%98%E8%AE%A4%E6%B7%BB%E5%8A%A0%E4%BD%9C%E8%80%85%E6%97%B6%E9%97%B4%E7%AD%89%E4%BF%A1%E6%81%AF/4fe53232.png"></p><p>常用变量：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$&#123;USER&#125;   当前系统用户</span><br><span class="line"></span><br><span class="line">$&#123;DATE&#125;   当前系统日期</span><br><span class="line"></span><br><span class="line">$&#123;TIME&#125;   当前系统时间</span><br><span class="line"></span><br><span class="line">$&#123;PRODUCT_NAME&#125;   创建文件的IDE名称</span><br></pre></td></tr></table></figure><p>我的模板：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"># Author    : RaXianch</span><br><span class="line"># CreatDATE : $&#123;DATE&#125;</span><br><span class="line"># CreatTIME : $&#123;TIME&#125; </span><br><span class="line"># Blog      : https://blog.raxianch.moe/</span><br><span class="line"># Github    : https://github.com/DeSireFire</span><br><span class="line">__author__ = &#x27;RaXianch&#x27;</span><br></pre></td></tr></table></figure><ul><li>通过pycharm新建python文件时，效果</li></ul><p><img src= "/customize/img/loading.gif" data-lazy-src="Pycharm_%E8%AE%BE%E7%BD%AE%E6%A8%A1%E6%9D%BF%E9%BB%98%E8%AE%A4%E6%B7%BB%E5%8A%A0%E4%BD%9C%E8%80%85%E6%97%B6%E9%97%B4%E7%AD%89%E4%BF%A1%E6%81%AF/46ae8ad5.png"></p><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>“File and Code Templates” 设置 “Python Script” 模板，代表的是pycharm在生成py文件时使用的模板。</p><p>如果你设置的是”Python Script”模板，但是却用pycharm生成了一个html文件，那就不会使用py文件的模板了。</p><p>不要傻傻分不清楚。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>该设置方法其实在jetbrains系列开发工具里，都是通用的。设置方式都差别不大。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> pycharm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>统计Python的list列表中元素的重复次数</title>
+      <link href="article/1074843733/"/>
+      <url>article/1074843733/</url>
+      
+        <content type="html"><![CDATA[<p>python的列表去重挺方便的，但是想获取列表中的元素是否重复，以及想知道重复了几次要如何做呢？</p><a id="more"></a><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br><span class="line">语言: python v3.9.1</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>某日，检查数据库表，想看看数据跟需求文档是否一致，导出的时候发现，数据条数比需求文档多了几个。</p><p>那就说明同一个用于检索的关键词有可能采集到了多条结果。</p><p>多条结果用了同一个检索词，那我就想知道，每个检索词分别有多少条数据。</p><p>基于该应用场景，有了这样的需求。</p><h1 id="code-代码"><a href="#code-代码" class="headerlink" title="code 代码"></a>code 代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要使用collections模块</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line">a = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">test = &#123;key: value <span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="built_in">dict</span>(Counter(a)).items() <span class="keyword">if</span> value &gt; <span class="number">0</span>&#125;</span><br></pre></td></tr></table></figure><h1 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h1><blockquote><p>{‘a’: 1, ‘b’: 3, ‘c’: 2}</p></blockquote><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>做数据清洗的时候，要对各种数据结构操作，都有点了解才行。</p><p>不过，如果键值对数量庞大的时候，这样方式，答应出来也是有一点点长的…</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mysql数据库&#39;Got a packet bigger than‘max_allowed_packet’bytes&#39;的解决方案</title>
       <link href="article/3896883137/"/>
       <url>article/3896883137/</url>
@@ -20,9 +72,9 @@
       
         <tags>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> mysql </tag>
+            
+            <tag> 疑难杂症 </tag>
             
             <tag> Mysql </tag>
             
@@ -107,9 +159,9 @@
       
         <tags>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> mysql </tag>
+            
+            <tag> 疑难杂症 </tag>
             
             <tag> Mysql </tag>
             
@@ -165,9 +217,9 @@
       
         <tags>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> mysql </tag>
+            
+            <tag> 疑难杂症 </tag>
             
             <tag> Mysql </tag>
             
@@ -374,8 +426,6 @@
       
         <tags>
             
-            <tag> web </tag>
-            
             <tag> python </tag>
             
             <tag> 数据 </tag>
@@ -385,6 +435,8 @@
             <tag> scrapy </tag>
             
             <tag> django </tag>
+            
+            <tag> web </tag>
             
         </tags>
       
@@ -445,6 +497,8 @@
             <tag> 爬虫 </tag>
             
             <tag> 数据清洗 </tag>
+            
+            <tag> rfind </tag>
             
         </tags>
       
@@ -672,19 +726,19 @@
       
         <tags>
             
-            <tag> Web前端 </tag>
-            
-            <tag> CSS </tag>
-            
             <tag> HTML </tag>
             
             <tag> web </tag>
             
+            <tag> Web前端 </tag>
+            
+            <tag> CSS </tag>
+            
             <tag> html </tag>
             
-            <tag> meta </tag>
-            
             <tag> referrer </tag>
+            
+            <tag> meta </tag>
             
             <tag> 防盗链 </tag>
             
@@ -708,34 +762,34 @@
           
           <category> IT技术 </category>
           
-          <category> Web前端 </category>
-          
           <category> 小技能GET </category>
+          
+          <category> Web前端 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Web前端 </tag>
-            
-            <tag> CSS </tag>
-            
             <tag> HTML </tag>
             
             <tag> web </tag>
             
+            <tag> Web前端 </tag>
+            
+            <tag> CSS </tag>
+            
+            <tag> refer </tag>
+            
             <tag> html </tag>
             
-            <tag> meta </tag>
-            
             <tag> referrer </tag>
+            
+            <tag> meta </tag>
             
             <tag> 防盗链 </tag>
             
             <tag> css </tag>
-            
-            <tag> refer </tag>
             
         </tags>
       
@@ -855,9 +909,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> 运行维护 </tag>
             
@@ -894,11 +948,11 @@
       
         <tags>
             
-            <tag> Web后端 </tag>
-            
             <tag> python </tag>
             
             <tag> 爬虫 </tag>
+            
+            <tag> Web后端 </tag>
             
             <tag> urllib </tag>
             
@@ -956,11 +1010,11 @@
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> python </tag>
             
             <tag> 数据结构 </tag>
+            
+            <tag> HTML </tag>
             
         </tags>
       
@@ -983,13 +1037,13 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Web后端 </tag>
-            
-            <tag> Centos </tag>
-            
             <tag> ubuntu </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> Centos </tag>
             
             <tag> 运行维护 </tag>
             
@@ -1011,11 +1065,11 @@
           
           <category> IT技术 </category>
           
+          <category> python </category>
+          
           <category> Web后端 </category>
           
           <category> 小技能GET </category>
-          
-          <category> python </category>
           
           <category> 运行维护 </category>
           
@@ -1028,11 +1082,11 @@
             
             <tag> 小技能 </tag>
             
+            <tag> Linux </tag>
+            
             <tag> 疑难杂症 </tag>
             
             <tag> Centos </tag>
-            
-            <tag> Linux </tag>
             
             <tag> 运行维护 </tag>
             
@@ -1047,7 +1101,7 @@
       <link href="article/8647/"/>
       <url>article/8647/</url>
       
-        <content type="html"><![CDATA[<p>normalize.css是一款优秀的前端css初始化工具！之前没尝试过在VueCli中使用。记录一下..</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Windows10</span><br><span class="line">IDE: JetBrains WebStorm 2018.2.1 x64</span><br><span class="line">浏览器： Google Chrome 版本 67.0.3396.99（正式版本） （64 位）&amp;&amp; FireFox Developer Edition 版本63.0b4  (64位)</span><br><span class="line">VueCli : 3</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Normalize.css只是一个很小的css文件，但它在磨人的HTML元素样式上提供了跨浏览器的高度一致性。</p><p>相比于传统的CSS reset,Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p><p>总之，Normalize.css是一种CSS reset的替代方案。</p><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li><p>保护有用的浏览器样式而不是去掉他们；</p></li><li><p>为大部分HTML元素提供一般化的样式；</p></li><li><p>修复浏览器自身的bug并保证各浏览器的一致性；</p></li><li><p>优化css可用性；</p></li><li><p>用注释和详细的文档来解释代码；</p></li><li><p>Normalize支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表哥都进行了一般化；<br>  尽管这个项目基于一般化的原则，但我们还是在合适的地方使用了更实用的默认值。</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1></li><li><p>安装</p></li></ul><blockquote><p>npm install –save normalize.css </p></blockquote><ul><li>VueCli 下的 main.js 导入</li></ul><blockquote><p>import ‘normalize.css/normalize.css’</p></blockquote><h1 id="若是出现引入报错，可能没有安装css-loader-和style-loader"><a href="#若是出现引入报错，可能没有安装css-loader-和style-loader" class="headerlink" title="若是出现引入报错，可能没有安装css-loader 和style-loader"></a>若是出现引入报错，可能没有安装css-loader 和style-loader</h1><blockquote><p>npm install css-loader style-loader</p></blockquote><h1 id="如果出现-core-js-modules-es-object-to-string-之类的报错"><a href="#如果出现-core-js-modules-es-object-to-string-之类的报错" class="headerlink" title="如果出现 core-js/modules/es.object.to-string 之类的报错"></a>如果出现 core-js/modules/es.object.to-string 之类的报错</h1><blockquote><p>npm install core-js</p></blockquote><p>或者降版本</p><blockquote><p>npm i <a href="mailto:&#x63;&#x6f;&#x72;&#x65;&#45;&#106;&#115;&#x40;&#50;&#x2e;&#x36;&#46;&#53;">&#x63;&#x6f;&#x72;&#x65;&#45;&#106;&#115;&#x40;&#50;&#x2e;&#x36;&#46;&#53;</a> –save</p></blockquote>]]></content>
+        <content type="html"><![CDATA[<p>normalize.css是一款优秀的前端css初始化工具！之前没尝试过在VueCli中使用。记录一下..</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Windows10</span><br><span class="line">IDE: JetBrains WebStorm 2018.2.1 x64</span><br><span class="line">浏览器： Google Chrome 版本 67.0.3396.99（正式版本） （64 位）&amp;&amp; FireFox Developer Edition 版本63.0b4  (64位)</span><br><span class="line">VueCli : 3</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Normalize.css只是一个很小的css文件，但它在磨人的HTML元素样式上提供了跨浏览器的高度一致性。</p><p>相比于传统的CSS reset,Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p><p>总之，Normalize.css是一种CSS reset的替代方案。</p><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li><p>保护有用的浏览器样式而不是去掉他们；</p></li><li><p>为大部分HTML元素提供一般化的样式；</p></li><li><p>修复浏览器自身的bug并保证各浏览器的一致性；</p></li><li><p>优化css可用性；</p></li><li><p>用注释和详细的文档来解释代码；</p></li><li><p>Normalize支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表哥都进行了一般化；<br>  尽管这个项目基于一般化的原则，但我们还是在合适的地方使用了更实用的默认值。</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1></li><li><p>安装</p></li></ul><blockquote><p>npm install –save normalize.css </p></blockquote><ul><li>VueCli 下的 main.js 导入</li></ul><blockquote><p>import ‘normalize.css/normalize.css’</p></blockquote><h1 id="若是出现引入报错，可能没有安装css-loader-和style-loader"><a href="#若是出现引入报错，可能没有安装css-loader-和style-loader" class="headerlink" title="若是出现引入报错，可能没有安装css-loader 和style-loader"></a>若是出现引入报错，可能没有安装css-loader 和style-loader</h1><blockquote><p>npm install css-loader style-loader</p></blockquote><h1 id="如果出现-core-js-modules-es-object-to-string-之类的报错"><a href="#如果出现-core-js-modules-es-object-to-string-之类的报错" class="headerlink" title="如果出现 core-js/modules/es.object.to-string 之类的报错"></a>如果出现 core-js/modules/es.object.to-string 之类的报错</h1><blockquote><p>npm install core-js</p></blockquote><p>或者降版本</p><blockquote><p>npm i <a href="mailto:&#x63;&#111;&#114;&#101;&#45;&#106;&#115;&#64;&#50;&#x2e;&#54;&#46;&#53;">&#x63;&#111;&#114;&#101;&#45;&#106;&#115;&#64;&#50;&#x2e;&#54;&#46;&#53;</a> –save</p></blockquote>]]></content>
       
       
       <categories>
@@ -1063,11 +1117,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> VueCli </tag>
             
@@ -1100,11 +1154,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> Element-ui </tag>
             
@@ -1137,11 +1191,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> Element-ui </tag>
             
@@ -1174,11 +1228,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> Element-ui </tag>
             
@@ -1211,21 +1265,21 @@
             
             <tag> IT技术 </tag>
             
+            <tag> python </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
             
-            <tag> HTML </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> python </tag>
-            
             <tag> Django </tag>
             
-            <tag> django-rest-framework </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> django-rest-framework </tag>
             
         </tags>
       
@@ -1254,11 +1308,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> Element-ui </tag>
             
@@ -1291,13 +1345,13 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> JavaScript </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
         </tags>
       
@@ -1326,21 +1380,21 @@
             
             <tag> IT技术 </tag>
             
+            <tag> python </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
             
-            <tag> HTML </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> python </tag>
-            
             <tag> Django </tag>
             
-            <tag> django-rest-framework </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> django-rest-framework </tag>
             
         </tags>
       
@@ -1408,15 +1462,15 @@
             
             <tag> 域名解析 </tag>
             
+            <tag> Web后端 </tag>
+            
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
             
-            <tag> HTML </tag>
-            
             <tag> Workers </tag>
-            
-            <tag> Web后端 </tag>
             
             <tag> CloudFlare </tag>
             
@@ -1447,21 +1501,21 @@
             
             <tag> IT技术 </tag>
             
+            <tag> python </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
             
-            <tag> HTML </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> python </tag>
-            
             <tag> Django </tag>
             
-            <tag> django-rest-framework </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> django-rest-framework </tag>
             
         </tags>
       
@@ -1482,13 +1536,13 @@
             
             <tag> IT技术 </tag>
             
+            <tag> Linux </tag>
+            
             <tag> Github </tag>
             
             <tag> 疑难杂症 </tag>
             
             <tag> Ubuntu </tag>
-            
-            <tag> Linux </tag>
             
             <tag> 运行维护 </tag>
             
@@ -1550,15 +1604,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Web前端 </tag>
-            
-            <tag> CSS </tag>
-            
-            <tag> HTML </tag>
+            <tag> python </tag>
             
             <tag> Web后端 </tag>
             
-            <tag> python </tag>
+            <tag> HTML </tag>
+            
+            <tag> Web前端 </tag>
+            
+            <tag> CSS </tag>
             
             <tag> Django </tag>
             
@@ -1761,15 +1815,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Web前端 </tag>
-            
-            <tag> CSS </tag>
-            
-            <tag> HTML </tag>
+            <tag> python </tag>
             
             <tag> Web后端 </tag>
             
-            <tag> python </tag>
+            <tag> HTML </tag>
+            
+            <tag> Web前端 </tag>
+            
+            <tag> CSS </tag>
             
             <tag> Django </tag>
             
@@ -1992,11 +2046,11 @@
             
             <tag> 小技能 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> 疑难杂症 </tag>
             
@@ -2052,11 +2106,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> Cloudflare </tag>
             
@@ -2111,9 +2165,9 @@
           
           <category> IT技术 </category>
           
-          <category> 小技能GET </category>
-          
           <category> python </category>
+          
+          <category> 小技能GET </category>
           
       </categories>
       
@@ -2151,11 +2205,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> webpack </tag>
             
@@ -2178,9 +2232,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 疑难杂症 </tag>
             
         </tags>
       
@@ -2201,9 +2255,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> 运行维护 </tag>
             
@@ -2288,9 +2342,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> 运行维护 </tag>
             
@@ -2697,13 +2751,13 @@
       
         <tags>
             
-            <tag> Web后端 </tag>
-            
             <tag> python </tag>
             
             <tag> ubuntu </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Web后端 </tag>
             
         </tags>
       
@@ -2732,15 +2786,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Web前端 </tag>
-            
-            <tag> CSS </tag>
-            
-            <tag> HTML </tag>
+            <tag> python </tag>
             
             <tag> Web后端 </tag>
             
-            <tag> python </tag>
+            <tag> HTML </tag>
+            
+            <tag> Web前端 </tag>
+            
+            <tag> CSS </tag>
             
             <tag> Django </tag>
             
@@ -2844,11 +2898,11 @@
       
         <tags>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> Vue </tag>
             
@@ -2898,13 +2952,13 @@
       
         <tags>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> JavaScript </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> typescript </tag>
             
@@ -2933,11 +2987,11 @@
       
         <tags>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> css </tag>
             
@@ -2997,13 +3051,13 @@
       
         <tags>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> JavaScript </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> nodejs </tag>
             
@@ -3032,13 +3086,13 @@
       
         <tags>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> JavaScript </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> Vue </tag>
             
@@ -3082,9 +3136,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> mysql </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
       
@@ -3228,9 +3282,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 疑难杂症 </tag>
             
         </tags>
       
@@ -3313,9 +3367,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> FTP </tag>
+            
+            <tag> 疑难杂症 </tag>
             
         </tags>
       
@@ -3336,9 +3390,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> FTP </tag>
+            
+            <tag> 疑难杂症 </tag>
             
         </tags>
       
@@ -3432,7 +3486,7 @@
       <link href="article/55003/"/>
       <url>article/55003/</url>
       
-        <content type="html"><![CDATA[<p>最近使用GitHub Desktop时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Ubuntu18.04  </span><br><span class="line">IDE: JetBrains Pycharm 2018.2.4 x64  </span><br><span class="line">Python: 3.6.2</span><br><span class="line">Django: 2.0.3</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>最近更换Ubuntu18.04使用Pycharm上传Github时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><p>查看了github的help页，找到了有关github贡献值的计算说明。</p><ol><li><p>问题和拉取请求<br>如果问题和拉取请求是在独立存储库中打开而不是分叉，则它们将显示在您的贡献图上。</p></li><li><p>提交<br>如果提交符合以下所有条件，则会在您的贡献图表上显示：</p></li></ol><blockquote><p>用于提交的电子邮件地址与您的GitHub帐户相关联。<br>提交是在独立的存储库中进行的，而不是fork。<br>提交的内容如下：<br>在存储库的默认分支（通常master）<br>在gh-pages分支中（对于具有Project Pages站点的存储库）  </p></blockquote><p>此外，至少满足下面条件中的一个（主要针对你Commit的仓库不是你创建的）：</p><blockquote><p>你是这个仓库的协作者，或者是这个版本库的拥有组织中的一员<br>你fork过这个仓库<br>你对这个仓库发起过pull request或者issue<br>你对这个仓库标记了Star  </p></blockquote><h1 id="不计算捐款的常见原因"><a href="#不计算捐款的常见原因" class="headerlink" title="不计算捐款的常见原因"></a>不计算捐款的常见原因</h1><p>笔记：</p><blockquote><p>要显示在您的个人资料贡献图表中，共同创作的提交必须符合与一位作者的提交相同的标准。<br>当合并拉取请求并且压缩提交时，只有合并拉取请求的用户和打开拉取请求的用户才会收到贡献积分。拉取请求的其他任何贡献者都不会获得贡献积分。<br>当重新提交提交时，提交的原始作者和重新提交的人，无论是在命令行还是在GitHub上，都会收到贡献信用。  </p></blockquote><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>发现在github网站上修改提交都可以记录,但就是我本地的客户端不可以。<br>然后我在github上点击紫色头像提交记录的详细内容查看,他说我的作者是无效的。<br>后来查了下发现是邮箱用户名不对。<br>先用git show 发现邮箱那里跟github的账号邮箱不一样！<br><img src= "/customize/img/loading.gif" data-lazy-src="1.png" alt="1.png"><br>我的邮箱地址写错成了一个逗号..“，com”，好吧服了。<br>再次核对一下Github邮箱一直，登陆Github!<br><img src= "/customize/img/loading.gif" data-lazy-src="2.png" alt="2.png"></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在该项目有“.git”文件夹的目录下，打开Ubuntu终端使用git命令：</p><blockquote><p>git config –global user.name “username”<br>git config –global user.email “<a href="mailto:&#117;&#115;&#x65;&#x72;&#110;&#97;&#x6d;&#101;&#x40;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#117;&#115;&#x65;&#x72;&#110;&#97;&#x6d;&#101;&#x40;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a>”</p></blockquote><p>将配置文件的邮箱修改为正确的邮箱地址，然后通过继续终端使用命令行方式提交一次。</p><blockquote><p>git commit -m “test”<br>git push origin master  </p></blockquote><p>这次的提交就会出现小绿点了。这时再使用</p><blockquote><p>git show</p></blockquote><p>来验证一下，是否修改成功。成功以后，重启Pycharm，它也会同步。这样使用它上传github的时候也不会穿错了。</p><p><strong>可是问题来了，如果不想放弃之前的那些用错邮箱的提交怎么办？</strong></p><p>只要在Github的setting中，把之前错误的邮箱地址添加上去即可！<br><img src= "/customize/img/loading.gif" data-lazy-src="3.png" alt="3.png"></p><p>如此以来，完美解决即可解决这个问题！</p>]]></content>
+        <content type="html"><![CDATA[<p>最近使用GitHub Desktop时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><a id="more"></a><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Ubuntu18.04  </span><br><span class="line">IDE: JetBrains Pycharm 2018.2.4 x64  </span><br><span class="line">Python: 3.6.2</span><br><span class="line">Django: 2.0.3</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>最近更换Ubuntu18.04使用Pycharm上传Github时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><p>查看了github的help页，找到了有关github贡献值的计算说明。</p><ol><li><p>问题和拉取请求<br>如果问题和拉取请求是在独立存储库中打开而不是分叉，则它们将显示在您的贡献图上。</p></li><li><p>提交<br>如果提交符合以下所有条件，则会在您的贡献图表上显示：</p></li></ol><blockquote><p>用于提交的电子邮件地址与您的GitHub帐户相关联。<br>提交是在独立的存储库中进行的，而不是fork。<br>提交的内容如下：<br>在存储库的默认分支（通常master）<br>在gh-pages分支中（对于具有Project Pages站点的存储库）  </p></blockquote><p>此外，至少满足下面条件中的一个（主要针对你Commit的仓库不是你创建的）：</p><blockquote><p>你是这个仓库的协作者，或者是这个版本库的拥有组织中的一员<br>你fork过这个仓库<br>你对这个仓库发起过pull request或者issue<br>你对这个仓库标记了Star  </p></blockquote><h1 id="不计算捐款的常见原因"><a href="#不计算捐款的常见原因" class="headerlink" title="不计算捐款的常见原因"></a>不计算捐款的常见原因</h1><p>笔记：</p><blockquote><p>要显示在您的个人资料贡献图表中，共同创作的提交必须符合与一位作者的提交相同的标准。<br>当合并拉取请求并且压缩提交时，只有合并拉取请求的用户和打开拉取请求的用户才会收到贡献积分。拉取请求的其他任何贡献者都不会获得贡献积分。<br>当重新提交提交时，提交的原始作者和重新提交的人，无论是在命令行还是在GitHub上，都会收到贡献信用。  </p></blockquote><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>发现在github网站上修改提交都可以记录,但就是我本地的客户端不可以。<br>然后我在github上点击紫色头像提交记录的详细内容查看,他说我的作者是无效的。<br>后来查了下发现是邮箱用户名不对。<br>先用git show 发现邮箱那里跟github的账号邮箱不一样！<br><img src= "/customize/img/loading.gif" data-lazy-src="1.png" alt="1.png"><br>我的邮箱地址写错成了一个逗号..“，com”，好吧服了。<br>再次核对一下Github邮箱一直，登陆Github!<br><img src= "/customize/img/loading.gif" data-lazy-src="2.png" alt="2.png"></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在该项目有“.git”文件夹的目录下，打开Ubuntu终端使用git命令：</p><blockquote><p>git config –global user.name “username”<br>git config –global user.email “<a href="mailto:&#117;&#115;&#x65;&#x72;&#x6e;&#97;&#x6d;&#x65;&#x40;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#117;&#115;&#x65;&#x72;&#x6e;&#97;&#x6d;&#x65;&#x40;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a>”</p></blockquote><p>将配置文件的邮箱修改为正确的邮箱地址，然后通过继续终端使用命令行方式提交一次。</p><blockquote><p>git commit -m “test”<br>git push origin master  </p></blockquote><p>这次的提交就会出现小绿点了。这时再使用</p><blockquote><p>git show</p></blockquote><p>来验证一下，是否修改成功。成功以后，重启Pycharm，它也会同步。这样使用它上传github的时候也不会穿错了。</p><p><strong>可是问题来了，如果不想放弃之前的那些用错邮箱的提交怎么办？</strong></p><p>只要在Github的setting中，把之前错误的邮箱地址添加上去即可！<br><img src= "/customize/img/loading.gif" data-lazy-src="3.png" alt="3.png"></p><p>如此以来，完美解决即可解决这个问题！</p>]]></content>
       
       
       
@@ -3475,15 +3529,15 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Web前端 </tag>
-            
-            <tag> CSS </tag>
-            
-            <tag> HTML </tag>
+            <tag> python </tag>
             
             <tag> Web后端 </tag>
             
-            <tag> python </tag>
+            <tag> HTML </tag>
+            
+            <tag> Web前端 </tag>
+            
+            <tag> CSS </tag>
             
             <tag> Django </tag>
             
@@ -3508,9 +3562,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 疑难杂症 </tag>
             
             <tag> Django </tag>
             
@@ -3533,9 +3587,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 疑难杂症 </tag>
             
         </tags>
       
@@ -3556,9 +3610,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 疑难杂症 </tag>
             
         </tags>
       
@@ -3739,11 +3793,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
         </tags>
       
@@ -3812,11 +3866,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> Emmet </tag>
             
@@ -3847,23 +3901,23 @@
             
             <tag> IT技术 </tag>
             
+            <tag> python </tag>
+            
+            <tag> mysql </tag>
+            
+            <tag> Web后端 </tag>
+            
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
             
-            <tag> HTML </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> python </tag>
+            <tag> Pycharm </tag>
             
             <tag> Django </tag>
             
             <tag> Ubuntu </tag>
-            
-            <tag> Pycharm </tag>
-            
-            <tag> mysql </tag>
             
         </tags>
       
@@ -3892,15 +3946,15 @@
             
             <tag> IT技术 </tag>
             
-            <tag> Web前端 </tag>
-            
-            <tag> CSS </tag>
-            
-            <tag> HTML </tag>
+            <tag> python </tag>
             
             <tag> Web后端 </tag>
             
-            <tag> python </tag>
+            <tag> HTML </tag>
+            
+            <tag> Web前端 </tag>
+            
+            <tag> CSS </tag>
             
             <tag> Django </tag>
             
@@ -3933,15 +3987,15 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Web前端 </tag>
-            
-            <tag> CSS </tag>
-            
-            <tag> HTML </tag>
+            <tag> python </tag>
             
             <tag> Web后端 </tag>
             
-            <tag> python </tag>
+            <tag> HTML </tag>
+            
+            <tag> Web前端 </tag>
+            
+            <tag> CSS </tag>
             
             <tag> Django </tag>
             
@@ -4057,11 +4111,11 @@
             
             <tag> hexo </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
         </tags>
       
@@ -4084,9 +4138,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> mysql </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> VMware </tag>
             
@@ -4111,9 +4165,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Pycharm </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> VMware </tag>
             
@@ -4138,9 +4192,9 @@
             
             <tag> 小技能 </tag>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Pycharm </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> VMware </tag>
             
@@ -4236,9 +4290,9 @@
             
             <tag> IT技术 </tag>
             
-            <tag> 疑难杂症 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 疑难杂症 </tag>
             
         </tags>
       
@@ -4269,11 +4323,11 @@
             
             <tag> hexo </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> 娱乐资讯 </tag>
             
@@ -4306,11 +4360,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
             <tag> Boostrap </tag>
             
@@ -4343,11 +4397,11 @@
             
             <tag> markdown </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
         </tags>
       
@@ -4488,11 +4542,11 @@
             
             <tag> IT技术 </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
         </tags>
       
@@ -4523,11 +4577,11 @@
             
             <tag> hexo </tag>
             
+            <tag> HTML </tag>
+            
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> HTML </tag>
             
         </tags>
       

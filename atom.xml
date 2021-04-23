@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-04-22T11:49:23.000Z</updated>
+  <updated>2021-04-23T09:10:44.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Pycharm 设置模板默认添加作者时间等信息</title>
+    <link href="https://blog.raxianch.moe/article/3315403751/"/>
+    <id>https://blog.raxianch.moe/article/3315403751/</id>
+    <published>2021-04-23T09:10:44.000Z</published>
+    <updated>2021-04-23T09:10:44.000Z</updated>
+    
+    
+    <summary type="html">Pycharm过程中,每次新建都需要手动的编写一些项目信息或者文件信息个人信息,如果使用模板的话,很高效很多.</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="pycharm" scheme="https://blog.raxianch.moe/tags/pycharm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>统计Python的list列表中元素的重复次数</title>
+    <link href="https://blog.raxianch.moe/article/1074843733/"/>
+    <id>https://blog.raxianch.moe/article/1074843733/</id>
+    <published>2021-04-23T08:35:45.000Z</published>
+    <updated>2021-04-23T08:35:45.000Z</updated>
+    
+    
+    <summary type="html">python的列表去重挺方便的，但是想获取列表中的元素是否重复，以及想知道重复了几次要如何做呢？</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Mysql数据库&#39;Got a packet bigger than‘max_allowed_packet’bytes&#39;的解决方案</title>
@@ -31,9 +71,9 @@
     <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
     <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
     
@@ -100,9 +140,9 @@
     <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
     <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
     
@@ -146,9 +186,9 @@
     <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
+    
+    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
     <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
     
@@ -313,8 +353,6 @@
     <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="web" scheme="https://blog.raxianch.moe/tags/web/"/>
-    
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
     
     <category term="数据" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE/"/>
@@ -324,6 +362,8 @@
     <category term="scrapy" scheme="https://blog.raxianch.moe/tags/scrapy/"/>
     
     <category term="django" scheme="https://blog.raxianch.moe/tags/django/"/>
+    
+    <category term="web" scheme="https://blog.raxianch.moe/tags/web/"/>
     
   </entry>
   
@@ -372,6 +412,8 @@
     <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
     
     <category term="数据清洗" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
+    
+    <category term="rfind" scheme="https://blog.raxianch.moe/tags/rfind/"/>
     
   </entry>
   
@@ -447,48 +489,6 @@
     <category term="MYSQL" scheme="https://blog.raxianch.moe/tags/MYSQL/"/>
     
     <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git设置代理</title>
-    <link href="https://blog.raxianch.moe/article/3411637534/"/>
-    <id>https://blog.raxianch.moe/article/3411637534/</id>
-    <published>2021-03-30T04:48:38.000Z</published>
-    <updated>2021-03-30T04:48:38.000Z</updated>
-    
-    
-    <summary type="html">简介</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="git" scheme="https://blog.raxianch.moe/tags/git/"/>
-    
-    <category term="github" scheme="https://blog.raxianch.moe/tags/github/"/>
-    
-    <category term="proxy" scheme="https://blog.raxianch.moe/tags/proxy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用timeit测试Python小代码片段的执行时间</title>
-    <link href="https://blog.raxianch.moe/article/2429170349/"/>
-    <id>https://blog.raxianch.moe/article/2429170349/</id>
-    <published>2021-03-28T14:16:39.000Z</published>
-    <updated>2021-03-28T14:16:39.000Z</updated>
-    
-    
-    <summary type="html">简单的测试python代码，可以采用timeit方法</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
     
   </entry>
   
