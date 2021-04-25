@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-04-25T02:32:44.000Z</updated>
+  <updated>2021-04-25T03:01:21.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git常用方法_撤销最后一次提交</title>
+    <link href="https://blog.raxianch.moe/article/1884864783/"/>
+    <id>https://blog.raxianch.moe/article/1884864783/</id>
+    <published>2021-04-25T03:01:21.000Z</published>
+    <updated>2021-04-25T03:01:21.000Z</updated>
+    
+    
+    <summary type="html">Git可以使用reset重置来撤销提交。</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="git" scheme="https://blog.raxianch.moe/tags/git/"/>
+    
+    <category term="github" scheme="https://blog.raxianch.moe/tags/github/"/>
+    
+  </entry>
   
   <entry>
     <title>xpath_normalize-space函数的两种用法</title>
@@ -100,9 +121,9 @@
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
     
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
     <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
   </entry>
   
@@ -169,9 +190,9 @@
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
     
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
     <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
   </entry>
   
@@ -215,9 +236,9 @@
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
     
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
     <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
+    
+    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
   </entry>
   
@@ -468,27 +489,6 @@
     <category term="sql" scheme="https://blog.raxianch.moe/tags/sql/"/>
     
     <category term="数据库" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据清洗：通过Python从字符串中提取数字</title>
-    <link href="https://blog.raxianch.moe/article/3539572553/"/>
-    <id>https://blog.raxianch.moe/article/3539572553/</id>
-    <published>2021-03-30T08:58:17.000Z</published>
-    <updated>2021-03-30T08:58:17.000Z</updated>
-    
-    
-    <summary type="html">根据业务需求进行数据清洗，通过Python从字符串中提取数字。</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-    <category term="数据清洗" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
     
   </entry>
   
