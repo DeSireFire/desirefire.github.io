@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-04-25T03:01:21.000Z</updated>
+  <updated>2021-04-25T03:51:49.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>xpath_定位中@dom、starts-with、contains和text()、last()的对比</title>
+    <link href="https://blog.raxianch.moe/article/3719630739/"/>
+    <id>https://blog.raxianch.moe/article/3719630739/</id>
+    <published>2021-04-25T03:51:49.000Z</published>
+    <updated>2021-04-25T03:51:49.000Z</updated>
+    
+    
+    <summary type="html">xpath_定位中@dom、starts-with、contains和text()、last()的对比</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python - 爬虫 - 解析库 - xpath - 数据清洗" scheme="https://blog.raxianch.moe/tags/python-%E7%88%AC%E8%99%AB-%E8%A7%A3%E6%9E%90%E5%BA%93-xpath-%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
+    
+  </entry>
   
   <entry>
     <title>git常用方法_撤销最后一次提交</title>
@@ -462,33 +481,6 @@
     <category term="数据清洗" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
     
     <category term="rfind" scheme="https://blog.raxianch.moe/tags/rfind/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单粗暴的让mysql主键id重新排序</title>
-    <link href="https://blog.raxianch.moe/article/2073581741/"/>
-    <id>https://blog.raxianch.moe/article/2073581741/</id>
-    <published>2021-03-30T09:26:47.000Z</published>
-    <updated>2021-03-30T09:26:47.000Z</updated>
-    
-    
-    <summary type="html">简单粗暴的让mysql主键id重新排序</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
-    
-    <category term="MYSQL" scheme="https://blog.raxianch.moe/tags/MYSQL/"/>
-    
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
-    <category term="sql" scheme="https://blog.raxianch.moe/tags/sql/"/>
-    
-    <category term="数据库" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
