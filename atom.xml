@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-04-23T09:10:44.000Z</updated>
+  <updated>2021-04-25T02:32:44.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>xpath_normalize-space函数的两种用法</title>
+    <link href="https://blog.raxianch.moe/article/1637075314/"/>
+    <id>https://blog.raxianch.moe/article/1637075314/</id>
+    <published>2021-04-25T02:32:44.000Z</published>
+    <updated>2021-04-25T02:32:44.000Z</updated>
+    
+    
+    <summary type="html">normalize-space()的功能是去掉前后的空格。xpath函数normalize-space的两种用法，第一种方法非常实用，第二种方法就比较少用了。</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
+    
+    <category term="数据清洗" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
+    
+    <category term="解析库" scheme="https://blog.raxianch.moe/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/"/>
+    
+    <category term="xpath" scheme="https://blog.raxianch.moe/tags/xpath/"/>
+    
+  </entry>
   
   <entry>
     <title>Pycharm 设置模板默认添加作者时间等信息</title>
@@ -462,33 +489,6 @@
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
     
     <category term="数据清洗" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Navicat界面下如何用SQL语句给Mysql创建表？</title>
-    <link href="https://blog.raxianch.moe/article/3554193979/"/>
-    <id>https://blog.raxianch.moe/article/3554193979/</id>
-    <published>2021-03-30T08:30:21.000Z</published>
-    <updated>2021-03-30T08:30:21.000Z</updated>
-    
-    
-    <summary type="html">Navicat界面下如何用SQL语句给Mysql创建表</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
-    
-    <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
-    
-    <category term="Navicat" scheme="https://blog.raxianch.moe/tags/Navicat/"/>
-    
-    <category term="MYSQL" scheme="https://blog.raxianch.moe/tags/MYSQL/"/>
-    
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
     
   </entry>
   
