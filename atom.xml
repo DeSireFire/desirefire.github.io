@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-04-25T03:51:49.000Z</updated>
+  <updated>2021-04-30T08:20:02.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python：将一个列表切分成多个小列表</title>
+    <link href="https://blog.raxianch.moe/article/2054084708/"/>
+    <id>https://blog.raxianch.moe/article/2054084708/</id>
+    <published>2021-04-30T08:20:02.000Z</published>
+    <updated>2021-04-30T08:20:02.000Z</updated>
+    
+    
+    <summary type="html">python-将一个列表切分成多个小列表,多组数据扁平的保存在一个列表了，要怎么拆分。</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="数据" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xpath语法:不包含某属性(or与and)的用法</title>
+    <link href="https://blog.raxianch.moe/article/267444874/"/>
+    <id>https://blog.raxianch.moe/article/267444874/</id>
+    <published>2021-04-29T10:31:13.000Z</published>
+    <updated>2021-04-29T10:31:13.000Z</updated>
+    
+    
+    <summary type="html">页面解析时，碰到同级li标签，进行部分采集筛选时用到了or和contains方法的结合。</summary>
+    
+    
+    
+    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
+    
+    <category term="数据清洗" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
+    
+    <category term="解析库" scheme="https://blog.raxianch.moe/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/"/>
+    
+    <category term="xpath" scheme="https://blog.raxianch.moe/tags/xpath/"/>
+    
+  </entry>
   
   <entry>
     <title>xpath_定位中@dom、starts-with、contains和text()、last()的对比</title>
@@ -140,9 +188,9 @@
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
     
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
     <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
     
   </entry>
   
@@ -209,9 +257,9 @@
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
     
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
     <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
     
   </entry>
   
@@ -255,9 +303,9 @@
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
     
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
     <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    
+    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
     
   </entry>
   
@@ -431,56 +479,6 @@
     <category term="django" scheme="https://blog.raxianch.moe/tags/django/"/>
     
     <category term="web" scheme="https://blog.raxianch.moe/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>统计字符串中某字符出现的次数</title>
-    <link href="https://blog.raxianch.moe/article/916779116/"/>
-    <id>https://blog.raxianch.moe/article/916779116/</id>
-    <published>2021-03-31T01:58:30.000Z</published>
-    <updated>2021-03-31T01:58:30.000Z</updated>
-    
-    
-    <summary type="html">使用python统计一段字符串当中，某一个字符重复出现的次数。</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-    <category term="str" scheme="https://blog.raxianch.moe/tags/str/"/>
-    
-    <category term="字符串" scheme="https://blog.raxianch.moe/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-    <category term="NLP" scheme="https://blog.raxianch.moe/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据清洗：获取指定字符前面或者后面的所有字符</title>
-    <link href="https://blog.raxianch.moe/article/4160305074/"/>
-    <id>https://blog.raxianch.moe/article/4160305074/</id>
-    <published>2021-03-30T10:00:00.000Z</published>
-    <updated>2021-03-30T10:00:00.000Z</updated>
-    
-    
-    <summary type="html">获取指定字符前面的所有字符，获取指定字符后面的所有字符</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
-    
-    <category term="数据清洗" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
-    
-    <category term="rfind" scheme="https://blog.raxianch.moe/tags/rfind/"/>
     
   </entry>
   
