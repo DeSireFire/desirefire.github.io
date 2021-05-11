@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>python:导入上级目录中的模块</title>
+      <link href="article/3615261912/"/>
+      <url>article/3615261912/</url>
+      
+        <content type="html"><![CDATA[<p>python导入同级别模块很方便：</p><span id="more"></span><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br><span class="line">语言: python v3.9.1</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>公司开发的爬虫项目日益庞大，光是启动爬虫的启动文件，都有几十个了。</p><p>于是，我打算把我负责的爬虫启动程序收束到一个目录当中，做整理。</p><p>但是，路径变更了以后，导致启动程序在服务器运行时，发生了错误。</p><h1 id="主程序与模块程序在同一目录下"><a href="#主程序与模块程序在同一目录下" class="headerlink" title="主程序与模块程序在同一目录下"></a>主程序与模块程序在同一目录下</h1><p>目录结构</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- spider</span><br><span class="line">    |-- demo_1.py</span><br><span class="line">    |-- main.py</span><br></pre></td></tr></table></figure><p>main.py 中导入 mod1.py,则：</p><blockquote><p>import demo_1</p></blockquote><blockquote><p>from demo_1 import *</p></blockquote><h1 id="主程序所在目录是模块所在目录的父-或祖辈-目录"><a href="#主程序所在目录是模块所在目录的父-或祖辈-目录" class="headerlink" title="主程序所在目录是模块所在目录的父(或祖辈)目录"></a>主程序所在目录是模块所在目录的父(或祖辈)目录</h1><p>目录结构</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- spider</span><br><span class="line">    |-- demo_1.py</span><br><span class="line">    |-- demo_2</span><br><span class="line">    |   |-- demo_2_1.py</span><br><span class="line">    |-- main.py</span><br></pre></td></tr></table></figure><p>main.py 中导入 demo_2中的demo_2_1.py,则：</p><ul><li> 需要在demo_2文件夹中建立空文件__init__.py文件</li></ul><blockquote><p>from demo_2.demo_2_1 import * </p></blockquote><blockquote><p>import demo_2.demo_2_1</p></blockquote><h1 id="主程序导入上层目录中模块或其他目录-平级-下的模块"><a href="#主程序导入上层目录中模块或其他目录-平级-下的模块" class="headerlink" title="主程序导入上层目录中模块或其他目录(平级)下的模块"></a>主程序导入上层目录中模块或其他目录(平级)下的模块</h1><p>目录结构</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- src</span><br><span class="line">    |-- demo_1.py</span><br><span class="line">    |-- demo_2</span><br><span class="line">    |   |-- demo_2_1.py</span><br><span class="line">    |-- sub</span><br><span class="line">    |   |-- main.py</span><br></pre></td></tr></table></figure><p>main.py 中导入 demo_2中的demo_2_1.py,则：</p><ul><li> 需要在demo_2文件夹中建立空文件__init__.py文件</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(<span class="string">&quot;..&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> demo_1</span><br><span class="line"><span class="keyword">import</span> demo_2.demo_2_1</span><br><span class="line"></span><br><span class="line"><span class="comment"># or </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> demo_1 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> demo_2.demo_2_1 <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>ojbk, 完事。虽然Pycharm下面报着个小横线，看着听不自在的。不过解决的问题。</p><p>sys模块可以让python的导包路径更加灵活，但个人认为开发的时候，在项目结构上还是尽量避免需要用到这种方式的尝尽。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术博文 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>python：将一个列表切分成多个小列表</title>
       <link href="article/2054084708/"/>
       <url>article/2054084708/</url>
@@ -13,7 +38,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -40,7 +65,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -73,7 +98,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -93,12 +118,12 @@
       <link href="article/1884864783/"/>
       <url>article/1884864783/</url>
       
-        <content type="html"><![CDATA[<p>Git可以使用reset重置来撤销提交。</p><span id="more"></span><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>手滑，不小心把idea给add到git里面去了。</p><p>忽略文件都没来得及写。</p><p>所以，Git可以使用reset重置来撤销提交。</p><p>这难吗？ 不难。 容易忘吗？ 这种情况不多见，但是用到时候又要查一下。</p><p>干脆，写文章自己记一下。</p><h1 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h1><p>撤销最近的一次提交。()</p><blockquote><p>git reset HEAD~1</p></blockquote><h1 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h1><p>使用–soft，执行后，状态重置为上一次提交，但撤回提交的文件add到git，被git跟踪。(即撤回comit,但不撤回add)</p><blockquote><p>git reset –soft HEAD~1</p></blockquote><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>整理一下，命令就是这样。</p><blockquote><p>git reset [–soft] HEAD~[撤销到倒数第几次]</p></blockquote><p>如果不清楚自己到底要撤销几次的情况，可以先用</p><blockquote><p>git log</p></blockquote><p>查看一下历史提交日志</p>]]></content>
+        <content type="html"><![CDATA[<p>Git可以使用reset重置来撤销提交。</p><span id="more"></span><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>手滑，不小心把idea给add到git里面去了。</p><p>忽略文件都没来得及写。</p><p>所以，Git可以使用reset重置来撤销提交。</p><p>这难吗？ 不难。 容易忘吗？ 这种情况不多见，但是用到时候又要查一下。</p><p>干脆，写文章自己记一下。</p><h1 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h1><p>撤销最近的一次提交。()</p><blockquote><p>git reset HEAD~1</p></blockquote><h1 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h1><p>使用–soft，执行后，状态重置为上一次提交，但撤回提交的文件add到git，被git跟踪。(即撤回comit,但不撤回add)</p><blockquote><p>git reset –soft HEAD~1</p></blockquote><h1 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h1><h2 id="–mixed"><a href="#–mixed" class="headerlink" title="–mixed"></a>–mixed</h2><p>意思是：不删除工作空间改动代码，撤销commit，并且撤销git add . 操作<br>这个为默认参数,git reset –mixed HEAD^ 和 git reset HEAD^ 效果是一样的。</p><h2 id="–soft"><a href="#–soft" class="headerlink" title="–soft"></a>–soft</h2><p>不删除工作空间改动代码，撤销commit，不撤销git add .</p><h2 id="–hard"><a href="#–hard" class="headerlink" title="–hard"></a>–hard</h2><p>删除工作空间改动代码，撤销commit，撤销git add .</p><p>注意完成这个操作后，就恢复到了上一次的commit状态.</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>整理一下，命令就是这样。</p><blockquote><p>git reset [–soft] HEAD~[撤销到倒数第几次]</p></blockquote><p>如果不清楚自己到底要撤销几次的情况，可以先用</p><blockquote><p>git log</p></blockquote><p>查看一下历史提交日志</p>]]></content>
       
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -125,7 +150,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -158,7 +183,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -185,7 +210,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -210,7 +235,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -239,7 +264,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -268,7 +293,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -297,7 +322,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -326,7 +351,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -355,7 +380,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -384,7 +409,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -419,7 +444,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -444,7 +469,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -473,7 +498,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -504,7 +529,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -535,7 +560,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -564,7 +589,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -599,7 +624,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -630,7 +655,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -661,7 +686,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -694,7 +719,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -721,7 +746,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -754,7 +779,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -783,7 +808,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -808,7 +833,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -833,7 +858,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -952,13 +977,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
-          
-          <category> Web前端 </category>
-          
-          <category> 小技能GET </category>
-          
-          <category> 运行维护 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -985,15 +1004,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
-          
-          <category> Web前端 </category>
-          
-          <category> 小技能GET </category>
-          
-          <category> 疑难杂症 </category>
-          
-          <category> hexo </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -1018,13 +1029,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
-          
-          <category> Web前端 </category>
-          
-          <category> 疑难杂症 </category>
-          
-          <category> nodejs </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -1050,19 +1055,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Linux </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> 运行维护 </tag>
-            
-            <tag> Rclone </tag>
-            
-            <tag> GoogleDriver </tag>
+            <tag> 技术博文 - 小技能 - 运行维护 - Ubuntu - Linux - Rclone - GoogleDriver </tag>
             
         </tags>
       
@@ -1118,15 +1111,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> 爬虫 </tag>
-            
-            <tag> RE </tag>
-            
-            <tag> 正则表达式 </tag>
+            <tag> 技术博文 - 小技能 - 正则表达式 - RE - 爬虫 </tag>
             
         </tags>
       
@@ -1178,19 +1163,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> ubuntu </tag>
-            
-            <tag> Linux </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> Centos </tag>
-            
-            <tag> 运行维护 </tag>
+            <tag> 技术博文 - 小技能 - Centos - ubuntu - Linux - 运行维护 - Web后端 </tag>
             
         </tags>
       
@@ -1208,32 +1181,14 @@
       
       <categories>
           
-          <category> IT技术 </category>
-          
-          <category> python </category>
-          
-          <category> 小技能GET </category>
-          
-          <category> Web后端 </category>
-          
-          <category> 运行维护 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Linux </tag>
-            
-            <tag> 疑难杂症 </tag>
-            
-            <tag> Centos </tag>
-            
-            <tag> 运行维护 </tag>
+            <tag> 技术博文 - 小技能 - Centos - Linux - 运行维护 - 疑难杂症 </tag>
             
         </tags>
       
@@ -1246,7 +1201,7 @@
       <link href="article/8647/"/>
       <url>article/8647/</url>
       
-        <content type="html"><![CDATA[<p>normalize.css是一款优秀的前端css初始化工具！之前没尝试过在VueCli中使用。记录一下..</p><span id="more"></span><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Windows10</span><br><span class="line">IDE: JetBrains WebStorm 2018.2.1 x64</span><br><span class="line">浏览器： Google Chrome 版本 67.0.3396.99（正式版本） （64 位）&amp;&amp; FireFox Developer Edition 版本63.0b4  (64位)</span><br><span class="line">VueCli : 3</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Normalize.css只是一个很小的css文件，但它在磨人的HTML元素样式上提供了跨浏览器的高度一致性。</p><p>相比于传统的CSS reset,Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p><p>总之，Normalize.css是一种CSS reset的替代方案。</p><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li><p>保护有用的浏览器样式而不是去掉他们；</p></li><li><p>为大部分HTML元素提供一般化的样式；</p></li><li><p>修复浏览器自身的bug并保证各浏览器的一致性；</p></li><li><p>优化css可用性；</p></li><li><p>用注释和详细的文档来解释代码；</p></li><li><p>Normalize支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表哥都进行了一般化；<br>  尽管这个项目基于一般化的原则，但我们还是在合适的地方使用了更实用的默认值。</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1></li><li><p>安装</p></li></ul><blockquote><p>npm install –save normalize.css </p></blockquote><ul><li>VueCli 下的 main.js 导入</li></ul><blockquote><p>import ‘normalize.css/normalize.css’</p></blockquote><h1 id="若是出现引入报错，可能没有安装css-loader-和style-loader"><a href="#若是出现引入报错，可能没有安装css-loader-和style-loader" class="headerlink" title="若是出现引入报错，可能没有安装css-loader 和style-loader"></a>若是出现引入报错，可能没有安装css-loader 和style-loader</h1><blockquote><p>npm install css-loader style-loader</p></blockquote><h1 id="如果出现-core-js-modules-es-object-to-string-之类的报错"><a href="#如果出现-core-js-modules-es-object-to-string-之类的报错" class="headerlink" title="如果出现 core-js/modules/es.object.to-string 之类的报错"></a>如果出现 core-js/modules/es.object.to-string 之类的报错</h1><blockquote><p>npm install core-js</p></blockquote><p>或者降版本</p><blockquote><p>npm i <a href="mailto:&#x63;&#x6f;&#114;&#x65;&#x2d;&#x6a;&#x73;&#x40;&#x32;&#x2e;&#54;&#x2e;&#53;">&#x63;&#x6f;&#114;&#x65;&#x2d;&#x6a;&#x73;&#x40;&#x32;&#x2e;&#54;&#x2e;&#53;</a> –save</p></blockquote>]]></content>
+        <content type="html"><![CDATA[<p>normalize.css是一款优秀的前端css初始化工具！之前没尝试过在VueCli中使用。记录一下..</p><span id="more"></span><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Windows10</span><br><span class="line">IDE: JetBrains WebStorm 2018.2.1 x64</span><br><span class="line">浏览器： Google Chrome 版本 67.0.3396.99（正式版本） （64 位）&amp;&amp; FireFox Developer Edition 版本63.0b4  (64位)</span><br><span class="line">VueCli : 3</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Normalize.css只是一个很小的css文件，但它在磨人的HTML元素样式上提供了跨浏览器的高度一致性。</p><p>相比于传统的CSS reset,Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p><p>总之，Normalize.css是一种CSS reset的替代方案。</p><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li><p>保护有用的浏览器样式而不是去掉他们；</p></li><li><p>为大部分HTML元素提供一般化的样式；</p></li><li><p>修复浏览器自身的bug并保证各浏览器的一致性；</p></li><li><p>优化css可用性；</p></li><li><p>用注释和详细的文档来解释代码；</p></li><li><p>Normalize支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表哥都进行了一般化；<br>  尽管这个项目基于一般化的原则，但我们还是在合适的地方使用了更实用的默认值。</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1></li><li><p>安装</p></li></ul><blockquote><p>npm install –save normalize.css </p></blockquote><ul><li>VueCli 下的 main.js 导入</li></ul><blockquote><p>import ‘normalize.css/normalize.css’</p></blockquote><h1 id="若是出现引入报错，可能没有安装css-loader-和style-loader"><a href="#若是出现引入报错，可能没有安装css-loader-和style-loader" class="headerlink" title="若是出现引入报错，可能没有安装css-loader 和style-loader"></a>若是出现引入报错，可能没有安装css-loader 和style-loader</h1><blockquote><p>npm install css-loader style-loader</p></blockquote><h1 id="如果出现-core-js-modules-es-object-to-string-之类的报错"><a href="#如果出现-core-js-modules-es-object-to-string-之类的报错" class="headerlink" title="如果出现 core-js/modules/es.object.to-string 之类的报错"></a>如果出现 core-js/modules/es.object.to-string 之类的报错</h1><blockquote><p>npm install core-js</p></blockquote><p>或者降版本</p><blockquote><p>npm i <a href="mailto:&#99;&#111;&#x72;&#101;&#45;&#x6a;&#x73;&#64;&#x32;&#46;&#54;&#46;&#x35;">&#99;&#111;&#x72;&#101;&#45;&#x6a;&#x73;&#64;&#x32;&#46;&#54;&#46;&#x35;</a> –save</p></blockquote>]]></content>
       
       
       <categories>
@@ -1259,8 +1214,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> HTML </tag>
             
@@ -1297,8 +1250,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
             <tag> HTML </tag>
             
             <tag> Web前端 </tag>
@@ -1333,8 +1284,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> HTML </tag>
             
@@ -1371,8 +1320,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
             <tag> HTML </tag>
             
             <tag> Web前端 </tag>
@@ -1407,8 +1354,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> python </tag>
             
@@ -1451,8 +1396,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
             <tag> HTML </tag>
             
             <tag> Web前端 </tag>
@@ -1481,14 +1424,10 @@
           
           <category> IT技术 </category>
           
-          <category> Web前端 </category>
-          
       </categories>
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> HTML </tag>
             
@@ -1516,14 +1455,10 @@
           
           <category> IT技术 </category>
           
-          <category> Web后端 </category>
-          
       </categories>
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> python </tag>
             
@@ -1557,20 +1492,14 @@
       
       <categories>
           
-          <category> IT技术 </category>
-          
-          <category> 小技能GET </category>
+          <category> 技术博文 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> github </tag>
+            <tag> 技术博文 - 小技能 - github </tag>
             
         </tags>
       
@@ -1597,16 +1526,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> CDN </tag>
-            
-            <tag> NS </tag>
-            
-            <tag> 域名解析 </tag>
-            
             <tag> Web后端 </tag>
             
             <tag> HTML </tag>
@@ -1617,7 +1536,15 @@
             
             <tag> Workers </tag>
             
+            <tag> 小技能 </tag>
+            
+            <tag> 域名解析 </tag>
+            
+            <tag> NS </tag>
+            
             <tag> CloudFlare </tag>
+            
+            <tag> CDN </tag>
             
         </tags>
       
@@ -1643,8 +1570,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> python </tag>
             
@@ -1679,19 +1604,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> Linux </tag>
-            
-            <tag> Github </tag>
-            
-            <tag> 疑难杂症 </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> 运行维护 </tag>
-            
-            <tag> Docker </tag>
+            <tag> 技术博文 - 疑难杂症 - Github - Docker - Ubuntu - Linux - 运行维护 </tag>
             
         </tags>
       
@@ -1710,17 +1623,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> NS </tag>
-            
-            <tag> 域名解析 </tag>
-            
-            <tag> DNS </tag>
-            
-            <tag> xip.io </tag>
+            <tag> 技术博文 - 小技能 - DNS - NS - 域名解析 - xip.io </tag>
             
         </tags>
       
@@ -1746,8 +1649,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> python </tag>
             
@@ -1780,13 +1681,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 疑难杂症 </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> Nginx </tag>
+            <tag> 技术博文 - 疑难杂症 - Nginx - Ubuntu </tag>
             
         </tags>
       
@@ -1805,15 +1700,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> 域名解析 </tag>
-            
-            <tag> cloudflare </tag>
-            
-            <tag> php </tag>
+            <tag> 技术博文 - 小技能 - 域名解析 - cloudflare - php </tag>
             
         </tags>
       
@@ -1831,32 +1718,14 @@
       
       <categories>
           
-          <category> IT技术 </category>
-          
-          <category> 小技能GET </category>
-          
-          <category> Web后端 </category>
-          
-          <category> 运行维护 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> NS </tag>
-            
-            <tag> 域名解析 </tag>
-            
-            <tag> DNS </tag>
-            
-            <tag> conoha </tag>
-            
-            <tag> VPS </tag>
+            <tag> 技术博文 - 小技能 - DNS - NS - 域名解析 - conoha - VPS </tag>
             
         </tags>
       
@@ -1875,15 +1744,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> NS </tag>
-            
-            <tag> 域名解析 </tag>
-            
-            <tag> DNS </tag>
+            <tag> 技术博文 - 小技能 - DNS - NS - 域名解析 </tag>
             
         </tags>
       
@@ -1923,15 +1784,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> Github </tag>
-            
-            <tag> 疑难杂症 </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> uWSGI </tag>
+            <tag> 技术博文 - 疑难杂症 - Github - Ubuntu - uWSGI </tag>
             
         </tags>
       
@@ -1957,8 +1810,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> python </tag>
             
@@ -2154,13 +2005,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> Vim </tag>
+            <tag> 技术博文 - 小技能 - Vim - Ubuntu </tag>
             
         </tags>
       
@@ -2187,10 +2032,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
             <tag> HTML </tag>
             
             <tag> Web前端 </tag>
@@ -2200,6 +2041,8 @@
             <tag> 疑难杂症 </tag>
             
             <tag> GoogleChrome </tag>
+            
+            <tag> 小技能 </tag>
             
             <tag> aixos </tag>
             
@@ -2242,14 +2085,10 @@
           
           <category> IT技术 </category>
           
-          <category> Web前端 </category>
-          
       </categories>
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> HTML </tag>
             
@@ -2308,11 +2147,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
-          
-          <category> python </category>
-          
-          <category> 小技能GET </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -2348,8 +2183,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
             <tag> HTML </tag>
             
             <tag> Web前端 </tag>
@@ -2375,11 +2208,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> python </tag>
-            
-            <tag> 疑难杂症 </tag>
+            <tag> 技术博文 - 疑难杂症 - python </tag>
             
         </tags>
       
@@ -2398,15 +2227,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> Linux </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> 运行维护 </tag>
-            
-            <tag> Docker </tag>
+            <tag> 技术博文 - 运行维护 - Docker - Ubuntu - Linux </tag>
             
         </tags>
       
@@ -2485,15 +2306,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> Linux </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> 运行维护 </tag>
-            
-            <tag> Docker </tag>
+            <tag> 技术博文 - 运行维护 - Docker - Ubuntu - Linux </tag>
             
         </tags>
       
@@ -2861,9 +2674,9 @@
       
         <tags>
             
-            <tag> 小技能 </tag>
-            
             <tag> Web后端 </tag>
+            
+            <tag> 小技能 </tag>
             
             <tag> Ubuntu </tag>
             
@@ -2928,8 +2741,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> python </tag>
             
@@ -3068,9 +2879,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
+            <tag> 技术博文 - 小技能 </tag>
             
         </tags>
       
@@ -3277,13 +3086,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> mysql </tag>
-            
-            <tag> Ubuntu </tag>
+            <tag> 技术博文 - 小技能 - Ubuntu - mysql </tag>
             
         </tags>
       
@@ -3331,9 +3134,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> python </tag>
+            <tag> 技术博文 - python </tag>
             
         </tags>
       
@@ -3352,13 +3153,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> python </tag>
-            
-            <tag> Ubuntu </tag>
+            <tag> 技术博文 - 小技能 - Ubuntu - python </tag>
             
         </tags>
       
@@ -3377,9 +3172,9 @@
       
         <tags>
             
-            <tag> 小技能 </tag>
-            
             <tag> Web后端 </tag>
+            
+            <tag> 小技能 </tag>
             
             <tag> Ubuntu </tag>
             
@@ -3402,11 +3197,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> Github </tag>
-            
-            <tag> 疑难杂症 </tag>
+            <tag> 技术博文 - 疑难杂症 - Github </tag>
             
         </tags>
       
@@ -3425,11 +3216,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> python </tag>
-            
-            <tag> 疑难杂症 </tag>
+            <tag> 技术博文 - 疑难杂症 - python </tag>
             
         </tags>
       
@@ -3510,11 +3297,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> FTP </tag>
-            
-            <tag> 疑难杂症 </tag>
+            <tag> 技术博文 - 疑难杂症 - FTP </tag>
             
         </tags>
       
@@ -3533,11 +3316,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> FTP </tag>
-            
-            <tag> 疑难杂症 </tag>
+            <tag> 技术博文 - 疑难杂症 - FTP </tag>
             
         </tags>
       
@@ -3614,11 +3393,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Pycharm </tag>
+            <tag> 技术博文 - 小技能 - Pycharm </tag>
             
         </tags>
       
@@ -3631,19 +3406,13 @@
       <link href="article/55003/"/>
       <url>article/55003/</url>
       
-        <content type="html"><![CDATA[<p>最近使用GitHub Desktop时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><span id="more"></span><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Ubuntu18.04  </span><br><span class="line">IDE: JetBrains Pycharm 2018.2.4 x64  </span><br><span class="line">Python: 3.6.2</span><br><span class="line">Django: 2.0.3</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>最近更换Ubuntu18.04使用Pycharm上传Github时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><p>查看了github的help页，找到了有关github贡献值的计算说明。</p><ol><li><p>问题和拉取请求<br>如果问题和拉取请求是在独立存储库中打开而不是分叉，则它们将显示在您的贡献图上。</p></li><li><p>提交<br>如果提交符合以下所有条件，则会在您的贡献图表上显示：</p></li></ol><blockquote><p>用于提交的电子邮件地址与您的GitHub帐户相关联。<br>提交是在独立的存储库中进行的，而不是fork。<br>提交的内容如下：<br>在存储库的默认分支（通常master）<br>在gh-pages分支中（对于具有Project Pages站点的存储库）  </p></blockquote><p>此外，至少满足下面条件中的一个（主要针对你Commit的仓库不是你创建的）：</p><blockquote><p>你是这个仓库的协作者，或者是这个版本库的拥有组织中的一员<br>你fork过这个仓库<br>你对这个仓库发起过pull request或者issue<br>你对这个仓库标记了Star  </p></blockquote><h1 id="不计算捐款的常见原因"><a href="#不计算捐款的常见原因" class="headerlink" title="不计算捐款的常见原因"></a>不计算捐款的常见原因</h1><p>笔记：</p><blockquote><p>要显示在您的个人资料贡献图表中，共同创作的提交必须符合与一位作者的提交相同的标准。<br>当合并拉取请求并且压缩提交时，只有合并拉取请求的用户和打开拉取请求的用户才会收到贡献积分。拉取请求的其他任何贡献者都不会获得贡献积分。<br>当重新提交提交时，提交的原始作者和重新提交的人，无论是在命令行还是在GitHub上，都会收到贡献信用。  </p></blockquote><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>发现在github网站上修改提交都可以记录,但就是我本地的客户端不可以。<br>然后我在github上点击紫色头像提交记录的详细内容查看,他说我的作者是无效的。<br>后来查了下发现是邮箱用户名不对。<br>先用git show 发现邮箱那里跟github的账号邮箱不一样！<br><img src= "/customize/img/loading.gif" data-lazy-src="1.png" alt="1.png"><br>我的邮箱地址写错成了一个逗号..“，com”，好吧服了。<br>再次核对一下Github邮箱一直，登陆Github!<br><img src= "/customize/img/loading.gif" data-lazy-src="2.png" alt="2.png"></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在该项目有“.git”文件夹的目录下，打开Ubuntu终端使用git命令：</p><blockquote><p>git config –global user.name “username”<br>git config –global user.email “<a href="mailto:&#x75;&#115;&#101;&#x72;&#110;&#x61;&#109;&#101;&#64;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x75;&#115;&#101;&#x72;&#110;&#x61;&#109;&#101;&#64;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;</a>”</p></blockquote><p>将配置文件的邮箱修改为正确的邮箱地址，然后通过继续终端使用命令行方式提交一次。</p><blockquote><p>git commit -m “test”<br>git push origin master  </p></blockquote><p>这次的提交就会出现小绿点了。这时再使用</p><blockquote><p>git show</p></blockquote><p>来验证一下，是否修改成功。成功以后，重启Pycharm，它也会同步。这样使用它上传github的时候也不会穿错了。</p><p><strong>可是问题来了，如果不想放弃之前的那些用错邮箱的提交怎么办？</strong></p><p>只要在Github的setting中，把之前错误的邮箱地址添加上去即可！<br><img src= "/customize/img/loading.gif" data-lazy-src="3.png" alt="3.png"></p><p>如此以来，完美解决即可解决这个问题！</p>]]></content>
+        <content type="html"><![CDATA[<p>最近使用GitHub Desktop时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><span id="more"></span><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Ubuntu18.04  </span><br><span class="line">IDE: JetBrains Pycharm 2018.2.4 x64  </span><br><span class="line">Python: 3.6.2</span><br><span class="line">Django: 2.0.3</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>最近更换Ubuntu18.04使用Pycharm上传Github时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><p>查看了github的help页，找到了有关github贡献值的计算说明。</p><ol><li><p>问题和拉取请求<br>如果问题和拉取请求是在独立存储库中打开而不是分叉，则它们将显示在您的贡献图上。</p></li><li><p>提交<br>如果提交符合以下所有条件，则会在您的贡献图表上显示：</p></li></ol><blockquote><p>用于提交的电子邮件地址与您的GitHub帐户相关联。<br>提交是在独立的存储库中进行的，而不是fork。<br>提交的内容如下：<br>在存储库的默认分支（通常master）<br>在gh-pages分支中（对于具有Project Pages站点的存储库）  </p></blockquote><p>此外，至少满足下面条件中的一个（主要针对你Commit的仓库不是你创建的）：</p><blockquote><p>你是这个仓库的协作者，或者是这个版本库的拥有组织中的一员<br>你fork过这个仓库<br>你对这个仓库发起过pull request或者issue<br>你对这个仓库标记了Star  </p></blockquote><h1 id="不计算捐款的常见原因"><a href="#不计算捐款的常见原因" class="headerlink" title="不计算捐款的常见原因"></a>不计算捐款的常见原因</h1><p>笔记：</p><blockquote><p>要显示在您的个人资料贡献图表中，共同创作的提交必须符合与一位作者的提交相同的标准。<br>当合并拉取请求并且压缩提交时，只有合并拉取请求的用户和打开拉取请求的用户才会收到贡献积分。拉取请求的其他任何贡献者都不会获得贡献积分。<br>当重新提交提交时，提交的原始作者和重新提交的人，无论是在命令行还是在GitHub上，都会收到贡献信用。  </p></blockquote><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>发现在github网站上修改提交都可以记录,但就是我本地的客户端不可以。<br>然后我在github上点击紫色头像提交记录的详细内容查看,他说我的作者是无效的。<br>后来查了下发现是邮箱用户名不对。<br>先用git show 发现邮箱那里跟github的账号邮箱不一样！<br><img src= "/customize/img/loading.gif" data-lazy-src="1.png" alt="1.png"><br>我的邮箱地址写错成了一个逗号..“，com”，好吧服了。<br>再次核对一下Github邮箱一直，登陆Github!<br><img src= "/customize/img/loading.gif" data-lazy-src="2.png" alt="2.png"></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在该项目有“.git”文件夹的目录下，打开Ubuntu终端使用git命令：</p><blockquote><p>git config –global user.name “username”<br>git config –global user.email “<a href="mailto:&#117;&#x73;&#101;&#x72;&#110;&#97;&#x6d;&#x65;&#64;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#117;&#x73;&#101;&#x72;&#110;&#97;&#x6d;&#x65;&#64;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>”</p></blockquote><p>将配置文件的邮箱修改为正确的邮箱地址，然后通过继续终端使用命令行方式提交一次。</p><blockquote><p>git commit -m “test”<br>git push origin master  </p></blockquote><p>这次的提交就会出现小绿点了。这时再使用</p><blockquote><p>git show</p></blockquote><p>来验证一下，是否修改成功。成功以后，重启Pycharm，它也会同步。这样使用它上传github的时候也不会穿错了。</p><p><strong>可是问题来了，如果不想放弃之前的那些用错邮箱的提交怎么办？</strong></p><p>只要在Github的setting中，把之前错误的邮箱地址添加上去即可！<br><img src= "/customize/img/loading.gif" data-lazy-src="3.png" alt="3.png"></p><p>如此以来，完美解决即可解决这个问题！</p>]]></content>
       
       
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> Github </tag>
-            
-            <tag> 疑难杂症 </tag>
-            
-            <tag> Ubuntu </tag>
+            <tag> 技术博文 - 疑难杂症 - Github - Ubuntu </tag>
             
         </tags>
       
@@ -3670,10 +3439,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
             <tag> python </tag>
             
             <tag> Web后端 </tag>
@@ -3683,6 +3448,8 @@
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> 小技能 </tag>
             
             <tag> Django </tag>
             
@@ -3705,13 +3472,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> python </tag>
-            
-            <tag> 疑难杂症 </tag>
-            
-            <tag> Django </tag>
+            <tag> 技术博文 - 疑难杂症 - python - Django </tag>
             
         </tags>
       
@@ -3730,11 +3491,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> python </tag>
-            
-            <tag> 疑难杂症 </tag>
+            <tag> 技术博文 - 疑难杂症 - python </tag>
             
         </tags>
       
@@ -3753,11 +3510,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> python </tag>
-            
-            <tag> 疑难杂症 </tag>
+            <tag> 技术博文 - 疑难杂症 - python </tag>
             
         </tags>
       
@@ -3776,15 +3529,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> python </tag>
-            
-            <tag> Pycharm </tag>
-            
-            <tag> Anaconda </tag>
+            <tag> 技术博文 - 小技能 - Pycharm - python - Anaconda </tag>
             
         </tags>
       
@@ -3803,11 +3548,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Pycharm </tag>
+            <tag> 技术博文 - 小技能 - Pycharm </tag>
             
         </tags>
       
@@ -3826,11 +3567,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Pycharm </tag>
+            <tag> 技术博文 - 小技能 - Pycharm </tag>
             
         </tags>
       
@@ -3849,11 +3586,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Pycharm </tag>
+            <tag> 技术博文 - 小技能 - Pycharm </tag>
             
         </tags>
       
@@ -3901,15 +3634,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Web后端 </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> Nginx </tag>
+            <tag> 技术博文 - Web后端 - 小技能 - Ubuntu - Nginx </tag>
             
         </tags>
       
@@ -3935,8 +3660,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> HTML </tag>
             
@@ -4002,14 +3725,10 @@
           
           <category> IT技术 </category>
           
-          <category> Web前端 </category>
-          
       </categories>
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> HTML </tag>
             
@@ -4043,8 +3762,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> python </tag>
             
@@ -4089,8 +3806,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
             <tag> python </tag>
             
             <tag> Web后端 </tag>
@@ -4128,10 +3843,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
             <tag> python </tag>
             
             <tag> Web后端 </tag>
@@ -4141,6 +3852,8 @@
             <tag> Web前端 </tag>
             
             <tag> CSS </tag>
+            
+            <tag> 小技能 </tag>
             
             <tag> Django </tag>
             
@@ -4165,13 +3878,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> VMware </tag>
+            <tag> 技术博文 - 小技能 - Ubuntu - VMware </tag>
             
         </tags>
       
@@ -4190,11 +3897,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Pycharm </tag>
+            <tag> 技术博文 - 小技能 - Pycharm </tag>
             
         </tags>
       
@@ -4212,15 +3915,7 @@
       
       <categories>
           
-          <category> IT技术 </category>
-          
-          <category> Web前端 </category>
-          
-          <category> 小技能GET </category>
-          
-          <category> JavaScript </category>
-          
-          <category> 疑难杂症 </category>
+          <category> 技术博文 </category>
           
       </categories>
       
@@ -4279,15 +3974,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> mysql </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> VMware </tag>
+            <tag> 技术博文 - 小技能 - Ubuntu - VMware - mysql </tag>
             
         </tags>
       
@@ -4306,15 +3993,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> Pycharm </tag>
-            
-            <tag> VMware </tag>
+            <tag> 技术博文 - 小技能 - Ubuntu - VMware - Pycharm </tag>
             
         </tags>
       
@@ -4333,15 +4012,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> Pycharm </tag>
-            
-            <tag> VMware </tag>
+            <tag> 技术博文 - 小技能 - Ubuntu - VMware - Pycharm </tag>
             
         </tags>
       
@@ -4360,13 +4031,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> hexo </tag>
-            
-            <tag> Github </tag>
-            
-            <tag> 疑难杂症 </tag>
+            <tag> 技术博文 - 疑难杂症 - hexo - Github </tag>
             
         </tags>
       
@@ -4385,11 +4050,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Ubuntu </tag>
+            <tag> 技术博文 - 小技能 - Ubuntu </tag>
             
         </tags>
       
@@ -4408,13 +4069,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> VMware </tag>
+            <tag> 技术博文 - 小技能 - Ubuntu - VMware </tag>
             
         </tags>
       
@@ -4433,11 +4088,11 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
             <tag> python </tag>
             
             <tag> 疑难杂症 </tag>
+            
+            <tag> 技术博文 </tag>
             
         </tags>
       
@@ -4463,8 +4118,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> hexo </tag>
             
@@ -4503,8 +4156,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
             <tag> HTML </tag>
             
             <tag> Web前端 </tag>
@@ -4537,8 +4188,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> markdown </tag>
             
@@ -4588,13 +4237,7 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
-            <tag> Web前端 </tag>
-            
-            <tag> JavaScript </tag>
-            
-            <tag> 疑难杂症 </tag>
+            <tag> 技术博文 - Web前端 - 疑难杂症 - JavaScript </tag>
             
         </tags>
       
@@ -4613,17 +4256,7 @@
       
         <tags>
             
-            <tag> 转载 </tag>
-            
-            <tag> IT技术 </tag>
-            
-            <tag> 小技能 </tag>
-            
-            <tag> CDN </tag>
-            
-            <tag> NS </tag>
-            
-            <tag> 域名解析 </tag>
+            <tag> 技术博文 - 转载 - 小技能 - CDN - NS - 域名解析 </tag>
             
         </tags>
       
@@ -4685,8 +4318,6 @@
       
         <tags>
             
-            <tag> IT技术 </tag>
-            
             <tag> HTML </tag>
             
             <tag> Web前端 </tag>
@@ -4717,8 +4348,6 @@
       
       
         <tags>
-            
-            <tag> IT技术 </tag>
             
             <tag> hexo </tag>
             

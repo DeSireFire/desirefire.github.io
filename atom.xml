@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-04-30T08:20:02.000Z</updated>
+  <updated>2021-05-11T08:33:41.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python:导入上级目录中的模块</title>
+    <link href="https://blog.raxianch.moe/article/3615261912/"/>
+    <id>https://blog.raxianch.moe/article/3615261912/</id>
+    <published>2021-05-11T08:33:41.000Z</published>
+    <updated>2021-05-11T08:33:41.000Z</updated>
+    
+    
+    <summary type="html">python中如何导入上级目录中的模块</summary>
+    
+    
+    
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>python：将一个列表切分成多个小列表</title>
@@ -28,7 +47,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -49,7 +68,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -76,7 +95,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python - 爬虫 - 解析库 - xpath - 数据清洗" scheme="https://blog.raxianch.moe/tags/python-%E7%88%AC%E8%99%AB-%E8%A7%A3%E6%9E%90%E5%BA%93-xpath-%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
@@ -95,7 +114,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="git" scheme="https://blog.raxianch.moe/tags/git/"/>
@@ -116,7 +135,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -143,7 +162,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -164,7 +183,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -183,7 +202,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
@@ -206,7 +225,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -229,7 +248,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
@@ -252,7 +271,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
@@ -275,7 +294,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
@@ -298,7 +317,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
@@ -321,7 +340,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
@@ -350,7 +369,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -369,7 +388,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -392,7 +411,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -417,7 +436,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -442,7 +461,7 @@
     
     
     
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
     <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
@@ -450,35 +469,6 @@
     <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
     
     <category term="scrapy" scheme="https://blog.raxianch.moe/tags/scrapy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据清洗：清理字符串中存在的\xa0字符</title>
-    <link href="https://blog.raxianch.moe/article/382879377/"/>
-    <id>https://blog.raxianch.moe/article/382879377/</id>
-    <published>2021-03-31T09:14:30.000Z</published>
-    <updated>2021-03-31T09:14:30.000Z</updated>
-    
-    
-    <summary type="html">简介</summary>
-    
-    
-    
-    <category term="IT技术" scheme="https://blog.raxianch.moe/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-    <category term="数据" scheme="https://blog.raxianch.moe/tags/%E6%95%B0%E6%8D%AE/"/>
-    
-    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
-    
-    <category term="scrapy" scheme="https://blog.raxianch.moe/tags/scrapy/"/>
-    
-    <category term="django" scheme="https://blog.raxianch.moe/tags/django/"/>
-    
-    <category term="web" scheme="https://blog.raxianch.moe/tags/web/"/>
     
   </entry>
   
