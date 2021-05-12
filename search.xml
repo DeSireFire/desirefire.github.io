@@ -4,6 +4,87 @@
   
     
     <entry>
+      <title>Python爬虫：传递scrapy参数的几种方式</title>
+      <link href="article/3577113414/"/>
+      <url>article/3577113414/</url>
+      
+        <content type="html"><![CDATA[<p>Python爬虫：传递scrapy参数的几种方式</p><span id="more"></span><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Windos10  </span><br><span class="line">IDE: pycharm 2021.3.1 x64  </span><br><span class="line">语言: python v3.9.1</span><br><span class="line">框架: Scrapy v2.4.1</span><br></pre></td></tr></table></figure><hr><h1 id="scrapy-爬虫文件中"><a href="#scrapy-爬虫文件中" class="headerlink" title="scrapy 爬虫文件中"></a>scrapy 爬虫文件中</h1><p>重写init初始化方法，使用super继承原init方法</p><p>添加参数传递jobid=None, *args, **kwargs。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, jobid=<span class="literal">None</span>, *args, **kwargs</span>):</span></span><br><span class="line">       <span class="comment"># print(jobid)</span></span><br><span class="line">       <span class="built_in">super</span>(yourSpider, self).__init__(*args, **kwargs)</span><br></pre></td></tr></table></figure><h1 id="execute-方法启动-传参"><a href="#execute-方法启动-传参" class="headerlink" title="execute 方法启动 传参"></a>execute 方法启动 传参</h1><blockquote><p>execute([“scrapy”, “crawl”, “taobao_spider”, “-a”, “jobid=taobao_craw_20210512”])</p></blockquote><h1 id="scrapyd-方法传参"><a href="#scrapyd-方法传参" class="headerlink" title="scrapyd 方法传参"></a>scrapyd 方法传参</h1><p>在启动的请求中，带上参数</p><blockquote><p>project=your_project&amp;spider=your_spider&amp;jobid=xxxx</p></blockquote><p>示例：</p><blockquote><p>project=scrapy&amp;spider=taobao_spider&amp;jobid=taobao_craw_20210512</p></blockquote><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>重点是使用super方法重写爬虫类的init方法。</p><p>之后就好办了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术博文 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> scrapy </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>运行维护：浅记tail命令的使用</title>
+      <link href="article/4268344283/"/>
+      <url>article/4268344283/</url>
+      
+        <content type="html"><![CDATA[<p>tail 命令可用于查看文件的内容，有一个常用的参数 -f 常用于查阅正在改变的日志文件。</p><span id="more"></span><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Red Hat 4.8.5-16</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>爬虫采集的日志内容还是相当庞大的，之前使用nohup的时候，查询日志，用cat命令读取，刷得眼花。</p><p>当我只想看最新的几行日志，用tail可以方便的查看。</p><h1 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h1><p>tail 命令可用于查看文件的内容，有一个常用的参数 -f 常用于查阅正在改变的日志文件。</p><p>tail -f filename 会把 filename 文件里的最尾部的内容显示在屏幕上，并且不断刷新，只要 filename 更新就可以看到最新的文件内容。</p><p>命令格式：</p><blockquote><p>tail [参数] [文件]</p></blockquote><h1 id="参数介绍"><a href="#参数介绍" class="headerlink" title="参数介绍"></a>参数介绍</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-f 循环读取</span><br><span class="line">-q 不显示处理信息</span><br><span class="line">-v 显示详细的处理信息</span><br><span class="line">-c&lt;数目&gt; 显示的字节数</span><br><span class="line">-n&lt;行数&gt; 显示文件的尾部 n 行内容</span><br><span class="line">--pid=PID 与-f合用,表示在进程ID,PID死掉之后结束</span><br><span class="line">-q, --quiet, --silent 从不输出给出文件名的首部</span><br><span class="line">-s, --sleep-interval=S 与-f合用,表示在每次反复的间隔休眠S秒</span><br></pre></td></tr></table></figure><h1 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h1><ul><li>显示 demo.log 文件的最后 10 行，输入以下命令：</li></ul><blockquote><p>tail demo.log</p></blockquote><ul><li>跟踪名为 demo.log 的文件的增长情况，输入以下命令：</li></ul><blockquote><p>tail -f demo.log</p></blockquote><p>此命令显示 demo.log 文件的最后 10 行。</p><p>当将某些行添加至 demo.log 文件时，tail 命令会继续显示这些行。 </p><p>显示一直继续，直到按下（Ctrl-C）组合键停止显示。</p><ul><li>显示文件 demo.log 的内容，从第 20 行至文件末尾:</li></ul><blockquote><p>tail -n +20 demo.log</p></blockquote><ul><li>显示文件 demo.log 的最后 10 个字符:</li></ul><blockquote><p>tail -c 10 demo.log</p></blockquote><h1 id="拓展细节"><a href="#拓展细节" class="headerlink" title="拓展细节"></a>拓展细节</h1><blockquote><p>tail -n 100 /etc/cron  #显示最后100行数据</p></blockquote><blockquote><p>tail -n -100 /etc/cron #除了前99行不显示外，显示第100行到末尾行</p></blockquote><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>linux 命令很多，但是需要日常多用，长期积累。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 运行维护 </tag>
+            
+            <tag> tail </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>运行维护：浅记Screen命令的使用</title>
+      <link href="article/1827072882/"/>
+      <url>article/1827072882/</url>
+      
+        <content type="html"><![CDATA[<p>运行维护：浅记Screen命令的使用</p><p>screen 是一个非常有用的命令，提供从单个 SSH 会话中使用多个 shell 窗口（会话）的能力。</p><p>当会话被分离或网络中断时，screen 会话中启动的进程仍将运行，你可以随时重新连接到 screen 会话。</p><span id="more"></span><hr><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">操作系统： Red Hat 4.8.5-16</span><br><span class="line">screen： 4.01.00devel (GNU) 2-May-06</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>想要方便又优雅的管理程序后台运行。</p><p>比nohup更灵活更强大的后台运行。</p><h1 id="screen-介绍"><a href="#screen-介绍" class="headerlink" title="screen 介绍"></a>screen 介绍</h1><p>screen 是一个非常有用的命令，提供从单个 SSH 会话中使用多个 shell 窗口（会话）的能力。</p><p>当会话被分离或网络中断时，screen 会话中启动的进程仍将运行，你可以随时重新连接到 screen 会话。</p><p>如果你想运行一个持久的进程或者从多个位置连接到 shell 会话，这也很方便。</p><p>在本文中，我们将展示在 Linux 上安装和使用 screen 的基本知识。</p><h1 id="安装-screen"><a href="#安装-screen" class="headerlink" title="安装 screen"></a>安装 screen</h1><p>在一些流行的发行版上已经预安装了。你可以使用下面的命令检查是否已经在你的服务器上安装了。</p><blockquote><p>screen -v</p></blockquote><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Screen version 4.00.03 (FAU)</span><br></pre></td></tr></table></figure><p>如果在 Linux 中还没有screen ，你可以使用系统提供的包管理器很简单地安装它。</p><h2 id="CentOS-RedHat-Fedora"><a href="#CentOS-RedHat-Fedora" class="headerlink" title="CentOS/RedHat/Fedora"></a>CentOS/RedHat/Fedora</h2><blockquote><p>yum -y install screen</p></blockquote><h2 id="Ubuntu-Debian"><a href="#Ubuntu-Debian" class="headerlink" title="Ubuntu/Debian"></a>Ubuntu/Debian</h2><blockquote><p>apt-get -y install screen</p></blockquote><h1 id="命令简介"><a href="#命令简介" class="headerlink" title="命令简介"></a>命令简介</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">screen #新建一个session</span><br><span class="line">screen ifconfig #在新的session中执行ifconfig后退出新的seesion</span><br><span class="line">screen -S xd #新建一个叫xd的session</span><br><span class="line">screen -ls #列出当前所有的session</span><br><span class="line">screen -r xd #连接到一个离线(Detached)的screen，个人理解为没人连接</span><br><span class="line">screen -x xd #连接到一个在线(Attaced)的screen.(Multi display mode),个人理解为有人连接</span><br><span class="line">screen -X #在其它的screen 上执行操作，ex. screen -S xd -X screen ls -lh</span><br><span class="line">screen -d xd #强制将xd离线，即断开所有人的连接</span><br><span class="line">screen -d #退出当前session，与exit不同，exit退出后删除session</span><br><span class="line">screen -wipe #清除dead session</span><br></pre></td></tr></table></figure><h1 id="会话恢复"><a href="#会话恢复" class="headerlink" title="会话恢复"></a>会话恢复</h1><p>*通常ssh到server执行作业时，当断网或者窗口关闭会终止作业，此时可以用screen命令，类似VNC,不怕断网和窗口突然关闭</p><p>screen -S xd 开启一个screen ，并执行作业<br>screen -r xd 连接到screen</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>最常用的用法</p><ul><li>用screen运行命令</li></ul><blockquote><p>screen -S [会话名称，根据自己需要命名即可] [执行命令]</p></blockquote><p>例如：</p><blockquote><p>screen -S demo python demo.py</p></blockquote><ul><li>查询 screen窗口列表</li></ul><blockquote><p>screen -ls</p></blockquote><p><img src= "/customize/img/loading.gif" data-lazy-src="%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4%EF%BC%9A%E6%B5%85%E8%AE%B0Screen%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/f773dfe4.png"></p><p>可以看到当前有两个screen会话。</p><ul><li>查看后台会话运行情况，将后台程序调到前台</li></ul><blockquote><p>screen -r [会话名称]</p></blockquote><ul><li>暂时退出会话</li></ul><p>ctr+a+d</p><ul><li>退出并销毁会话</li></ul><blockquote><p>screen -r [会话名称]</p></blockquote><blockquote><p>exit</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 运行维护 </tag>
+            
+            <tag> screen </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>疑难杂症：incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at...</title>
       <link href="article/637099416/"/>
       <url>article/637099416/</url>
@@ -611,9 +692,9 @@
             
             <tag> python </tag>
             
-            <tag> 爬虫 </tag>
-            
             <tag> scrapy </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
       
@@ -702,9 +783,9 @@
             
             <tag> python </tag>
             
-            <tag> 爬虫 </tag>
-            
             <tag> scrapy </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
       
@@ -733,9 +814,9 @@
             
             <tag> 数据 </tag>
             
-            <tag> 爬虫 </tag>
-            
             <tag> scrapy </tag>
+            
+            <tag> 爬虫 </tag>
             
             <tag> django </tag>
             
@@ -1334,7 +1415,7 @@
       <link href="article/8647/"/>
       <url>article/8647/</url>
       
-        <content type="html"><![CDATA[<p>normalize.css是一款优秀的前端css初始化工具！之前没尝试过在VueCli中使用。记录一下..</p><span id="more"></span><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Windows10</span><br><span class="line">IDE: JetBrains WebStorm 2018.2.1 x64</span><br><span class="line">浏览器： Google Chrome 版本 67.0.3396.99（正式版本） （64 位）&amp;&amp; FireFox Developer Edition 版本63.0b4  (64位)</span><br><span class="line">VueCli : 3</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Normalize.css只是一个很小的css文件，但它在磨人的HTML元素样式上提供了跨浏览器的高度一致性。</p><p>相比于传统的CSS reset,Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p><p>总之，Normalize.css是一种CSS reset的替代方案。</p><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li><p>保护有用的浏览器样式而不是去掉他们；</p></li><li><p>为大部分HTML元素提供一般化的样式；</p></li><li><p>修复浏览器自身的bug并保证各浏览器的一致性；</p></li><li><p>优化css可用性；</p></li><li><p>用注释和详细的文档来解释代码；</p></li><li><p>Normalize支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表哥都进行了一般化；<br>  尽管这个项目基于一般化的原则，但我们还是在合适的地方使用了更实用的默认值。</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1></li><li><p>安装</p></li></ul><blockquote><p>npm install –save normalize.css </p></blockquote><ul><li>VueCli 下的 main.js 导入</li></ul><blockquote><p>import ‘normalize.css/normalize.css’</p></blockquote><h1 id="若是出现引入报错，可能没有安装css-loader-和style-loader"><a href="#若是出现引入报错，可能没有安装css-loader-和style-loader" class="headerlink" title="若是出现引入报错，可能没有安装css-loader 和style-loader"></a>若是出现引入报错，可能没有安装css-loader 和style-loader</h1><blockquote><p>npm install css-loader style-loader</p></blockquote><h1 id="如果出现-core-js-modules-es-object-to-string-之类的报错"><a href="#如果出现-core-js-modules-es-object-to-string-之类的报错" class="headerlink" title="如果出现 core-js/modules/es.object.to-string 之类的报错"></a>如果出现 core-js/modules/es.object.to-string 之类的报错</h1><blockquote><p>npm install core-js</p></blockquote><p>或者降版本</p><blockquote><p>npm i <a href="mailto:&#99;&#111;&#114;&#x65;&#45;&#x6a;&#115;&#64;&#50;&#x2e;&#x36;&#x2e;&#x35;">&#99;&#111;&#114;&#x65;&#45;&#x6a;&#115;&#64;&#50;&#x2e;&#x36;&#x2e;&#x35;</a> –save</p></blockquote>]]></content>
+        <content type="html"><![CDATA[<p>normalize.css是一款优秀的前端css初始化工具！之前没尝试过在VueCli中使用。记录一下..</p><span id="more"></span><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Windows10</span><br><span class="line">IDE: JetBrains WebStorm 2018.2.1 x64</span><br><span class="line">浏览器： Google Chrome 版本 67.0.3396.99（正式版本） （64 位）&amp;&amp; FireFox Developer Edition 版本63.0b4  (64位)</span><br><span class="line">VueCli : 3</span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Normalize.css只是一个很小的css文件，但它在磨人的HTML元素样式上提供了跨浏览器的高度一致性。</p><p>相比于传统的CSS reset,Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p><p>总之，Normalize.css是一种CSS reset的替代方案。</p><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li><p>保护有用的浏览器样式而不是去掉他们；</p></li><li><p>为大部分HTML元素提供一般化的样式；</p></li><li><p>修复浏览器自身的bug并保证各浏览器的一致性；</p></li><li><p>优化css可用性；</p></li><li><p>用注释和详细的文档来解释代码；</p></li><li><p>Normalize支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表哥都进行了一般化；<br>  尽管这个项目基于一般化的原则，但我们还是在合适的地方使用了更实用的默认值。</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1></li><li><p>安装</p></li></ul><blockquote><p>npm install –save normalize.css </p></blockquote><ul><li>VueCli 下的 main.js 导入</li></ul><blockquote><p>import ‘normalize.css/normalize.css’</p></blockquote><h1 id="若是出现引入报错，可能没有安装css-loader-和style-loader"><a href="#若是出现引入报错，可能没有安装css-loader-和style-loader" class="headerlink" title="若是出现引入报错，可能没有安装css-loader 和style-loader"></a>若是出现引入报错，可能没有安装css-loader 和style-loader</h1><blockquote><p>npm install css-loader style-loader</p></blockquote><h1 id="如果出现-core-js-modules-es-object-to-string-之类的报错"><a href="#如果出现-core-js-modules-es-object-to-string-之类的报错" class="headerlink" title="如果出现 core-js/modules/es.object.to-string 之类的报错"></a>如果出现 core-js/modules/es.object.to-string 之类的报错</h1><blockquote><p>npm install core-js</p></blockquote><p>或者降版本</p><blockquote><p>npm i <a href="mailto:&#99;&#x6f;&#x72;&#x65;&#x2d;&#106;&#115;&#64;&#50;&#x2e;&#x36;&#46;&#x35;">&#99;&#x6f;&#x72;&#x65;&#x2d;&#106;&#115;&#64;&#50;&#x2e;&#x36;&#46;&#x35;</a> –save</p></blockquote>]]></content>
       
       
       <categories>
@@ -3539,7 +3620,7 @@
       <link href="article/55003/"/>
       <url>article/55003/</url>
       
-        <content type="html"><![CDATA[<p>最近使用GitHub Desktop时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><span id="more"></span><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Ubuntu18.04  </span><br><span class="line">IDE: JetBrains Pycharm 2018.2.4 x64  </span><br><span class="line">Python: 3.6.2</span><br><span class="line">Django: 2.0.3</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>最近更换Ubuntu18.04使用Pycharm上传Github时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><p>查看了github的help页，找到了有关github贡献值的计算说明。</p><ol><li><p>问题和拉取请求<br>如果问题和拉取请求是在独立存储库中打开而不是分叉，则它们将显示在您的贡献图上。</p></li><li><p>提交<br>如果提交符合以下所有条件，则会在您的贡献图表上显示：</p></li></ol><blockquote><p>用于提交的电子邮件地址与您的GitHub帐户相关联。<br>提交是在独立的存储库中进行的，而不是fork。<br>提交的内容如下：<br>在存储库的默认分支（通常master）<br>在gh-pages分支中（对于具有Project Pages站点的存储库）  </p></blockquote><p>此外，至少满足下面条件中的一个（主要针对你Commit的仓库不是你创建的）：</p><blockquote><p>你是这个仓库的协作者，或者是这个版本库的拥有组织中的一员<br>你fork过这个仓库<br>你对这个仓库发起过pull request或者issue<br>你对这个仓库标记了Star  </p></blockquote><h1 id="不计算捐款的常见原因"><a href="#不计算捐款的常见原因" class="headerlink" title="不计算捐款的常见原因"></a>不计算捐款的常见原因</h1><p>笔记：</p><blockquote><p>要显示在您的个人资料贡献图表中，共同创作的提交必须符合与一位作者的提交相同的标准。<br>当合并拉取请求并且压缩提交时，只有合并拉取请求的用户和打开拉取请求的用户才会收到贡献积分。拉取请求的其他任何贡献者都不会获得贡献积分。<br>当重新提交提交时，提交的原始作者和重新提交的人，无论是在命令行还是在GitHub上，都会收到贡献信用。  </p></blockquote><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>发现在github网站上修改提交都可以记录,但就是我本地的客户端不可以。<br>然后我在github上点击紫色头像提交记录的详细内容查看,他说我的作者是无效的。<br>后来查了下发现是邮箱用户名不对。<br>先用git show 发现邮箱那里跟github的账号邮箱不一样！<br><img src= "/customize/img/loading.gif" data-lazy-src="1.png" alt="1.png"><br>我的邮箱地址写错成了一个逗号..“，com”，好吧服了。<br>再次核对一下Github邮箱一直，登陆Github!<br><img src= "/customize/img/loading.gif" data-lazy-src="2.png" alt="2.png"></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在该项目有“.git”文件夹的目录下，打开Ubuntu终端使用git命令：</p><blockquote><p>git config –global user.name “username”<br>git config –global user.email “<a href="mailto:&#x75;&#x73;&#101;&#114;&#x6e;&#x61;&#x6d;&#x65;&#x40;&#x6d;&#97;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#x75;&#x73;&#101;&#114;&#x6e;&#x61;&#x6d;&#x65;&#x40;&#x6d;&#97;&#105;&#108;&#46;&#99;&#x6f;&#109;</a>”</p></blockquote><p>将配置文件的邮箱修改为正确的邮箱地址，然后通过继续终端使用命令行方式提交一次。</p><blockquote><p>git commit -m “test”<br>git push origin master  </p></blockquote><p>这次的提交就会出现小绿点了。这时再使用</p><blockquote><p>git show</p></blockquote><p>来验证一下，是否修改成功。成功以后，重启Pycharm，它也会同步。这样使用它上传github的时候也不会穿错了。</p><p><strong>可是问题来了，如果不想放弃之前的那些用错邮箱的提交怎么办？</strong></p><p>只要在Github的setting中，把之前错误的邮箱地址添加上去即可！<br><img src= "/customize/img/loading.gif" data-lazy-src="3.png" alt="3.png"></p><p>如此以来，完美解决即可解决这个问题！</p>]]></content>
+        <content type="html"><![CDATA[<p>最近使用GitHub Desktop时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><span id="more"></span><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统 ： Ubuntu18.04  </span><br><span class="line">IDE: JetBrains Pycharm 2018.2.4 x64  </span><br><span class="line">Python: 3.6.2</span><br><span class="line">Django: 2.0.3</span><br></pre></td></tr></table></figure><hr><h1 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h1><p>最近更换Ubuntu18.04使用Pycharm上传Github时,发现自己好多次的commits都没有被记录在Contributions中,但是点开项目详情里面可以看到自己的commit确实上传成功了,所以就忧伤了,为什么没有绿呢?</p><p>查看了github的help页，找到了有关github贡献值的计算说明。</p><ol><li><p>问题和拉取请求<br>如果问题和拉取请求是在独立存储库中打开而不是分叉，则它们将显示在您的贡献图上。</p></li><li><p>提交<br>如果提交符合以下所有条件，则会在您的贡献图表上显示：</p></li></ol><blockquote><p>用于提交的电子邮件地址与您的GitHub帐户相关联。<br>提交是在独立的存储库中进行的，而不是fork。<br>提交的内容如下：<br>在存储库的默认分支（通常master）<br>在gh-pages分支中（对于具有Project Pages站点的存储库）  </p></blockquote><p>此外，至少满足下面条件中的一个（主要针对你Commit的仓库不是你创建的）：</p><blockquote><p>你是这个仓库的协作者，或者是这个版本库的拥有组织中的一员<br>你fork过这个仓库<br>你对这个仓库发起过pull request或者issue<br>你对这个仓库标记了Star  </p></blockquote><h1 id="不计算捐款的常见原因"><a href="#不计算捐款的常见原因" class="headerlink" title="不计算捐款的常见原因"></a>不计算捐款的常见原因</h1><p>笔记：</p><blockquote><p>要显示在您的个人资料贡献图表中，共同创作的提交必须符合与一位作者的提交相同的标准。<br>当合并拉取请求并且压缩提交时，只有合并拉取请求的用户和打开拉取请求的用户才会收到贡献积分。拉取请求的其他任何贡献者都不会获得贡献积分。<br>当重新提交提交时，提交的原始作者和重新提交的人，无论是在命令行还是在GitHub上，都会收到贡献信用。  </p></blockquote><h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>发现在github网站上修改提交都可以记录,但就是我本地的客户端不可以。<br>然后我在github上点击紫色头像提交记录的详细内容查看,他说我的作者是无效的。<br>后来查了下发现是邮箱用户名不对。<br>先用git show 发现邮箱那里跟github的账号邮箱不一样！<br><img src= "/customize/img/loading.gif" data-lazy-src="1.png" alt="1.png"><br>我的邮箱地址写错成了一个逗号..“，com”，好吧服了。<br>再次核对一下Github邮箱一直，登陆Github!<br><img src= "/customize/img/loading.gif" data-lazy-src="2.png" alt="2.png"></p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在该项目有“.git”文件夹的目录下，打开Ubuntu终端使用git命令：</p><blockquote><p>git config –global user.name “username”<br>git config –global user.email “<a href="mailto:&#117;&#115;&#101;&#114;&#x6e;&#x61;&#x6d;&#101;&#64;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#117;&#115;&#101;&#114;&#x6e;&#x61;&#x6d;&#101;&#64;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>”</p></blockquote><p>将配置文件的邮箱修改为正确的邮箱地址，然后通过继续终端使用命令行方式提交一次。</p><blockquote><p>git commit -m “test”<br>git push origin master  </p></blockquote><p>这次的提交就会出现小绿点了。这时再使用</p><blockquote><p>git show</p></blockquote><p>来验证一下，是否修改成功。成功以后，重启Pycharm，它也会同步。这样使用它上传github的时候也不会穿错了。</p><p><strong>可是问题来了，如果不想放弃之前的那些用错邮箱的提交怎么办？</strong></p><p>只要在Github的setting中，把之前错误的邮箱地址添加上去即可！<br><img src= "/customize/img/loading.gif" data-lazy-src="3.png" alt="3.png"></p><p>如此以来，完美解决即可解决这个问题！</p>]]></content>
       
       
       

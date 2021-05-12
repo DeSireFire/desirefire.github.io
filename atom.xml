@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-05-12T08:58:10.000Z</updated>
+  <updated>2021-05-12T09:46:54.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,69 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python爬虫：传递scrapy参数的几种方式</title>
+    <link href="https://blog.raxianch.moe/article/3577113414/"/>
+    <id>https://blog.raxianch.moe/article/3577113414/</id>
+    <published>2021-05-12T09:46:54.000Z</published>
+    <updated>2021-05-12T09:46:54.000Z</updated>
+    
+    
+    <summary type="html">Python爬虫：传递scrapy参数的几种方式</summary>
+    
+    
+    
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="scrapy" scheme="https://blog.raxianch.moe/tags/scrapy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>运行维护：浅记tail命令的使用</title>
+    <link href="https://blog.raxianch.moe/article/4268344283/"/>
+    <id>https://blog.raxianch.moe/article/4268344283/</id>
+    <published>2021-05-12T09:37:19.000Z</published>
+    <updated>2021-05-12T09:37:19.000Z</updated>
+    
+    
+    <summary type="html">运行维护：浅记tail命令的使用。tail 命令可用于查看文件的内容，有一个常用的参数 -f 常用于查阅正在改变的日志文件。</summary>
+    
+    
+    
+    <category term="技术博客" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="运行维护" scheme="https://blog.raxianch.moe/tags/%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4/"/>
+    
+    <category term="tail" scheme="https://blog.raxianch.moe/tags/tail/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>运行维护：浅记Screen命令的使用</title>
+    <link href="https://blog.raxianch.moe/article/1827072882/"/>
+    <id>https://blog.raxianch.moe/article/1827072882/</id>
+    <published>2021-05-12T09:17:08.000Z</published>
+    <updated>2021-05-12T09:17:08.000Z</updated>
+    
+    
+    <summary type="html">运行维护：浅记Screen命令的使用</summary>
+    
+    
+    
+    <category term="技术博客" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="运行维护" scheme="https://blog.raxianch.moe/tags/%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4/"/>
+    
+    <category term="screen" scheme="https://blog.raxianch.moe/tags/screen/"/>
+    
+  </entry>
   
   <entry>
     <title>疑难杂症：incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at...</title>
@@ -382,81 +445,6 @@
     <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
     <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mysql设置自动更新时间&amp;创建时间</title>
-    <link href="https://blog.raxianch.moe/article/1404601960/"/>
-    <id>https://blog.raxianch.moe/article/1404601960/</id>
-    <published>2021-04-22T04:45:54.000Z</published>
-    <updated>2021-04-22T04:45:54.000Z</updated>
-    
-    
-    <summary type="html">scrapy item是可以不包含mysql自生成字段的。用sql自带的时间创建，可以省很多事，在数据更新判断上也交由数据库自己来判断。</summary>
-    
-    
-    
-    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
-    
-    
-    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
-    
-    <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
-    
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql中ERROR 1364 (HY000): Field &#39;xxxx&#39; doesn&#39;t have a default value的解决方案</title>
-    <link href="https://blog.raxianch.moe/article/2414690755/"/>
-    <id>https://blog.raxianch.moe/article/2414690755/</id>
-    <published>2021-04-22T03:45:02.000Z</published>
-    <updated>2021-04-22T03:45:02.000Z</updated>
-    
-    
-    <summary type="html">开发了一个自动生成建表语句的python小程序，用生成好的数据表插入数据，发现了问题。</summary>
-    
-    
-    
-    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
-    
-    
-    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
-    
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL Charset--UTF8和UTF8MB4的区别</title>
-    <link href="https://blog.raxianch.moe/article/2685378097/"/>
-    <id>https://blog.raxianch.moe/article/2685378097/</id>
-    <published>2021-04-22T01:33:17.000Z</published>
-    <updated>2021-04-22T01:33:17.000Z</updated>
-    
-    
-    <summary type="html">某日，数据库建表的时候，我开始好奇mysql的charset编码设置参数。uft8和utf8mb4有啥区别呢？</summary>
-    
-    
-    
-    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
-    
-    
-    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
-    
-    <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
-    
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
-    <category term="charset" scheme="https://blog.raxianch.moe/tags/charset/"/>
-    
-    <category term="utf8mb4" scheme="https://blog.raxianch.moe/tags/utf8mb4/"/>
-    
-    <category term="utf8" scheme="https://blog.raxianch.moe/tags/utf8/"/>
     
   </entry>
   
