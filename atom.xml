@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-05-12T06:39:49.000Z</updated>
+  <updated>2021-05-12T08:58:10.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>疑难杂症：incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at...</title>
+    <link href="https://blog.raxianch.moe/article/637099416/"/>
+    <id>https://blog.raxianch.moe/article/637099416/</id>
+    <published>2021-05-12T08:58:10.000Z</published>
+    <updated>2021-05-12T08:58:10.000Z</updated>
+    
+    
+    <summary type="html">疑难杂症：incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at...</summary>
+    
+    
+    
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
+    
+    
+    <category term="hexo" scheme="https://blog.raxianch.moe/tags/hexo/"/>
+    
+    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    
+    <category term="error" scheme="https://blog.raxianch.moe/tags/error/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python爬虫：使用多进程，让Scrapy采集速度如虎添翼</title>
+    <link href="https://blog.raxianch.moe/article/964431818/"/>
+    <id>https://blog.raxianch.moe/article/964431818/</id>
+    <published>2021-05-12T07:08:42.000Z</published>
+    <updated>2021-05-12T07:08:42.000Z</updated>
+    
+    
+    <summary type="html">Python爬虫：使用多进程，让Scrapy采集速度如虎添翼</summary>
+    
+    
+    
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
+    
+    
+    <category term="nodejs" scheme="https://blog.raxianch.moe/tags/nodejs/"/>
+    
+  </entry>
   
   <entry>
     <title>数据清洗：Python的列表的交集、并集、差集</title>
@@ -415,48 +457,6 @@
     <category term="utf8mb4" scheme="https://blog.raxianch.moe/tags/utf8mb4/"/>
     
     <category term="utf8" scheme="https://blog.raxianch.moe/tags/utf8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python如何判断文件是否存在？</title>
-    <link href="https://blog.raxianch.moe/article/3659666415/"/>
-    <id>https://blog.raxianch.moe/article/3659666415/</id>
-    <published>2021-04-05T09:24:19.000Z</published>
-    <updated>2021-04-05T09:24:19.000Z</updated>
-    
-    
-    <summary type="html">Python如何判断文件是否存在？</summary>
-    
-    
-    
-    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>scrapy全局setting各项配置的说明</title>
-    <link href="https://blog.raxianch.moe/article/4252984638/"/>
-    <id>https://blog.raxianch.moe/article/4252984638/</id>
-    <published>2021-04-05T06:27:49.000Z</published>
-    <updated>2021-04-05T06:27:49.000Z</updated>
-    
-    
-    <summary type="html">scrapy全局setting各项配置的说明</summary>
-    
-    
-    
-    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-    <category term="爬虫" scheme="https://blog.raxianch.moe/tags/%E7%88%AC%E8%99%AB/"/>
-    
-    <category term="scrapy" scheme="https://blog.raxianch.moe/tags/scrapy/"/>
     
   </entry>
   
