@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-05-12T09:46:54.000Z</updated>
+  <updated>2021-05-13T02:08:02.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python：pymysql链接mysql数据库查询简单实例</title>
+    <link href="https://blog.raxianch.moe/article/659214360/"/>
+    <id>https://blog.raxianch.moe/article/659214360/</id>
+    <published>2021-05-13T02:08:02.000Z</published>
+    <updated>2021-05-13T02:08:02.000Z</updated>
+    
+    
+    <summary type="html">Python：pymysql链接mysql数据库查询简单实例</summary>
+    
+    
+    
+    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
+    
+    
+    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
+    
+    <category term="pymysql" scheme="https://blog.raxianch.moe/tags/pymysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Python爬虫：传递scrapy参数的几种方式</title>
@@ -420,29 +441,6 @@
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
     
     <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
-    
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MYSQL数据库Specified key was too long; max key length is xxx bytes,解决方案</title>
-    <link href="https://blog.raxianch.moe/article/2646095202/"/>
-    <id>https://blog.raxianch.moe/article/2646095202/</id>
-    <published>2021-04-22T05:46:48.000Z</published>
-    <updated>2021-04-22T05:46:48.000Z</updated>
-    
-    
-    <summary type="html">给MySql数据库表Varchar类型字段加索引时报错：“Specified key was too long; max key length is xxx bytes”；</summary>
-    
-    
-    
-    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
-    
-    
-    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
-    
-    <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
     <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
     
