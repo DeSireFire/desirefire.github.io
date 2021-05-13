@@ -6,7 +6,7 @@
   <link href="https://blog.raxianch.moe/atom.xml" rel="self"/>
   
   <link href="https://blog.raxianch.moe/"/>
-  <updated>2021-05-13T02:08:02.000Z</updated>
+  <updated>2021-05-13T08:05:49.000Z</updated>
   <id>https://blog.raxianch.moe/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>运行维护：Centos系统批量查杀僵尸进程</title>
+    <link href="https://blog.raxianch.moe/article/3100556408/"/>
+    <id>https://blog.raxianch.moe/article/3100556408/</id>
+    <published>2021-05-13T08:05:49.000Z</published>
+    <updated>2021-05-13T08:05:49.000Z</updated>
+    
+    
+    <summary type="html">运行维护：Centos系统批量查杀僵尸进程</summary>
+    
+    
+    
+    <category term="技术博客" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="运行维护 - centos - Red Hat - killall" scheme="https://blog.raxianch.moe/tags/%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4-centos-Red-Hat-killall/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>运行维护：杀光光~浅记killall命令的使用</title>
+    <link href="https://blog.raxianch.moe/article/385373232/"/>
+    <id>https://blog.raxianch.moe/article/385373232/</id>
+    <published>2021-05-13T07:43:55.000Z</published>
+    <updated>2021-05-13T07:43:55.000Z</updated>
+    
+    
+    <summary type="html">运行维护：浅记tail命令的使用</summary>
+    
+    
+    
+    <category term="技术博客" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="运行维护" scheme="https://blog.raxianch.moe/tags/%E8%BF%90%E8%A1%8C%E7%BB%B4%E6%8A%A4/"/>
+    
+    <category term="centos" scheme="https://blog.raxianch.moe/tags/centos/"/>
+    
+    <category term="Red Hat" scheme="https://blog.raxianch.moe/tags/Red-Hat/"/>
+    
+    <category term="killall" scheme="https://blog.raxianch.moe/tags/killall/"/>
+    
+  </entry>
   
   <entry>
     <title>Python：pymysql链接mysql数据库查询简单实例</title>
@@ -304,9 +348,9 @@
     <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
     
     
-    <category term="git" scheme="https://blog.raxianch.moe/tags/git/"/>
-    
     <category term="github" scheme="https://blog.raxianch.moe/tags/github/"/>
+    
+    <category term="git" scheme="https://blog.raxianch.moe/tags/git/"/>
     
   </entry>
   
@@ -395,52 +439,6 @@
     <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
     
     <category term="疑难杂症" scheme="https://blog.raxianch.moe/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>通过python一键生成mysql建表sql语句！</title>
-    <link href="https://blog.raxianch.moe/article/2508268452/"/>
-    <id>https://blog.raxianch.moe/article/2508268452/</id>
-    <published>2021-04-22T06:13:13.000Z</published>
-    <updated>2021-04-22T06:13:13.000Z</updated>
-    
-    
-    <summary type="html">这一个多月，一直在做数据采集，写程序，然后创建好几个表一个个填字段，我吐了。于是，开发了一键生成建表sql的程序。</summary>
-    
-    
-    
-    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
-    
-    
-    <category term="python" scheme="https://blog.raxianch.moe/tags/python/"/>
-    
-    <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
-    
-    <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Navicat 看历史执行SQL</title>
-    <link href="https://blog.raxianch.moe/article/2124605906/"/>
-    <id>https://blog.raxianch.moe/article/2124605906/</id>
-    <published>2021-04-22T05:59:41.000Z</published>
-    <updated>2021-04-22T05:59:41.000Z</updated>
-    
-    
-    <summary type="html">navicat 有些危险操作是没有二次确认的，实施误操作以后如何追述问题，就需要查询历史记录。</summary>
-    
-    
-    
-    <category term="技术博文" scheme="https://blog.raxianch.moe/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87/"/>
-    
-    
-    <category term="mysql" scheme="https://blog.raxianch.moe/tags/mysql/"/>
-    
-    <category term="navicat" scheme="https://blog.raxianch.moe/tags/navicat/"/>
     
     <category term="Mysql" scheme="https://blog.raxianch.moe/tags/Mysql/"/>
     
