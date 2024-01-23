@@ -2079,6 +2079,25 @@
     
     
     <entry>
+      <title>小技能GET：记初次折腾ipv6</title>
+      <link href="article/54606/"/>
+      <url>article/54606/</url>
+      
+        <content type="html"><![CDATA[<p>自从换了笔记本，旧的笔记本旧限制了一两年。 早前有打算用它做服务器，发挥一下余热。<br>如今实施起来的第一步就困难重重。</p><span id="more"></span><h1 id="运行环境-Runtime-environment"><a href="#运行环境-Runtime-environment" class="headerlink" title="运行环境 Runtime environment"></a>运行环境 Runtime environment</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">操作系统： win11  </span><br></pre></td></tr></table></figure><hr><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>想将一台限制的笔记本作为服务器，并且能够通过公网访问上面的服务。<br>我是2020年办理的联通宽带，给来的光猫也是到现在2024年怎么说也是颇有年头了。<br>由于众所周知的原因，现在家庭宽带，是没有公网IPV4的，申请手续和收费也劝退。<br>了解到可以使用ipv6来做公网NAS服务的先例，所以就想着是否可以通过它来达到我的目的。</p><h1 id="网络环境测试"><a href="#网络环境测试" class="headerlink" title="网络环境测试"></a>网络环境测试</h1><p>首先，使用在线工具测试。测试是否支持ipv6</p><blockquote><p><a target="_blank" rel="noopener" href="https://www.test-ipv6.com/">https://www.test-ipv6.com/</a></p></blockquote><p><img src= "/customize/img/loading.gif" data-lazy-src="5c9e908a.png"></p><p>哦吼，好像不行。可以看到至少服务商本身是支持ipv6的，那可能就是光猫和路由器这层没有开启ipv6.</p><h1 id="光猫设置"><a href="#光猫设置" class="headerlink" title="光猫设置"></a>光猫设置</h1><p>我使用的是联通沃wo的吉比特啥啥生产的光猫。光猫内置的系统是wo-27s。<br>调整光猫支持ipv6需要使用光猫的管理员权限。</p><blockquote><p>http:192.168.1.1/cu.html</p></blockquote><p>使用默认登录账号密码即可，我这是广州的联通，各个地区可能不一样。<br>为了能查到这个账号密码也花了不少时间。</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">账号：CUAdmin</span><br><span class="line">密码：CUAdmin</span><br></pre></td></tr></table></figure><p>登录成功<br><img src= "/customize/img/loading.gif" data-lazy-src="fde9e278.png"></p><p>因为使用路由器来做PPPOE拨号操作，所以我需要把光猫的拨号模式改为桥接模式。</p><p>修改 wan协议 为 ipv4&amp;ipv6<br><img src= "/customize/img/loading.gif" data-lazy-src="738c2348.png"></p><h2 id="友情提醒"><a href="#友情提醒" class="headerlink" title="友情提醒"></a>友情提醒</h2><p>千万不要手痒去点拨号的部分，特别是拨号密码。<br>如果点了，要是不记得宽带密码就去联通app找回宽带密码吧。<br>按取消和不保存都没用。</p><p><img src= "/customize/img/loading.gif" data-lazy-src=".%E5%B0%8F%E6%8A%80%E8%83%BDGET%EF%BC%9A%E8%AE%B0%E5%88%9D%E6%AC%A1%E6%8A%98%E8%85%BEipv6_images/7ab7c5b4.png"></p><h2 id="路由器设置"><a href="#路由器设置" class="headerlink" title="路由器设置"></a>路由器设置</h2><p>使用的ax6s路由器为例。<br>进入到上网设置，选择PPPOE，用宽带账号拨号。（光猫为桥接模式时，才可用路由器拨号。）<br><img src= "/customize/img/loading.gif" data-lazy-src=".%E5%B0%8F%E6%8A%80%E8%83%BDGET%EF%BC%9A%E8%AE%B0%E5%88%9D%E6%AC%A1%E6%8A%98%E8%85%BEipv6_images/edbf6857.png"></p><p><img src= "/customize/img/loading.gif" data-lazy-src=".%E5%B0%8F%E6%8A%80%E8%83%BDGET%EF%BC%9A%E8%AE%B0%E5%88%9D%E6%AC%A1%E6%8A%98%E8%85%BEipv6_images/ac6b7b00.png"></p><p>开启路由器的ipv6有关功能。<br><img src= "/customize/img/loading.gif" data-lazy-src=".%E5%B0%8F%E6%8A%80%E8%83%BDGET%EF%BC%9A%E8%AE%B0%E5%88%9D%E6%AC%A1%E6%8A%98%E8%85%BEipv6_images/cfa741c6.png"></p><p>路由器拨号成功！可以看到获取到ipv6地址了。<br><img src= "/customize/img/loading.gif" data-lazy-src=".%E5%B0%8F%E6%8A%80%E8%83%BDGET%EF%BC%9A%E8%AE%B0%E5%88%9D%E6%AC%A1%E6%8A%98%E8%85%BEipv6_images/d220d4ee.png"></p><h2 id="网络测试"><a href="#网络测试" class="headerlink" title="网络测试"></a>网络测试</h2><p>再次，使用在线工具测试。测试是否支持ipv6</p><blockquote><p><a target="_blank" rel="noopener" href="https://www.test-ipv6.com/">https://www.test-ipv6.com/</a></p></blockquote><p><img src= "/customize/img/loading.gif" data-lazy-src=".%E5%B0%8F%E6%8A%80%E8%83%BDGET%EF%BC%9A%E8%AE%B0%E5%88%9D%E6%AC%A1%E6%8A%98%E8%85%BEipv6_images/6e9d9f7e.png"></p><p>如图所示，那IPv6的使用就完全没有问题了。</p><p>还可以使用，这个工具来测试回调.</p><blockquote><p><a target="_blank" rel="noopener" href="https://v6r.ipip.net/?format=callback">https://v6r.ipip.net/?format=callback</a></p></blockquote><p>返回的ipv6地址就是你的公网ipv6地址了。</p><h1 id="可选-关闭临时ipv6地址"><a href="#可选-关闭临时ipv6地址" class="headerlink" title="(可选)关闭临时ipv6地址"></a>(可选)关闭临时ipv6地址</h1><p>以管理员权限执行命令提示符输入如下命令,重启网卡或者网络适配器即可，要都不会就电脑重启</p><blockquote><p>netsh interface ipv6 set privacy state=disable</p></blockquote><p>若要恢复临时ipv6,可是使用以下命令</p><blockquote><p>netsh interface ipv6 set privacy state=enable</p></blockquote><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>回过头一看，设置启用民用宽带的ipv6其实挺简单的。</p><p>但是，中间踩到得坑，一时间都难以形容，总能出一些状况之外的问题。</p><p>以至于以为把光猫弄坏了，把联通师傅都叫来了。</p><p>有些上了年代的东西，轻易动不得，我也算浅浅领教到了。</p><p>好奇点一下都有可能点到雷了，加上现在联通宽带找回个密码也麻烦，走了不少弯路。</p><p>最终总算是把自己的宽带ipv6开起来了。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 技术博文 - 小技能 - DNS - NS - 域名解析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>随笔：apiherobuy项目总结</title>
       <link href="article/54628/"/>
       <url>article/54628/</url>
